@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from .config import settings
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bloom_art.wsgi.application'
 
-import os
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -76,11 +77,11 @@ import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'mydb'),
-        'USER': os.getenv('DB_USER', 'myuser'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'mypassword'),
-        'HOST': "db",
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': settings.DB_NAME,
+        'USER': settings.DB_USER,
+        'PASSWORD': settings.DB_PASSWORD,
+        'HOST': settings.DB_PORT,
+        'PORT': settings.DB_PORT,
     }
 }
 
