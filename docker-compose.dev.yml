@@ -1,0 +1,70 @@
+version: "3.9"
+
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.11-slim"
+      target: dev
+    container_name: bloom_art_backend
+    ports:
+      - 8000:8000
+    networks:
+      - bloom_art_network
+    volumes:
+      - type: volume
+        target: /app/.venv
+      - type: bind
+        source: ./backend
+        target: /app
+    depends_on:
+      - db
+    environment:
+      - UV_LINK_MODE=copy
+    env_file:
+      - .env
+
+  db:
+    image: postgres:15.1-alpine
+    volumes:
+      - bloom_art_database_data:/var/lib/postgresql/data
+    networks:
+      - bloom_art_network
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NODE_VERSION: "20-alpine"
+      target: dev
+    container_name: bloom_art_frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - type: volume
+        target: /app/node_modules
+      - type: bind
+        source: ./frontend
+        target: /app
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - backend
+    env_file:
+      - .env
+
+
+
+volumes:
+  bloom_art_database_data:
+
+networks:
+  bloom_art_network:
