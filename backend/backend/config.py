@@ -7,7 +7,6 @@ load_dotenv(find_dotenv())
 
 class Settings(BaseSettings):
     
-    # PostgreSQL database URLs
     DB_NAME: str
     DB_USER: str
     DB_PASSWORD: str
