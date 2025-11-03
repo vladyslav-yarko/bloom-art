@@ -1,7 +1,13 @@
 from django.contrib import admin
 from django import forms
+from django.contrib import admin
+from django.contrib.auth.models import User, Group
 
 from .models import Perfume
+
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
 
 
 class PerfumeForm(forms.ModelForm):
