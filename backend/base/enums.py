@@ -2,17 +2,17 @@ from django.db import models
 
 
 class PriceCurrencyEnum(models.TextChoices):
-    uah = 'uah'
-    usd = 'usd'
+    UAH = "uah", "UAH"
+    USD = "usd", "USD"
 
 
 class VolumeMl(models.TextChoices):
-    ML_10  = 10
-    ML_20  = 20
-    ML_30  = 30
-    ML_50  = 50
-    ML_75  = 75
-    ML_100 = 100
+    ML_10 = "10", "10 ml"
+    ML_20 = "20", "20 ml"
+    ML_30 = "30", "30 ml"
+    ML_50 = "50", "50 ml"
+    ML_75 = "75", "75 ml"
+    ML_100 = "100", "100 ml"
 
 
 class FirstNote(models.TextChoices):
@@ -189,6 +189,6 @@ class LastNote(models.TextChoices):
 
 
 class Sex(models.TextChoices):
-    MALE = "male"
-    FEMALE = "female"
-    UNISEX = "unisex"
+    MALE = "male", "Male"
+    FEMALE = "female", "Female"
+    UNISEX = "unisex", "Unisex"
