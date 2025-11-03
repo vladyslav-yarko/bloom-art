@@ -2,10 +2,9 @@ import uuid
 
 from django.db import models
 
-
-class PriceCurrencyEnum(models.TextChoices):
-    uah = 'uah'
-    usd = 'usd'
+from .enums import (
+    PriceCurrencyEnum
+)
 
 
 class Perfume(models.Model):
