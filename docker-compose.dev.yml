@@ -16,7 +16,7 @@ services:
       - bloom_art_network
     volumes:
       - type: volume
-        target: /app/.venv
+        target: /app/backend/.venv
       - type: bind
         source: ./backend
         target: /app
