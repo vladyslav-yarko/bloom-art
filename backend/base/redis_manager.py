@@ -1,3 +1,4 @@
+import uuid
 from typing import Union
 
 import redis
@@ -25,6 +26,10 @@ class RedisManager:
 
     async def delete(self, key: str) -> None:
         await self.engine.expire(key, 0)
+
+    async def add_photo(self, type: str, id: uuid.UUID, photo: str) -> None:
+        await self.engine.set(f'{type}:{id}:image', photo)
+        return None
 
 
 redis_manager = RedisManager()
