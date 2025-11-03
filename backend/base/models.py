@@ -28,4 +28,4 @@ class Perfume(models.Model):
 
     class Meta:
         db_table = "perfumes"
-        managed = False
+        # managed = False
