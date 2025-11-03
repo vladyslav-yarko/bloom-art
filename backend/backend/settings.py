@@ -45,6 +45,16 @@ INSTALLED_APPS = [
 
 JET_SIDE_MENU_COMPACT = True
 
+JAZZMIN_SETTINGS = {
+    "site_title": "Julianov Admin",
+    "site_header": "Julianov Admin Portal",
+    "site_brand": "Julianov Admin",
+    "welcome_sign": "Welcome to Julianov Admin",
+    "show_ui_builder": True,
+    "site_logo": "logo.png"
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -124,7 +134,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
