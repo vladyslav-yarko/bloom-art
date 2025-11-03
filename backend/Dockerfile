@@ -56,4 +56,4 @@ EXPOSE 8000
 # USER devuser
 
 ENTRYPOINT [ "uv", "run", "python" ]
-CMD [ "backend/manage.py", "runserver", "0.0.0.0:8000" ]
+CMD [ "manage.py", "runserver", "0.0.0.0:8000" ]
