@@ -22,6 +22,7 @@ services:
         target: /app
     depends_on:
       - db
+      - redis
     environment:
       - UV_LINK_MODE=copy
     env_file:
@@ -37,6 +38,16 @@ services:
       - 5432:5432
     env_file:
       - .env
+
+  redis:
+    image: redis:7
+    container_name: bloom_art_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - bloom_art_redis_data:/data
+    networks:
+      - bloom_art_network
 
   frontend:
     build:
@@ -65,6 +76,7 @@ services:
 
 volumes:
   bloom_art_database_data:
+  bloom_art_redis_data:
 
 networks:
   bloom_art_network:
