@@ -7,7 +7,7 @@ from backend.config import settings
 
 
 class RedisManager:
-    REDIS_URL = settings.REDIS
+    REDIS_URL = settings.REDIS_URL
 
     def __init__(self):
         self.engine = redis.from_url(self.REDIS_URL)
