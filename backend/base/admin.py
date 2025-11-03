@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django import forms
+
 from .models import Perfume
+from .redis_manager import redis_manager
 
 
 admin.site.unregister(User)
@@ -17,6 +19,20 @@ class PerfumeForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4, 'cols': 60}),
         }
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        image = self.cleaned_data.get('picture')
+        if image:
+            try:
+                image_bytes = image.read()
+                image_hex = image_bytes.hex()
+                redis_manager.add_photo('perfume', instance.id, image_hex)
+            except Exception as e:
+                raise ValidationError(f"Failed to save picture")
+        return instance
 
 
 @admin.register(Perfume)
