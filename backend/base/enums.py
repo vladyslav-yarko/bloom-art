@@ -186,3 +186,9 @@ class LastNote(models.TextChoices):
     SMOKE = "smoke"
     RESINOUS_SMOKE = "resinous smoke"
     NUTTY_CHOCOLATE_ACCORD = "nutty chocolate accord"
+
+
+class Sex(models.TextChoices):
+    MALE = "male"
+    FEMALE = "female"
+    UNISEX = "unisex"
