@@ -43,7 +43,8 @@ class Perfume(models.Model):
     )
     sex = models.CharField(
         max_length=100,
-        choices=Sex.choices
+        choices=Sex.choices,
+        default=Sex.UNISEX
     )
 
     class Meta:
