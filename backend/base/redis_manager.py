@@ -31,5 +31,9 @@ class RedisManager:
         self.engine.set(f'{type}:{id}:image', photo)
         return None
 
+    def get_photo(self, type: str, id: uuid.UUID):
+        photo: str = self.engine.get(f'{type}:{id}:image')
+        return photo
+
 
 redis_manager = RedisManager()
