@@ -16,7 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view as swagger_get_schema_view
+
+
+schema_view = swagger_get_schema_view(
+    openapi.Info(
+        title="Bloom-Art",
+        default_version="1.0.0",
+        description="Bloom-Art Docs",
+        terms_of_service="https://github.com/vladyslav-yarko/",
+        contact=openapi.Contact(email="vladislavv44444@gmail.com"),
+        license=openapi.License(name="BSD License")
+    ),
+    public=True
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name="swagger-schema")
 ]
