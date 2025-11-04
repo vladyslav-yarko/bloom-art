@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "base"
+    "base",
+    "drf_yasg"
 ]
 
 JET_SIDE_MENU_COMPACT = True
