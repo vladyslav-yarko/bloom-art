@@ -2,17 +2,20 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
+import base64
 
 from .models import Perfume
 from .redis_manager import redis_manager
 
 
+# Unregister built-in auth models
 admin.site.unregister(User)
 admin.site.unregister(Group)
 
 
 class PerfumeForm(forms.ModelForm):
-    picture = forms.ImageField(required=True)
+    picture = forms.ImageField(required=False)
 
     class Meta:
         model = Perfume
@@ -23,16 +26,19 @@ class PerfumeForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
+
         if commit:
             instance.save()
+
         image = self.cleaned_data.get('picture')
         if image:
             try:
                 image_bytes = image.read()
                 image_hex = image_bytes.hex()
-                redis_manager.add_photo('perfume', instance.id, image_hex)
+                redis_manager.add_photo('perfume', str(instance.id), image_hex)
             except Exception as e:
-                raise ValidationError(f"Failed to save picture: {str(e)}")
+                raise ValidationError(f"Failed to save picture: {e}")
+
         return instance
 
 
@@ -45,17 +51,55 @@ class PerfumeAdmin(admin.ModelAdmin):
         'type', 'volume', 'sex', 'display_notes'
     )
     list_editable = ('price', 'available')
-    list_filter = ('currency', 'type', 'volume', 'sex', 'first_notes', 'perfume_heart', 'last_notes')
+    list_filter = (
+        'currency', 'type', 'volume', 'sex',
+        'first_notes', 'perfume_heart', 'last_notes'
+    )
     search_fields = ('title', 'description', 'first_notes', 'perfume_heart', 'last_notes')
     ordering = ('title',)
     list_per_page = 30
 
     fieldsets = (
-        ('Main Info', {'fields': ('title', 'type', 'description', 'sex', 'picture')}),
-        ('Pricing & Stock', {'fields': ('price', 'currency', 'available')}),
-        ('Perfume Details', {'fields': ('weight', 'volume')}),
-        ('Fragrance Notes', {'fields': ('first_notes', 'perfume_heart', 'last_notes')}),
+        ('Main Info', {
+            'fields': ('title', 'type', 'description', 'sex', 'image_preview', 'picture')
+        }),
+        ('Pricing & Stock', {
+            'fields': ('price', 'currency', 'available')
+        }),
+        ('Perfume Details', {
+            'fields': ('weight', 'volume')
+        }),
+        ('Fragrance Notes', {
+            'fields': ('first_notes', 'perfume_heart', 'last_notes')
+        }),
     )
+
+    readonly_fields = ('image_preview',)
+
+    def image_preview(self, obj):
+        """Display picture preview if stored in Redis."""
+        if not obj or not obj.id:
+            return "(save first to see image)"
+
+        try:
+            image_hex = redis_manager.get_photo('perfume', str(obj.id))
+            if not image_hex:
+                return "(no image)"
+
+            if isinstance(image_hex, bytes):
+                image_hex = image_hex.decode('utf-8')
+
+            image_bytes = bytes.fromhex(image_hex)
+            base64_str = base64.b64encode(image_bytes).decode('utf-8')
+            return mark_safe(
+                f'<img src="data:image/jpeg;base64,{base64_str}" '
+                f'style="max-height:200px;border-radius:8px;" />'
+            )
+        except Exception:
+            # print("Image preview error:", e)
+            return "Error loading image"
+
+    image_preview.short_description = "Current Picture"
 
     def display_notes(self, obj):
         return f"{obj.first_notes} → {obj.perfume_heart} → {obj.last_notes}"
