@@ -47,7 +47,7 @@ class PerfumeAdmin(admin.ModelAdmin):
     form = PerfumeForm
 
     list_display = (
-        'title', 'price', 'currency', 'available',
+        'thumbnail', 'title', 'price', 'currency', 'available',
         'type', 'volume', 'sex', 'display_notes'
     )
     list_editable = ('price', 'available')
@@ -76,28 +76,47 @@ class PerfumeAdmin(admin.ModelAdmin):
 
     readonly_fields = ('image_preview',)
 
+    def thumbnail(self, obj):
+        """Small thumbnail for list_display."""
+        try:
+            image_hex = redis_manager.get_photo('perfume', str(obj.id))
+            if not image_hex:
+                return ""
+            if isinstance(image_hex, bytes):
+                image_hex = image_hex.decode('utf-8')
+            import base64
+            image_bytes = bytes.fromhex(image_hex)
+            base64_str = base64.b64encode(image_bytes).decode('utf-8')
+            return mark_safe(
+                f'<img src="data:image/jpeg;base64,{base64_str}" '
+                f'style="height:40px;width:40px;object-fit:cover;border-radius:5px;" />'
+            )
+        except Exception:
+            return "Error loading image"
+
+    thumbnail.short_description = "Img"
+    thumbnail.allow_tags = True  # (not required in modern Django, but harmless)
+
     def image_preview(self, obj):
-        """Display picture preview if stored in Redis."""
+        """Larger preview in detail view."""
         if not obj or not obj.id:
             return "(save first to see image)"
-
         try:
             image_hex = redis_manager.get_photo('perfume', str(obj.id))
             if not image_hex:
                 return "(no image)"
-
             if isinstance(image_hex, bytes):
                 image_hex = image_hex.decode('utf-8')
-
+            import base64
             image_bytes = bytes.fromhex(image_hex)
             base64_str = base64.b64encode(image_bytes).decode('utf-8')
             return mark_safe(
                 f'<img src="data:image/jpeg;base64,{base64_str}" '
                 f'style="max-height:200px;border-radius:8px;" />'
             )
-        except Exception:
-            # print("Image preview error:", e)
-            return "Error loading image"
+        except Exception as e:
+            print("Image preview error:", e)
+            return f"(error loading image: {e})"
 
     image_preview.short_description = "Current Picture"
 
