@@ -15,7 +15,7 @@ admin.site.unregister(Group)
 
 
 class PerfumeForm(forms.ModelForm):
-    picture = forms.ImageField(required=False)
+    picture = forms.ImageField(required=True)
 
     class Meta:
         model = Perfume
