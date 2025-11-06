@@ -19,9 +19,9 @@ class Repository(ABC):
     async def create_one():
         raise NotImplementedError
 
-    # @abstractmethod
-    # async def update_one():
-    #     raise NotImplementedError
+    @abstractmethod
+    async def update_one():
+        raise NotImplementedError
 
     # @abstractmethod
     # async def delete_one():
