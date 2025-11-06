@@ -53,3 +53,5 @@ yarn-error.log*
 next-env.d.ts
 
 frontend/.next/
+backend/.venv
+backend/backend/.venv
