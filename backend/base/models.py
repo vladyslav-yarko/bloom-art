@@ -57,3 +57,4 @@ class Perfume(models.Model):
         db_table = "perfumes"
         # managed = False
 
+
