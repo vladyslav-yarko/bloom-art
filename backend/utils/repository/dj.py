@@ -12,6 +12,9 @@ class DjangoORMRepository(Repository):
 
     # def __init__(self, session: AsyncSession):
     #     self.session = session
+    
+    def __init__(self):
+        pass
 
     # def equal_conditions(self, **kwargs) -> list:
     #     conditions = []
@@ -39,8 +42,12 @@ class DjangoORMRepository(Repository):
         obj = self.model.objects.filter(**kwargs).first()
         return obj
 
-    def get_one_by_id(self, id: Union[int, uuid.UUID]) -> Optional[dict]:
-        return self.get_one(id=id)
+    def get_one_by_id(self, pk: Union[int, uuid.UUID]) -> Optional[dict]:
+        try:
+            perfume = self.model.objects.get(pk=pk)
+            return perfume
+        except self.model.DoesNotExist:
+            return {"error": "Not found"}
 
     def create_one(self, **kwargs) -> Optional[dict]:
         obj = self.model.objects.create(**kwargs)
