@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 import base64
 
 from .models import Perfume
-from .redis_manager import redis_manager
+from base.redis_manager import redis_manager
 
 
 # Unregister built-in auth models

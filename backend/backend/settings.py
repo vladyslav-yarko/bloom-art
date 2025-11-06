@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "base",
+    "nova",
+    "order",
+    "perfume",
     "drf_yasg"
 ]
 
