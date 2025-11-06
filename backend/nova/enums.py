@@ -22,3 +22,8 @@ class ServiceType(models.TextChoices):
 class NewAddress(models.TextChoices):
     ZERO = "0", "0"
     ONE = "1", "1"
+
+
+class PaymentMethod(models.TextChoices):
+    CASH = "Cash", "Cash"
+    NON_CASH = "NonCash", "Non-Cash"
