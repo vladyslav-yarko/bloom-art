@@ -42,6 +42,10 @@ class DjangoORMRepository(Repository):
     def get_one_by_id(self, id: Union[int, uuid.UUID]) -> Optional[dict]:
         return self.get_one(id=id)
 
-    async def create_one(self, **kwargs) -> Optional[dict]:
+    def create_one(self, **kwargs) -> Optional[dict]:
         obj = self.model.objects.create(**kwargs)
+        return obj
+        
+    def update_one(self, filters: dict, **kwargs) -> Optional[dict]:
+        obj = self.model.objects.filter(**filters).update(**kwargs)
         return obj
