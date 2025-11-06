@@ -17,3 +17,8 @@ class ServiceType(models.TextChoices):
     WAREHOUSE_DOORS = "WarehouseDoors", "Warehouse → Doors"
     DOORS_WAREHOUSE = "DoorsWarehouse", "Doors → Warehouse"
     DOORS_DOORS = "DoorsDoors", "Doors → Doors"
+
+
+class NewAddress(models.TextChoices):
+    ZERO = "0", "0"
+    ONE = "1", "1"
