@@ -15,14 +15,14 @@ class NovaOrder(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     order = models.ForeignKey(
-        'orders.Order',
+        'order.Order',
         on_delete=models.CASCADE,
         related_name='nova_orders',
         null=True,
         blank=True
     )
     delivery_company = models.ForeignKey(
-        'orders.DeliveryCompany',
+        'order.DeliveryCompany',
         on_delete=models.CASCADE,
         related_name='nova_orders'
     )
