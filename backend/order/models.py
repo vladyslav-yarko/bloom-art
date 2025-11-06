@@ -51,3 +51,23 @@ class Order(models.Model):
 
     class Meta:
         db_table = "orders"
+
+
+class OrderItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    order = models.ForeignKey(
+        'Order',
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+
+    title = models.CharField(max_length=100)
+    item_price = models.FloatField()
+    quantity = models.IntegerField()
+    total_price = models.FloatField()
+    weight = models.FloatField()
+    total_weight = models.FloatField()
+
+    class Meta:
+        db_table = "order_items"
