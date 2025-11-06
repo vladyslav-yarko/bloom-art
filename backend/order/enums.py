@@ -22,3 +22,8 @@ class Status(models.TextChoices):
     SUCCESS = "success", "Success"
     RETURNED = "returned", "Returned"
     DELETED = "deleted", "Deleted"
+
+
+class Payment(models.TextChoices):
+    COD = "cod", "Cash on Delivery"
+    ONLINE = "online", "Online"
