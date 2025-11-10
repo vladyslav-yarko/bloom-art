@@ -1,8 +1,7 @@
-from typing import Optional
-
 from utils.repository import DjangoORMRepository
 
-from .models import Order, OrderItem
+from .models import Order, OrderItem, DeliveryCompany
+from .enums import CompanyPrefix
 
 
 class OrderRepository(DjangoORMRepository):
@@ -11,3 +10,10 @@ class OrderRepository(DjangoORMRepository):
 
 class OrderItemRepository(DjangoORMRepository):
     model = OrderItem
+
+
+class DeliveryCompanyRepository(DjangoORMRepository):
+    model = DeliveryCompany
+
+    async def select_one_by_prefix(self, prefix: CompanyPrefix):
+        return self.get_one(prefix=prefix)
