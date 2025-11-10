@@ -2,11 +2,14 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
+from drf_yasg.utils import swagger_auto_schema
 
 from .serializers import (
     LocalitiesPublicSerializer,
     PointsPublicSerializer,
-    CacheStatusSerializer
+    CacheStatusSerializer,
+    OrderBodySerializer,
+    OrderPublicSerializer
 )
 from order.enums import Source
 from .service import NOVAService
@@ -150,3 +153,27 @@ class CachePointsView(APIView):
         }
         serializer = PointsPublicSerializer(data)
         return Response(serializer.data)
+
+
+class CreateOrderView(APIView):
+    @swagger_auto_schema(request_body=OrderBodySerializer)
+    def post(self, request):
+        service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        serializer = OrderBodySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        validated_data = serializer.validated_data
+        data = service.create_order(validated_data)
+        if not data:
+            return Response(
+                {
+                    "detail": "Invalid data sent"
+                },
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        public_serializer = OrderPublicSerializer(data)
+        return Response(public_serializer.data)
