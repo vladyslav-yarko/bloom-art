@@ -7,10 +7,13 @@ from drf_yasg import openapi
 from .serializers import (
     OrdersPublicSerializer,
     OrderPublicSerializer,
-    OrderItemsPublicSerializer
+    OrderItemsPublicSerializer,
+    UpdatedOrdersPublicSerializer
 )
 from .service import OrderService
 from .repository import OrderRepository, OrderItemRepository, DeliveryCompanyRepository
+from nova.service import NOVAService
+from nova.repository import NovaOrderRepository
 
 
 class GetOrdersView(APIView):
@@ -111,4 +114,27 @@ class GetOrderItemsView(APIView):
                 status=status.HTTP_422_UNPROCESSABLE_ENTITY
             )
         serializer = OrderItemsPublicSerializer(data)
+        return Response(serializer.data)
+
+
+class UpdateOrderStatuses(APIView):
+    def put(self, request):
+        service = OrderService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        nova_service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        orders = service.get_orders()
+        nova_updated_orders_count = nova_service.update_statuses(orders)
+        total_updates_count = nova_updated_orders_count
+        serializer = UpdatedOrdersPublicSerializer({
+            "novaOrderUpdatesCount": nova_updated_orders_count,
+            "orderUpdatesCount": total_updates_count
+        })
         return Response(serializer.data)

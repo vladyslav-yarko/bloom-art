@@ -40,21 +40,26 @@ class OrdersPublicSerializer(PaginationSerializer):
 
 
 class OrderItemSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=99, example="title")
-    itemPrice = serializers.IntegerField(example=140)
-    quantity = serializers.IntegerField(example=3)
-    weight = serializers.FloatField(example=0.5)
+    title = serializers.CharField(max_length=99)
+    itemPrice = serializers.IntegerField()
+    quantity = serializers.IntegerField()
+    weight = serializers.FloatField()
 
     def validate_weight(self, value):
         return check_decimal_number(value)
 
 
 class OrderItemPublicSerializer(OrderItemSerializer):
-    id = serializers.UUIDField(example="fc5f1e3c-928e-11e9-898c-005056b24375")
-    orderId = serializers.UUIDField(example="fc5f1e3c-928e-11e9-898c-005056b24375")
-    totalPrice = serializers.IntegerField(example=420)
-    totalWeight = serializers.FloatField(example=1.5)
+    id = serializers.UUIDField()
+    orderId = serializers.UUIDField()
+    totalPrice = serializers.IntegerField()
+    totalWeight = serializers.FloatField()
 
 
 class OrderItemsPublicSerializer(PaginationSerializer):
     data = OrderItemPublicSerializer(many=True)
+
+
+class UpdatedOrdersPublicSerializer(serializers.Serializer):
+    novaOrderUpdatesCount = serializers.IntegerField()
+    orderUpdatesCount = serializers.IntegerField()
