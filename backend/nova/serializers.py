@@ -82,3 +82,17 @@ class OrderPublicSerializer(OrderSerializer):
     costRedelivery = serializers.IntegerField()
     profit = serializers.IntegerField()
     recipientBankCard = serializers.CharField()
+
+
+class OrderPriceBodySerializer(serializers.Serializer):
+    cityRecipient = serializers.UUIDField()
+    weight = serializers.FloatField()
+    cost = serializers.IntegerField()
+
+    def validate_weight(self, value):
+        return check_decimal_number(value)
+
+
+class OrderPricePublicSerializer(serializers.Serializer):
+    cost = serializers.IntegerField()
+    costRedelivery = serializers.IntegerField()
