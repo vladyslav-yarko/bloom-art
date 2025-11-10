@@ -11,7 +11,7 @@ class Service:
         self.repo = None
         self.redis_manager = redis_manager
     
-    def get(self, page: Optional[int] = None, **kwargs) -> Union[dict, tuple[int, str]]:
+    def get(self, page: Optional[int] = None, **kwargs) -> dict:
         full_data = self.repo().get(page, **kwargs)
         data, total, offset = full_data
                 
