@@ -35,5 +35,6 @@ schema_view = swagger_get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name="swagger-schema"),
-    path("perfumes/", include("perfume.urls"))
+    path("perfumes/", include("perfume.urls")),
+    path("nova/", include("nova.urls"))
 ]
