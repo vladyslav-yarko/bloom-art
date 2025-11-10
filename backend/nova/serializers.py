@@ -1,7 +1,9 @@
 from rest_framework import serializers
+
 from order.enums import Source
 from order.serializers import OrderItemBodySerializer
 from .enums import NewAddress, PaymentMethod, CargoType, ServiceType
+from utils.validation import check_decimal_number, check_phone_number
 
 
 class LocalitySerializer(serializers.Serializer):

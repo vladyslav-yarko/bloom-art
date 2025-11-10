@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from utils.validation import check_decimal_number
+
 
 class OrderItemSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=99)
