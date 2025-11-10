@@ -132,7 +132,7 @@ class NOVAService(Service):
         return int(cost), int(cost_redelivery)
 
     def get_order(self, delivery_id: uuid.UUID) -> Optional[dict]:
-        data = self.nova_order_repo().select_one_by_id(delivery_id)
+        data = self.nova_order_repo().get_one_by_id(delivery_id)
         return data
 
     @client_session

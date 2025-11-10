@@ -47,7 +47,7 @@ class DjangoORMRepository(Repository):
             perfume = self.model.objects.get(pk=pk)
             return perfume
         except self.model.DoesNotExist:
-            return {"error": "Not found"}
+            return None
 
     def create_one(self, **kwargs) -> Optional[dict]:
         obj = self.model.objects.create(**kwargs)
