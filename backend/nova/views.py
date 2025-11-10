@@ -168,6 +168,24 @@ class CreateOrderView(APIView):
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data
         data = service.create_order(validated_data)
+        # import logging
+
+        # # create a logger
+        # logger = logging.getLogger("myapp")
+        # logger.setLevel(logging.DEBUG)
+
+        # # create console handler and set level
+        # ch = logging.StreamHandler()
+        # ch.setLevel(logging.DEBUG)
+
+        # # optional: simple format
+        # formatter = logging.Formatter('%(levelname)s: %(message)s')
+        # ch.setFormatter(formatter)
+
+        # # add the handler
+        # logger.addHandler(ch)
+
+        # logger.info("YEEEEEEEEEP")
         if not data:
             return Response(
                 {
