@@ -16,6 +16,18 @@ class LocalitiesPublicSerializer(serializers.Serializer):
     source = serializers.ChoiceField(choices=Source.choices)
 
 
-class LocalitiesCacheStatusSerializer(serializers.Serializer):
+class CacheStatusSerializer(serializers.Serializer):
     isCached = serializers.BooleanField()
     timeToExpire = serializers.IntegerField()
+
+
+class PointSerializer(serializers.Serializer):
+    title = serializers.CharField()
+    ref = serializers.UUIDField()
+    cityRef = serializers.UUIDField()
+    warehouseTypeRef = serializers.UUIDField()
+
+
+class PointsPublicSerializer(serializers.Serializer):
+    data = PointSerializer(many=True)
+    source = serializers.ChoiceField(choices=Source.choices)
