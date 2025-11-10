@@ -9,7 +9,9 @@ from .serializers import (
     PointsPublicSerializer,
     CacheStatusSerializer,
     OrderBodySerializer,
-    OrderPublicSerializer
+    OrderPublicSerializer,
+    OrderPriceBodySerializer,
+    OrderPricePublicSerializer
 )
 from order.enums import Source
 from .service import NOVAService
@@ -194,4 +196,32 @@ class CreateOrderView(APIView):
                 status=status.HTTP_422_UNPROCESSABLE_ENTITY
             )
         public_serializer = OrderPublicSerializer(data)
+        return Response(public_serializer.data)
+
+
+class OrderPriceView(APIView):
+    @swagger_auto_schema(request_body=OrderPriceBodySerializer)
+    def post(self, request):
+        service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        serializer = OrderPriceBodySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        validated_data = serializer.validated_data
+        data = service.check_order_price(validated_data)
+        if not data:
+            return Response(
+                {
+                    "detail": "Invalid data sent"
+                },
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        cost, cost_redelivery = data
+        public_serializer = OrderPublicSerializer({
+            "cost": cost,
+            "costRedelivery": cost_redelivery
+        })
         return Response(public_serializer.data)

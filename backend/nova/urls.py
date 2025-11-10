@@ -12,5 +12,6 @@ urlpatterns = [
     path('points/cache-status', views.PointsCacheStatusView.as_view(), name='nova-points-cache-status'),
     path('points/cache', views.CachePointsView.as_view(), name='nova-cache-points'),
 
-    path('orders/', views.CreateOrderView.as_view(), name='nova-create-order')
+    path('orders/', views.CreateOrderView.as_view(), name='nova-create-order'),
+    path('orders/price/', views.OrderPriceView.as_view(), name='nova-order-price')
 ]
