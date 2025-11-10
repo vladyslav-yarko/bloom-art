@@ -25,7 +25,7 @@ class DeliveryCompany(models.Model):
 
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
+
     status = models.CharField(
         max_length=50,
         choices=Status.choices,
@@ -45,7 +45,7 @@ class Order(models.Model):
     )
 
     delivery_id = models.UUIDField()
-    
+
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
