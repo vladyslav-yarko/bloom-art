@@ -14,5 +14,6 @@ urlpatterns = [
 
     path('orders/', views.CreateOrderView.as_view(), name='nova-create-order'),
     path('orders/price/', views.OrderPriceView.as_view(), name='nova-order-price'),
-    path('orders/track/', views.OrderTrackView.as_view(), name='nova-order-track')
+    path('orders/track/', views.OrderTrackView.as_view(), name='nova-order-track'),
+    path('orders/<uuid:id>/', views.GetOrderView.as_view(), name='nova-order-get')
 ]

@@ -263,3 +263,39 @@ class OrderTrackView(APIView):
             )
         serializer = OrderTrackPublicSerializer(data)
         return Response(serializer.data)
+
+
+class GetOrderView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'id',
+                openapi.IN_PATH,
+                description="Order ID",
+                type=openapi.TYPE_STRING,
+                format=openapi.FORMAT_UUID,
+                required=True,
+                example="8e1718f5-1972-11e5-add9-005056887b8d",
+            ),
+        ]
+    )
+    def get(self, request, id):
+        service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        if not id:
+            return Response(
+                {"detail": "Missing required path parameter: id"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = service.get_order(id)
+        if not data:
+            return Response(
+                {"detail": "ID was not found"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        serializer = OrderPublicSerializer(data)
+        return Response(serializer.data)
