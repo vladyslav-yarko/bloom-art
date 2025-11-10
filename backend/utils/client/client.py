@@ -19,6 +19,7 @@ class Client(ABC):
 def client_session(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
+        # session_was_already_open = self.client.session is not None
         session_was_already_open = self.client.session is not None
         if not session_was_already_open:
             self.client.open_session()

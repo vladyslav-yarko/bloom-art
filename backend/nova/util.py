@@ -24,37 +24,38 @@ class NOVAUtil:
             "f9316480-5f2d-425d-bc2c-ac7cd29decf0"
         ]
         self.status = {
-            "1": Status.AwaitingAcceptance,
+            "1": Status.AWAITING_ACCEPTANCE,
 
-            "2": Status.Deleted,
-            "3": Status.Deleted,
+            "2": Status.DELETED,
+            "3": Status.DELETED,
 
-            "4": Status.InTransit,
-            "5": Status.InTransit,
-            "6": Status.InTransit,
-            "41": Status.InTransit,
-            "101": Status.InTransit,
+            "4": Status.IN_TRANSIT,
+            "5": Status.IN_TRANSIT,
+            "6": Status.IN_TRANSIT,
+            "41": Status.IN_TRANSIT,
+            "101": Status.IN_TRANSIT,
 
-            "7": Status.Arrived,
-            "8": Status.Arrived,
+            "7": Status.ARRIVED,
+            "8": Status.ARRIVED,
 
-            "9": Status.Accepted,
-            "10": Status.Accepted,
+            "9": Status.ACCEPTED,
+            "10": Status.ACCEPTED,
 
-            "11": Status.Success,
+            "11": Status.SUCCESS,
 
-            "12": Status.AwaitingShipment,
+            "12": Status.AWAITING_SHIPMENT,
 
-            "103": Status.Returned,
-            "106": Status.Returned,
+            "103": Status.RETURNED,
+            "106": Status.RETURNED,
 
             "102": None,
             "104": None,
             "105": None,
             "111": None,
-            "112": None
+            "112": None,
         }
-        
+
+
     def process_locality_data(self, data: list) -> list[dict]:
         clean_data = list()
         data = data["data"]

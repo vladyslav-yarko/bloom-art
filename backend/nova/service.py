@@ -23,9 +23,9 @@ class NOVAService(Service):
         nova_order_repo: Repository,
         delivery_company_repo: Repository,
     ):
-        self.company=Company.NOVA,
-        self.client=NOVAClient,
-        self.util=NOVAUtil
+        self.company = Company.NOVA
+        self.client = NOVAClient()
+        self.util = NOVAUtil()
         self.order_repo = order_repo
         self.order_item_repo = order_item_repo
         self.nova_order_repo = nova_order_repo
@@ -52,18 +52,19 @@ class NOVAService(Service):
     def localities_cache_status(self) -> Optional[int]:
         time = self.get_cache_status(CacheType.LOCALITIES)
         return time
-    
+
     def points_cache_status(self) -> Optional[int]:
         time = self.get_cache_status(CacheType.POINTS)
         return time
 
     def cache_data(self, type: CacheType, data: list) -> None:
         data = json.dumps(data)
-        redis_manager.cache_string_data(f"{self.company}-{type}-cache", data, self.CACHE_EXPIRATION_TIME)
+        redis_manager.set_string_data(f"{self.company}-{type}-cache", data, self.CACHE_EXPIRATION_TIME)
+        # redis_manager.cache_string_data(f"{self.company}-{type}-cache", data, self.CACHE_EXPIRATION_TIME)
 
     def cache_localities(self) -> Optional[list]:
         data = self.get_localities()
-        if data:    
+        if data:
             return None
         data = self.get_all_localities()
         self.cache_data(CacheType.LOCALITIES, data)
