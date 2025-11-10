@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from order.enums import Source
+from order.enums import Source, Status
 from order.serializers import OrderItemBodySerializer
 from .enums import NewAddress, PaymentMethod, CargoType, ServiceType
 from utils.validation import check_decimal_number, check_phone_number
@@ -96,3 +96,14 @@ class OrderPriceBodySerializer(serializers.Serializer):
 class OrderPricePublicSerializer(serializers.Serializer):
     cost = serializers.IntegerField()
     costRedelivery = serializers.IntegerField()
+
+
+class OrderTrackPublicSerializer(serializers.Serializer):
+    ttn = serializers.IntegerField()
+    status = serializers.ChoiceField(
+        choices=[(e.value, e.name) for e in Status],
+        required=False,
+        allow_null=True
+    )
+    novaStatus = serializers.CharField()
+    novaStatusCode = serializers.IntegerField()
