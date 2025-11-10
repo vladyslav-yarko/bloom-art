@@ -1,9 +1,10 @@
-from typing import Optional
 import uuid
+from typing import Optional
 
 from backend.config import settings
 from utils.client import JSONClient
-from .enums import ServiceType, CargoType, PayerType, CargoType, ServiceType, PaymentMethod
+
+from .enums import CargoType, PaymentMethod, PayerType, ServiceType
 
 
 class NOVAClient(JSONClient):
@@ -64,7 +65,7 @@ class NOVAClient(JSONClient):
         }
         data = self.post()
         return data
-    
+
     def create_counterparty(
         self,
         first_name: str,
@@ -87,7 +88,7 @@ class NOVAClient(JSONClient):
         }
         data = self.post()
         return data
-    
+
     # async def get_contact(
     #     self,
     #     counterparty_ref: uuid.UUID
@@ -102,7 +103,7 @@ class NOVAClient(JSONClient):
     #     }
     #     data = await self.post()
     #     return data
-    
+
     def create_order(
         self,
         # payer_type: PayerType,
@@ -152,7 +153,7 @@ class NOVAClient(JSONClient):
         }
         data = self.post()
         return data
-    
+
     def track_ttn(
         self,
         ttn: int

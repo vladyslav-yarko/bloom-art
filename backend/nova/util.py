@@ -25,29 +25,29 @@ class NOVAUtil:
         ]
         self.status = {
             "1": Status.AwaitingAcceptance,
-            
+
             "2": Status.Deleted,
             "3": Status.Deleted,
-            
+
             "4": Status.InTransit,
             "5": Status.InTransit,
             "6": Status.InTransit,
             "41": Status.InTransit,
             "101": Status.InTransit,
-            
+
             "7": Status.Arrived,
             "8": Status.Arrived,
-            
+
             "9": Status.Accepted,
             "10": Status.Accepted,
-            
+
             "11": Status.Success,
-            
+
             "12": Status.AwaitingShipment,
-            
+
             "103": Status.Returned,
             "106": Status.Returned,
-            
+
             "102": None,
             "104": None,
             "105": None,
@@ -60,23 +60,23 @@ class NOVAUtil:
         data = data["data"]
         for locality in data:
             d = dict()
-            
+
             title = locality["Description"]
             cityRef = locality["Ref"]
             localityType = locality["SettlementTypeDescription"]
             region = locality["AreaDescription"]
             localityTypeShorthand = self.template.get(localityType)
-            
+
             d["fullTitle"] = self.locality_full_title(localityTypeShorthand, title, region)
             d["title"] = title
             d["cityRef"] = cityRef
             d["localityType"] = localityType
             d["localityTypeShorthand"] = localityTypeShorthand
             d["region"] = region
-            
+
             clean_data.append(d)
         return clean_data
-    
+
     @staticmethod
     def locality_full_title(
         locality_type_shorthand: str,
@@ -89,7 +89,7 @@ class NOVAUtil:
             region = ""
         data = f"{locality_type_shorthand}. {title}{region})"
         return data
-    
+
     def process_point_data(self, data: list) -> list[dict]:
         clean_data = list()
         data = data["data"]
@@ -104,8 +104,8 @@ class NOVAUtil:
             d["warehouseTypeRef"] = warehouse_type_ref
             clean_data.append(d)
         return clean_data
-    
-    
+
+
         # async def check_cached_data(self) -> str:
     #     data = await redis_manager.get_cached_string_data('nova-localities')
     #     if not data:
@@ -114,7 +114,7 @@ class NOVAUtil:
     #             detail='Cached data is not found. Use /nova/cache/localities/all'
     #         )
     #     return json.loads(data)
-    
+
     # async def department_localites(self) -> list[dict]:
     #     localities_data = await self.check_cached_data()
     #     data = []
@@ -122,7 +122,7 @@ class NOVAUtil:
     #         if locality["department"]:
     #             data.append(locality)
     #     return data
-    
+
     # async def courier_localities(self) -> list[dict]:
     #     localities_data = await self.check_cached_data()
     #     data = []
@@ -130,6 +130,6 @@ class NOVAUtil:
     #         if locality["courier"]:
     #             data.append(locality)
     #     return data
-    
+
     # def get_template(self) -> dict:
     #     return self.template

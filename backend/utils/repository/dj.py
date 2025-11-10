@@ -12,7 +12,7 @@ class DjangoORMRepository(Repository):
 
     # def __init__(self, session: AsyncSession):
     #     self.session = session
-    
+
     def __init__(self):
         pass
 
@@ -52,7 +52,7 @@ class DjangoORMRepository(Repository):
     def create_one(self, **kwargs) -> Optional[dict]:
         obj = self.model.objects.create(**kwargs)
         return obj
-        
+
     def update_one(self, filters: dict, **kwargs) -> Optional[dict]:
         obj = self.model.objects.filter(**filters).update(**kwargs)
         return obj

@@ -9,7 +9,7 @@ from utils.client import client_session
 from utils.repository import Repository
 from .client import NOVAClient
 from order.enums import Company, CacheType
-from utils import NOVAUtil
+from .util import NOVAUtil
 from base.redis_manager import redis_manager
 
 
@@ -30,15 +30,15 @@ class NOVAService(Service):
         self.order_item_repo = order_item_repo
         self.nova_order_repo = nova_order_repo
         self.delivery_company_repo = delivery_company_repo
-        
+
     def get_cache_data(self, type: CacheType) -> Optional[list]:
         data = redis_manager.get_string_data(f"{self.company}-{type}-cache")
         return json.loads(data) if data else None
-    
+
     def get_localities(self) -> Optional[list]:
         localities = self.get_cache_data(CacheType.LOCALITIES)
         return localities
-    
+
     def get_points(self) -> Optional[list]:
         points = self.get_cache_data(CacheType.POINTS)
         return points
@@ -48,11 +48,11 @@ class NOVAService(Service):
         if time_to_expire == -2:
             return None
         return time_to_expire
-    
+
     def localities_cache_status(self) -> Optional[int]:
         time = self.get_cache_status(CacheType.LOCALITIES)
         return time
-        
+    
     def points_cache_status(self) -> Optional[int]:
         time = self.get_cache_status(CacheType.POINTS)
         return time
@@ -60,7 +60,7 @@ class NOVAService(Service):
     def cache_data(self, type: CacheType, data: list) -> None:
         data = json.dumps(data)
         redis_manager.cache_string_data(f"{self.company}-{type}-cache", data, self.CACHE_EXPIRATION_TIME)
-        
+
     def cache_localities(self) -> Optional[list]:
         data = self.get_localities()
         if data:    
@@ -68,7 +68,7 @@ class NOVAService(Service):
         data = self.get_all_localities()
         self.cache_data(CacheType.LOCALITIES, data)
         return data
-    
+
     def cache_points(self) -> Optional[list]:
         data = self.get_points()
         if data:
@@ -76,7 +76,7 @@ class NOVAService(Service):
         data = self.get_all_points()
         self.cache_data(CacheType.POINTS, data)
         return data
-    
+
     @client_session
     def get_all_localities(self) -> Optional[list[dict]]:
         data = []
@@ -95,7 +95,7 @@ class NOVAService(Service):
                 continue
             return None
         return data
-    
+
     @client_session
     def get_all_points(self) -> Optional[list[dict]]:
         data = []
@@ -114,8 +114,8 @@ class NOVAService(Service):
                 continue
             return None
         return data
-    
-    
+
+
     @client_session
     def check_order_price(self, body: dict) -> Optional[dict]:
         data = self.client.check_price(
@@ -129,11 +129,11 @@ class NOVAService(Service):
         cost = data.get("Cost")
         cost_redelivery = data.get("CostRedelivery")
         return int(cost), int(cost_redelivery)
-    
+
     def get_order(self, delivery_id: uuid.UUID) -> Optional[dict]:
         data = self.nova_order_repo().select_one_by_id(delivery_id)
         return data
-        
+
     @client_session
     def track_ttn(self, ttn: int) -> Optional[dict]:
         data = self.client.track_ttn(ttn)
@@ -155,7 +155,7 @@ class NOVAService(Service):
         }
         # print("FINAL_DATA", data)
         return data
-        
+
     @client_session
     def create_order(
         self,
@@ -231,7 +231,7 @@ class NOVAService(Service):
         except Exception as e:
             # print(str(e))
             return None
-    
+
     @client_session
     def update_statuses(self, orders: list[dict]) -> int:
         update_statuses_count = 0

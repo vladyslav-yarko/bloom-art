@@ -20,9 +20,11 @@ class LocalitiesPublicView(APIView):
         )
         localities = service.get_localities()
         if not localities:
-            raise APIException(
-                detail="Cached data is not found. Use POST /nova/localities/cache",
-                code=status.HTTP_400_BAD_REQUEST
+            return Response(
+                {
+                    "detail": "Cached data is not found. Use POST /nova/localities/cache"
+                },
+                status=status.HTTP_400_BAD_REQUEST
             )
         data = {
             "data": localities,

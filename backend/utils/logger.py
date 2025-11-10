@@ -35,7 +35,7 @@ class Logger:
     #     file_handler.setFormatter(logging.Formatter(self.format))
     #     router_logger.addHandler(file_handler)
     #     return router_logger
-    
+
     def debug(self, message: str) -> None:
         self.logger.debug(message)
 
