@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
 from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from .serializers import (
     LocalitiesPublicSerializer,
@@ -11,7 +12,8 @@ from .serializers import (
     OrderBodySerializer,
     OrderPublicSerializer,
     OrderPriceBodySerializer,
-    OrderPricePublicSerializer
+    OrderPricePublicSerializer,
+    OrderTrackPublicSerializer
 )
 from order.enums import Source
 from .service import NOVAService
@@ -220,8 +222,44 @@ class OrderPriceView(APIView):
                 status=status.HTTP_422_UNPROCESSABLE_ENTITY
             )
         cost, cost_redelivery = data
-        public_serializer = OrderPublicSerializer({
+        public_serializer = OrderPricePublicSerializer({
             "cost": cost,
             "costRedelivery": cost_redelivery
         })
         return Response(public_serializer.data)
+
+
+class OrderTrackView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'ttn',
+                openapi.IN_QUERY,
+                description="Tracking number (TTN)",
+                type=openapi.TYPE_INTEGER,
+                required=True,
+                example=20400048799000,
+            ),
+        ]
+    )
+    def get(self, request):
+        service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        ttn = request.query_params.get('ttn')
+        if not ttn:
+            return Response(
+                {"detail": "Missing required query parameter: ttn"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = service.track_ttn(ttn)
+        if not data:
+            return Response(
+                {"detail": "TTN was not found"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        serializer = OrderTrackPublicSerializer(data)
+        return Response(serializer.data)
