@@ -14,3 +14,8 @@ class LocalitySerializer(serializers.Serializer):
 class LocalitiesPublicSerializer(serializers.Serializer):
     data = LocalitySerializer(many=True)
     source = serializers.ChoiceField(choices=Source.choices)
+
+
+class LocalitiesCacheStatusSerializer(serializers.Serializer):
+    isCached = serializers.BooleanField()
+    timeToExpire = serializers.IntegerField()
