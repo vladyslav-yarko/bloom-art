@@ -6,7 +6,8 @@ from drf_yasg import openapi
 
 from .serializers import (
     OrdersPublicSerializer,
-    OrderPublicSerializer
+    OrderPublicSerializer,
+    OrderItemsPublicSerializer
 )
 from .service import OrderService
 from .repository import OrderRepository, OrderItemRepository, DeliveryCompanyRepository
@@ -71,4 +72,43 @@ class GetOrderView(APIView):
                 status=status.HTTP_422_UNPROCESSABLE_ENTITY
             )
         serializer = OrderPublicSerializer(data)
+        return Response(serializer.data)
+
+
+class GetOrderItemsView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'orderId',
+                openapi.IN_PATH,
+                description="Order ID",
+                type=openapi.TYPE_STRING,
+                format=openapi.FORMAT_UUID,
+                required=True,
+                example="8e1718f5-1972-11e5-add9-005056887b8d",
+            ),
+            openapi.Parameter(
+                'path',
+                openapi.IN_QUERY,
+                description="Pagination Page",
+                type=openapi.TYPE_INTEGER,
+                required=False, # True
+                example=1
+            ),
+        ]
+    )
+    def get(self, request, orderId):
+        service = OrderService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        page = request.query_params.get('page')
+        data = service.get_order_items(orderId, page)
+        if not data:
+            return Response(
+                {"detail": "Order items by order id has not found"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY
+            )
+        serializer = OrderItemsPublicSerializer(data)
         return Response(serializer.data)
