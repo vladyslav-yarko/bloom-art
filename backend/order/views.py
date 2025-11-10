@@ -19,7 +19,7 @@ class GetOrdersView(APIView):
                 openapi.IN_QUERY,
                 description="Pagination Page",
                 type=openapi.TYPE_INTEGER,
-                required=True,
+                required=False, # True
                 example=1,
             ),
         ]
@@ -31,15 +31,13 @@ class GetOrdersView(APIView):
             delivery_company_repo=DeliveryCompanyRepository
         )
         page = request.query_params.get('page')
-        data, prefix_data = service.get_orders(page)
-        orders_data = data.get("data", [])
-        clean_data = []
-
-        for item, prefix in zip(orders_data, prefix_data):
-            item["prefix"] = prefix
-            clean_data.append(item)
-
-        data["data"] = clean_data
-
+        data = service.get_orders(page)
+        # d = data.get("data")
+        # if d:
+        #     clean_data = []
+        #     for item in d:
+        #         item["prefix"] = "nova"
+        #         clean_data.append(item)
+        #     data["data"] = clean_data
         serializer = OrdersPublicSerializer(data)
         return Response(serializer.data)

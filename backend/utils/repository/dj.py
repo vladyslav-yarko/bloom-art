@@ -24,7 +24,7 @@ class DjangoORMRepository(Repository):
     #             conditions.append(condition)
     #     return conditions
 
-    async def get_count(self, **kwargs) -> Optional[int]:
+    def get_count(self, **kwargs) -> Optional[int]:
         count = self.model.objects.count()
         return count
 

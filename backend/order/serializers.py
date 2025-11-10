@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from utils.validation import check_decimal_number
 from base.serializers import PaginationSerializer
-from enums import Status, Payment, CompanyPrefix
+from .enums import Status, Payment, CompanyPrefix
 
 
 class OrderItemSerializer(serializers.Serializer):
@@ -26,11 +26,11 @@ class OrderPublicSerializer(serializers.Serializer):
     price = serializers.IntegerField()
     deliveryCompanyId = serializers.UUIDField()
     deliveryId = serializers.UUIDField()
-    prefix = serializers.ChoiceField(
-        choices=[(c.value, c.name) for c in CompanyPrefix],
-        required=False,
-        allow_null=True
-    )
+    # prefix = serializers.ChoiceField(
+    #     choices=[(c.value, c.name) for c in CompanyPrefix],
+    #     required=False,
+    #     allow_null=True
+    # )
     createdAt = serializers.DateTimeField()
     updatedAt = serializers.DateTimeField()
 
