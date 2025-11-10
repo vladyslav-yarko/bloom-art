@@ -56,3 +56,27 @@ class LocalitiesCacheStatusView(APIView):
         }
         serializer = LocalitiesCacheStatusSerializer(data)
         return Response(serializer.data)
+
+
+class CacheLocalitiesView(APIView):
+    def post(self, request):
+        service = NOVAService(
+            order_repo=OrderRepository,
+            order_item_repo=OrderItemRepository,
+            nova_order_repo=NovaOrderRepository,
+            delivery_company_repo=DeliveryCompanyRepository
+        )
+        localities = service.cache_localities()
+        if not localities:
+            return Response(
+                {
+                    "detail": "Data is already cached"
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            "data": localities,
+            "source": Source.API.value
+        }
+        serializer = LocalitiesPublicSerializer(data)
+        return Response(serializer.data)
