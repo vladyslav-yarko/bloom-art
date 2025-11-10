@@ -5,7 +5,7 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
 from .serializers import (
-    
+    OrdersPublicSerializer
 )
 from .service import OrderService
 from .repository import OrderRepository, OrderItemRepository, DeliveryCompanyRepository
@@ -32,14 +32,14 @@ class GetOrdersView(APIView):
         )
         page = request.query_params.get('page')
         data, prefix_data = service.get_orders(page)
-        d = data.get("data")
-        if d:
-            clean_data = []
-            for item, prefix in zip(d, prefix_data):
-                r = OrderPublic.model_validate(item, from_attributes=True)
-                r.prefix = prefix
-                clean_data.append(r)
-            data["data"] = clean_data
-        
-        serializer = LocalitiesPublicSerializer(data)
+        orders_data = data.get("data", [])
+        clean_data = []
+
+        for item, prefix in zip(orders_data, prefix_data):
+            item["prefix"] = prefix
+            clean_data.append(item)
+
+        data["data"] = clean_data
+
+        serializer = OrdersPublicSerializer(data)
         return Response(serializer.data)
