@@ -1,5 +1,6 @@
 import uuid
-from typing import Optional, Union
+from typing import Optional
+import json
 
 from backend.config import settings
 from order.models import Order
@@ -7,25 +8,74 @@ from utils.service import Service
 from utils.client import client_session
 from utils.repository import Repository
 from .client import NOVAClient
-from .enums import Company
-from backend.utils.nova import NOVAUtil
+from order.enums import Company, CacheType
+from utils import NOVAUtil
+from base.redis_manager import redis_manager
 
 
 class NOVAService(Service):
+    CACHE_EXPIRATION_TIME = 14400
+
     def __init__(
         self,
         order_repo: Repository,
         order_item_repo: Repository,
         nova_order_repo: Repository,
-        delivery_company_repo: Repository
+        delivery_company_repo: Repository,
     ):
-        company=Company.NOVA,
-        client=NOVAClient,
-        util=NOVAUtil
+        self.company=Company.NOVA,
+        self.client=NOVAClient,
+        self.util=NOVAUtil
         self.order_repo = order_repo
         self.order_item_repo = order_item_repo
         self.nova_order_repo = nova_order_repo
         self.delivery_company_repo = delivery_company_repo
+        
+    def get_cache_data(self, type: CacheType) -> Optional[list]:
+        data = redis_manager.get_string_data(f"{self.company}-{type}-cache")
+        return json.loads(data) if data else None
+    
+    def get_localities(self) -> Optional[list]:
+        localities = self.get_cache_data(CacheType.LOCALITIES)
+        return localities
+    
+    def get_points(self) -> Optional[list]:
+        points = self.get_cache_data(CacheType.POINTS)
+        return points
+
+    def get_cache_status(self, type: CacheType) -> Optional[int]:
+        time_to_expire = redis_manager.ttl(f"{self.company}-{type}-cache")
+        if time_to_expire == -2:
+            return None
+        return time_to_expire
+    
+    def localities_cache_status(self) -> Optional[int]:
+        time = self.get_cache_status(CacheType.LOCALITIES)
+        return time
+        
+    def points_cache_status(self) -> Optional[int]:
+        time = self.get_cache_status(CacheType.POINTS)
+        return time
+
+    def cache_data(self, type: CacheType, data: list) -> None:
+        data = json.dumps(data)
+        redis_manager.cache_string_data(f"{self.company}-{type}-cache", data, self.CACHE_EXPIRATION_TIME)
+        
+    def cache_localities(self) -> Optional[list]:
+        data = self.get_localities()
+        if data:    
+            return None
+        data = self.get_all_localities()
+        self.cache_data(CacheType.LOCALITIES, data)
+        return data
+    
+    def cache_points(self) -> Optional[list]:
+        data = self.get_points()
+        if data:
+            return None
+        data = self.get_all_points()
+        self.cache_data(CacheType.POINTS, data)
+        return data
     
     @client_session
     def get_all_localities(self) -> Optional[list[dict]]:

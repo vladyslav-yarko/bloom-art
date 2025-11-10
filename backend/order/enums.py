@@ -7,6 +7,16 @@ class Company(models.TextChoices):
     MEEST = 'meest', 'Meest'
 
 
+class Source(models.TextChoices):
+    CACHE = 'cache'
+    API = 'api'
+
+
+class CacheType(models.TextChoices):
+    POINTS = 'points'
+    LOCALITIES = 'localities'
+
+
 class CompanyPrefix(models.TextChoices):
     NOVA = 'nova', 'Nova'
     UKR = 'ukr', 'Ukr'
