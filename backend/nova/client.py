@@ -36,7 +36,7 @@ class NOVAClient(JSONClient):
         }
         data = self.post()
         return data
-    
+
     def check_price(
             self,
             city_recipient_ref: uuid.UUID,

@@ -1,5 +1,4 @@
 import uuid
-
 from django.db import models
 from django.utils import timezone
 
@@ -38,16 +37,16 @@ class Order(models.Model):
     )
     price = models.IntegerField()
 
-    delivery_company = models.ForeignKey(
+    deliveryCompanyId = models.ForeignKey(
         'DeliveryCompany',
         on_delete=models.CASCADE,
         related_name='orders'
     )
 
-    delivery_id = models.UUIDField()
+    deliveryId = models.UUIDField()
 
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True)
+    createdAt = models.DateTimeField(default=timezone.now)
+    updatedAt = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "orders"
@@ -56,18 +55,18 @@ class Order(models.Model):
 class OrderItem(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    order = models.ForeignKey(
+    orderId = models.ForeignKey(
         'Order',
         on_delete=models.CASCADE,
         related_name='items'
     )
 
     title = models.CharField(max_length=100)
-    item_price = models.FloatField()
+    itemPrice = models.FloatField()
     quantity = models.IntegerField()
-    total_price = models.FloatField()
+    totalPrice = models.FloatField()
     weight = models.FloatField()
-    total_weight = models.FloatField()
+    totalWeight = models.FloatField()
 
     class Meta:
         db_table = "order_items"

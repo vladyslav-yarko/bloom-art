@@ -15,5 +15,5 @@ class OrderItemRepository(DjangoORMRepository):
 class DeliveryCompanyRepository(DjangoORMRepository):
     model = DeliveryCompany
 
-    async def select_one_by_prefix(self, prefix: CompanyPrefix):
+    def select_one_by_prefix(self, prefix: CompanyPrefix):
         return self.get_one(prefix=prefix)

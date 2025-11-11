@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "nova",
     "order",
     "perfume",
-    "drf_yasg"
+    "drf_yasg",
+    "scripts"
 ]
 
 JET_SIDE_MENU_COMPACT = True

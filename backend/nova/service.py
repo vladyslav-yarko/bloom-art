@@ -125,15 +125,15 @@ class NOVAService(Service):
             cost=body.get("cost")
         )
 
-        import logging
-        logger = logging.getLogger("myapp")
-        logger.setLevel(logging.DEBUG)
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(levelname)s: %(message)s')
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-        logger.info(data)
+        # import logging
+        # logger = logging.getLogger("myapp")
+        # logger.setLevel(logging.DEBUG)
+        # ch = logging.StreamHandler()
+        # ch.setLevel(logging.DEBUG)
+        # formatter = logging.Formatter('%(levelname)s: %(message)s')
+        # ch.setFormatter(formatter)
+        # logger.addHandler(ch)
+        # logger.info(data)
 
         if data is None or not data.get("success"):
             return None
@@ -200,10 +200,10 @@ class NOVAService(Service):
                 return None
             ttn = data.get("data")[0]["IntDocNumber"]
             shipping_price, cost_redelivery = self.check_order_price(body)
-            delivery_company_obj = self.delivery_company_repo().select_one_by_prefix(Company.NOVA)
+            delivery_company_obj = self.delivery_company_repo().select_one_by_prefix(Company.NOVA.value)
             delivery_id = self.nova_order_repo().create_one(
                 shippingPrice=shipping_price,
-                deliveryCompanyId=delivery_company_obj.id,
+                deliveryCompanyId_id=delivery_company_obj.id,
                 ttn=int(ttn),
                 weight=body.get("weight"),
                 description=body.get("description"),
@@ -227,21 +227,39 @@ class NOVAService(Service):
             )
             order_id = self.order_repo().create_one(
                 price=body.get("cost"),
-                deliveryCompanyId=delivery_company_obj.id,
-                deliveryId=delivery_id,
+                deliveryCompanyId_id=delivery_company_obj.id,
+                deliveryId=delivery_id.id,
             )
-            self.nova_order_repo().update_one(orderId=order_id)
+            self.nova_order_repo().update_one({"id": delivery_id.id}, orderId=order_id.id)
             for item in body.get("items"):
                 self.order_item_repo().create_one(
-                    orderId=order_id,
-                    totalPrice=item.itemPrice * item.quantity,
-                    totalWeight=item.weight * item.quantity,
-                    **item.model_dump()
+                    orderId_id=order_id.id,
+                    totalPrice=item.get("itemPrice") * item.get("quantity"),
+                    totalWeight=item.get("weight") * item.get("quantity"),
+                    **item
                     )
-            data = self.nova_order_repo().select_one_by_id(delivery_id)
+            data = self.nova_order_repo().get_one_by_id(delivery_id.id)
             return data
         except Exception as e:
-            # print(str(e))
+            import logging
+
+            # create a logger
+            logger = logging.getLogger("myapp")
+            logger.setLevel(logging.DEBUG)
+
+            # create console handler and set level
+            ch = logging.StreamHandler()
+            ch.setLevel(logging.DEBUG)
+
+            # optional: simple format
+            formatter = logging.Formatter('%(levelname)s: %(message)s')
+            ch.setFormatter(formatter)
+
+            # add the handler
+            logger.addHandler(ch)
+
+            logger.info(str(e))
+            print(str(e))
             return None
 
     @client_session
