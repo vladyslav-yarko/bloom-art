@@ -2,9 +2,9 @@ from django.db import models
 
 
 class Company(models.TextChoices):
-    NOVA = 'nova', 'Nova'
-    UKR = 'ukr', 'Ukr'
-    MEEST = 'meest', 'Meest'
+    NOVA = 'nova'
+    UKR = 'ukr'
+    MEEST = 'meest'
 
 
 class Source(models.TextChoices):
@@ -18,22 +18,22 @@ class CacheType(models.TextChoices):
 
 
 class CompanyPrefix(models.TextChoices):
-    NOVA = 'nova', 'Nova'
-    UKR = 'ukr', 'Ukr'
-    MEEST = 'meest', 'Meest'
+    NOVA = 'nova'
+    UKR = 'ukr'
+    MEEST = 'meest'
 
 
 class Status(models.TextChoices):
-    AWAITING_ACCEPTANCE = "awaiting acceptance", "Awaiting Acceptance"
-    AWAITING_SHIPMENT = "awaiting shipment", "Awaiting Shipment"
-    IN_TRANSIT = "in transit", "In Transit"
-    ARRIVED = "arrived", "Arrived"
-    ACCEPTED = "accepted", "Accepted"
-    SUCCESS = "success", "Success"
-    RETURNED = "returned", "Returned"
-    DELETED = "deleted", "Deleted"
+    AWAITING_ACCEPTANCE = "awaiting acceptance"
+    AWAITING_SHIPMENT = "awaiting shipment"
+    IN_TRANSIT = "in transit"
+    ARRIVED = "arrived"
+    ACCEPTED = "accepted"
+    SUCCESS = "success"
+    RETURNED = "returned"
+    DELETED = "deleted"
 
 
 class Payment(models.TextChoices):
-    COD = "cod", "Cash on Delivery"
-    ONLINE = "online", "Online"
+    COD = "cod"
+    ONLINE = "online"

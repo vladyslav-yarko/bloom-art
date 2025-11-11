@@ -2,17 +2,17 @@ from django.db import models
 
 
 class PriceCurrencyEnum(models.TextChoices):
-    UAH = "uah", "UAH"
-    USD = "usd", "USD"
+    UAH = "uah"
+    USD = "usd"
 
 
 class VolumeMl(models.TextChoices):
-    ML_10 = "10", "10 ml"
-    ML_20 = "20", "20 ml"
-    ML_30 = "30", "30 ml"
-    ML_50 = "50", "50 ml"
-    ML_75 = "75", "75 ml"
-    ML_100 = "100", "100 ml"
+    ML_10 = "10"
+    ML_20 = "20"
+    ML_30 = "30"
+    ML_50 = "50"
+    ML_75 = "75"
+    ML_100 = "100"
 
 
 class FirstNote(models.TextChoices):
@@ -29,7 +29,6 @@ class FirstNote(models.TextChoices):
     KUMQUAT = "kumquat"
     CITRON = "citron"
     PETITGRAIN = "petitgrain"
-
     BLACKCURRANT_LEAF = "blackcurrant leaf"
     GREEN_LEAF = "green leaf"
     FRESH_GRASS = "fresh grass"
@@ -39,12 +38,10 @@ class FirstNote(models.TextChoices):
     SHISO = "shiso"
     VERBENA = "verbena"
     LEMONGRASS = "lemongrass"
-
     SEA_SALT = "sea salt"
     MARINE_BREEZE = "marine breeze"
     OZONE = "ozone"
     AQUATIC_NOTES = "aquatic notes"
-
     PEPPERMINT = "peppermint"
     MINT = "mint"
     BASIL = "basil"
@@ -54,7 +51,6 @@ class FirstNote(models.TextChoices):
     CLARY_SAGE = "clary sage"
     EUCALYPTUS = "eucalyptus"
     JUNIPER_BERRY = "juniper berry"
-
     GINGER = "ginger"
     PINK_PEPPER = "pink pepper"
     BLACK_PEPPER = "black pepper"
@@ -62,7 +58,6 @@ class FirstNote(models.TextChoices):
     CORIANDER = "coriander"
     ANISE = "anise"
     FENNEL = "fennel"
-
     GREEN_APPLE = "green apple"
     PEAR = "pear"
     PINEAPPLE = "pineapple"
@@ -71,7 +66,6 @@ class FirstNote(models.TextChoices):
     LYCHEE = "lychee"
     WHITE_GRAPE = "white grape"
     KIWI = "kiwi"
-
     ALDEHYDES = "aldehydes"
 
 
@@ -97,7 +91,6 @@ class HeartNote(models.TextChoices):
     LILAC = "lilac"
     MIMOSA = "mimosa"
     HYACINTH = "hyacinth"
-
     PEACH = "peach"
     APRICOT = "apricot"
     PLUM = "plum"
@@ -113,18 +106,15 @@ class HeartNote(models.TextChoices):
     PASSION_FRUIT = "passion fruit"
     COCONUT = "coconut"
     LYCHEE = "lychee"
-
     BLACK_TEA = "black tea"
     GREEN_TEA = "green tea"
     MATE = "mate"
     CHAMOMILE = "chamomile"
-
     CINNAMON = "cinnamon"
     CLOVE = "clove"
     NUTMEG = "nutmeg"
     CARAWAY = "caraway"
     CANDIED_GINGER = "candied ginger"
-
     HONEY = "honey"
     FLORAL_HONEY = "floral honey"
     POWDERY_NOTE = "powdery note"
@@ -147,7 +137,6 @@ class LastNote(models.TextChoices):
     CASHMERAN = "cashmeran"
     ISO_E_SUPER = "Iso E Super"
     AMBERWOOD = "amberwood"
-
     LABDANUM = "labdanum"
     BENZOIN = "benzoin"
     OPOPONAX = "opoponax"
@@ -158,10 +147,8 @@ class LastNote(models.TextChoices):
     AMBER = "amber"
     AMBROXAN = "ambroxan"
     AMBERGRIS = "ambergris"
-
     WHITE_MUSK = "white musk"
     MUSK = "musk"
-
     VANILLA = "vanilla"
     TONKA_BEAN = "tonka bean"
     COCOA = "cocoa"
@@ -174,7 +161,6 @@ class LastNote(models.TextChoices):
     MARSHMALLOW = "marshmallow"
     SUGAR = "sugar"
     TOFFEE = "toffee"
-
     TOBACCO = "tobacco"
     TOBACCO_LEAF = "tobacco leaf"
     OAKMOSS = "oakmoss"
@@ -182,13 +168,12 @@ class LastNote(models.TextChoices):
     SUEDE = "suede"
     BIRCH_TAR = "birch tar"
     HAY = "hay"
-
     SMOKE = "smoke"
     RESINOUS_SMOKE = "resinous smoke"
     NUTTY_CHOCOLATE_ACCORD = "nutty chocolate accord"
 
 
 class Sex(models.TextChoices):
-    MALE = "male", "Male"
-    FEMALE = "female", "Female"
-    UNISEX = "unisex", "Unisex"
+    MALE = "male"
+    FEMALE = "female"
+    UNISEX = "unisex"

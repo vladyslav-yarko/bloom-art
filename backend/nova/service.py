@@ -124,6 +124,17 @@ class NOVAService(Service):
             weight=body.get("weight"),
             cost=body.get("cost")
         )
+
+        import logging
+        logger = logging.getLogger("myapp")
+        logger.setLevel(logging.DEBUG)
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(levelname)s: %(message)s')
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
+        logger.info(data)
+
         if data is None or not data.get("success"):
             return None
         data = data.get("data")[0]
