@@ -36,11 +36,11 @@ class NOVAService(Service):
         return json.loads(data) if data else None
 
     def get_localities(self) -> Optional[list]:
-        localities = self.get_cache_data(CacheType.LOCALITIES.label)
+        localities = self.get_cache_data(CacheType.LOCALITIES.value)
         return localities
 
     def get_points(self) -> Optional[list]:
-        points = self.get_cache_data(CacheType.POINTS.label)
+        points = self.get_cache_data(CacheType.POINTS.value)
         return points
 
     def get_cache_status(self, type: CacheType) -> Optional[int]:
@@ -50,11 +50,11 @@ class NOVAService(Service):
         return time_to_expire
 
     def localities_cache_status(self) -> Optional[int]:
-        time = self.get_cache_status(CacheType.LOCALITIES.label)
+        time = self.get_cache_status(CacheType.LOCALITIES.value)
         return time
 
     def points_cache_status(self) -> Optional[int]:
-        time = self.get_cache_status(CacheType.POINTS.label)
+        time = self.get_cache_status(CacheType.POINTS.value)
         return time
 
     def cache_data(self, type: CacheType, data: list) -> None:
@@ -67,7 +67,7 @@ class NOVAService(Service):
         if data:
             return None
         data = self.get_all_localities()
-        self.cache_data(CacheType.LOCALITIES.label, data)
+        self.cache_data(CacheType.LOCALITIES.value, data)
         return data
 
     def cache_points(self) -> Optional[list]:
@@ -75,7 +75,7 @@ class NOVAService(Service):
         if data:
             return None
         data = self.get_all_points()
-        self.cache_data(CacheType.POINTS.label, data)
+        self.cache_data(CacheType.POINTS.value, data)
         return data
 
     @client_session

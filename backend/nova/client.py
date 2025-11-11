@@ -52,9 +52,9 @@ class NOVAClient(JSONClient):
                 "CitySender": settings.NOVA_CITY_SENDER,
                 "CityRecipient": str(city_recipient_ref),
                 "Weight": str(weight),
-                "ServiceType": ServiceType.WAREHOUSE_WAREHOUSE.label,
+                "ServiceType": ServiceType.WAREHOUSE_WAREHOUSE.value,
                 "Cost": str(cost),
-                "CargoType": CargoType.PARCEL.label,
+                "CargoType": CargoType.PARCEL.value,
                 "SeatsAmount": seats_amount,
                 "RedeliveryCalculate": {
                     "CargoType": "Money",
@@ -123,12 +123,12 @@ class NOVAClient(JSONClient):
             "calledMethod": "save",
             "methodProperties": {
                 "NewAddress": "1",
-                "PayerType": PayerType.RECIPIENT.label,
-                "PaymentMethod": PaymentMethod.CASH.label,
-                "CargoType": CargoType.PARCEL.label,
+                "PayerType": PayerType.RECIPIENT.value,
+                "PaymentMethod": PaymentMethod.CASH.value,
+                "CargoType": CargoType.PARCEL.value,
                 # "VolumeGeneral": "0.1",
                 "Weight": str(weight),
-                "ServiceType": ServiceType.WAREHOUSE_WAREHOUSE.label,
+                "ServiceType": ServiceType.WAREHOUSE_WAREHOUSE.value,
                 "SeatsAmount": "1",
                 "Description": description,
                 "Cost": cost,
@@ -144,7 +144,7 @@ class NOVAClient(JSONClient):
                 "RecipientsPhone": recipient_phone,
                 "BackwardDeliveryData": [
                         {
-                            "PayerType": PayerType.RECIPIENT.label,
+                            "PayerType": PayerType.RECIPIENT.value,
                             "CargoType": "Money",
                             "RedeliveryString": str(redelivery_string),
                             "RecipientBankCard": settings.NOVA_BANK_CARD
