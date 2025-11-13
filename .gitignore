@@ -55,3 +55,5 @@ next-env.d.ts
 frontend/.next/
 backend/.venv
 backend/backend/.venv
+
+frontend/.next
