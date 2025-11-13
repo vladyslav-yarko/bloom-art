@@ -1,0 +1,26 @@
+@layer base {
+    html {
+        @apply text-base md:text-lg lg:text-lg;
+    }
+        
+    body {
+        @apply bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark flex flex-col min-h-screen;
+        font-family: 'SherlyKitchenRegular', sans-serif;
+    }
+
+    main {
+        @apply grow;
+    }
+
+    h1 {
+        @apply text-3xl font-bold mb-2;
+    }
+
+    h2 {
+        @apply text-xl font-semibold mb-1;
+    }
+
+    /* a {
+        @apply text-primary hover:underline underline-offset-4;
+    } */
+}
