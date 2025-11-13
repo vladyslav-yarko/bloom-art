@@ -1,6 +1,6 @@
 import { SVGProps } from 'react'
 
-import LinkNewTabComponent from '@/ui/LinkNewTabComponent'
+import LinkNewTabComponent from './LinkNewTabComponent'
 
 
 export default function LinkedIn(props: SVGProps<SVGSVGElement>) {
