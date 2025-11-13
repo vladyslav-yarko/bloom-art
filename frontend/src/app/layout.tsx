@@ -2,6 +2,9 @@ import "../styles/globals.css"
 
 import type { Metadata } from "next";
 
+import Navbar from '@/features/Navbar'
+import { NavbarContextProvider } from '@/context/NavbarConext'
+
 
 export const metadata: Metadata = {
 	title: 'a',
@@ -29,10 +32,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
-  );
+		<html lang='en'>
+			<body>
+				<NavbarContextProvider>
+					<Navbar />
+				</NavbarContextProvider>
+				<main>
+					{children}
+				</main>
+			</body>
+		</html>
+	)
 }
