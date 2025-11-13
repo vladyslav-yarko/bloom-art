@@ -3,7 +3,7 @@ import "../styles/globals.css"
 import type { Metadata } from "next";
 
 import Navbar from '@/features/Navbar'
-import { NavbarContextProvider } from '@/context/NavbarConext'
+import { NavbarContextProvider } from '@/context/NavbarContext'
 
 
 export const metadata: Metadata = {
