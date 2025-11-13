@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export default function ButtonComponent({ children }) {
+export default function ButtonComponent({ children }: Props) {
 
     return (
         <div>
