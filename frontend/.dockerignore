@@ -3,3 +3,4 @@ node_modules
 tests
 README.md
 .gitignore
+.next

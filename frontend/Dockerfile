@@ -18,14 +18,14 @@ FROM base AS dev
 
 COPY package*.json yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
 EXPOSE 3000
 
 
-ENTRYPOINT [ "npm" ]
+ENTRYPOINT [ "yarn" ]
 CMD [ "run", "dev" ]
 
 
@@ -35,16 +35,16 @@ FROM base AS prod
 COPY package*.json yarn.lock ./
 
 # RUN npm install --production
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+RUN yarn run build
 
 EXPOSE 3000
 
 
-ENTRYPOINT [ "npm" ]
+ENTRYPOINT [ "yarn" ]
 CMD [ "start" ]
 
 # ENTRYPOINT ["npm", "start", "--"]
