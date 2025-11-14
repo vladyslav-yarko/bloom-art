@@ -57,3 +57,37 @@ EXPOSE 8000
 
 ENTRYPOINT [ "uv", "run", "python" ]
 CMD [ "manage.py", "runserver", "0.0.0.0:8000" ]
+
+
+###
+FROM base AS prod
+
+# USER root
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml uv.lock ./
+
+RUN uv python install 3.11
+
+RUN uv python pin 3.11
+
+RUN uv venv --python 3.11
+
+RUN uv sync --python 3.11
+
+# COPY --chown=django . .
+# COPY --chown=vladyslav:vladyslav . .
+COPY . .
+
+EXPOSE 8000
+
+# USER django
+# USER root
+# USER devuser
+
+ENTRYPOINT [ "uv", "run" ]
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]
+
