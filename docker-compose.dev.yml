@@ -34,16 +34,16 @@ services:
       - bloom_art_database_data:/var/lib/postgresql/data
     networks:
       - bloom_art_network
-    ports:
-      - 5432:5432
+    # ports:
+    #   - 5432:5432
     env_file:
       - .env
 
   redis:
     image: redis:7
     container_name: bloom_art_redis
-    ports:
-      - "6379:6379"
+    # ports:
+    #   - "6379:6379"
     volumes:
       - bloom_art_redis_data:/data
     networks:
