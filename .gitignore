@@ -57,3 +57,5 @@ backend/.venv
 backend/backend/.venv
 
 frontend/.next
+
+certs/
