@@ -2,8 +2,8 @@
 
 import { useContext } from "react"
 
-import NavHamburgerIcon from "../../../../../../../portfolio/src/features/Navbar/features/NavHamburger/components/NavHamburgerIcon"
-import NavHamburgerMenu from "../../../../../../../portfolio/src/features/Navbar/features/NavHamburger/features/NavHamburgerMenu"
+import NavHamburgerIcon from "./components/NavHamburgerIcon"
+import NavHamburgerMenu from "./features/NavHamburgerMenu"
 
 import { NavbarContext } from "@/context/NavbarContext"
 
