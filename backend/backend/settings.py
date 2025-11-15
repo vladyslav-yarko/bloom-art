@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-7-krq)a)g+p7yv45@$=n=p9s982!a4*de!agnno=2+&+^!^098
 # DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -62,6 +62,7 @@ JAZZMIN_SETTINGS = {
 
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,10 +77,11 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -152,3 +154,28 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "frontend",
+    "nginx"
+]
+
+APPEND_SLASH = True
+
+LOGIN_URL = '/api/accounts/login/'
+
+# FORCE_SCRIPT_NAME = '/api'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost"
+]

@@ -15,7 +15,7 @@ export default function NotFoundPage() {
 				<div className='notFoundButton'>
 					<ButtonPrimary>
 						<h2 className='w-full h-full'>
-							<LinkComponent title='Return to home' link='/' onClick={() => null} />
+							<LinkComponent title='Return to home' link='/'/>
 						</h2>
 					</ButtonPrimary>
 				</div>

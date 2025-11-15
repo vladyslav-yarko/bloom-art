@@ -19,6 +19,8 @@ from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view as swagger_get_schema_view
 
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 schema_view = swagger_get_schema_view(
     openapi.Info(
@@ -29,13 +31,16 @@ schema_view = swagger_get_schema_view(
         contact=openapi.Contact(email="vladislavv44444@gmail.com"),
         license=openapi.License(name="BSD License")
     ),
-    public=True
+    public=True,
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name="swagger-schema"),
-    path("perfumes/", include("perfume.urls")),
-    path("nova/", include("nova.urls")),
-    path("orders/", include("order.urls"))
+    path('api/admin/', admin.site.urls),
+    path("api/docs/", schema_view.with_ui('swagger', cache_timeout=0), name="swagger-schema"),
+    path("api/perfumes/", include("perfume.urls")),
+    path("api/nova/", include("nova.urls")),
+    path("api/orders/", include("order.urls")),
+    path("api/accounts/", include("django.contrib.auth.urls"))
 ]
+
+# urlpatterns += staticfiles_urlpatterns()
