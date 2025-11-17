@@ -1,25 +1,28 @@
-// import { createCart, loadCartId } from '../../../utils/cart';
+"use client"
+
+import { useContext } from "react"
+
+import { HomeContext } from "@/context/HomeContext"
 import ImageComponent from "@/ui/ImageComponent"
+import { toBase64 } from "@/lib/img"
+import { Item } from "@/types/home"
 
 
 interface Props {
-	item: {
-		picture: string
-		title: string
-		description: string
-		price: number
-		currency: string
-		available: number
-	}
+	item: Item
 }
 
 
 export default function HomeProductCard({ item }: Props) {
-    const imageBytes = new Uint8Array(item.picture.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)))
-    const base64Str = Buffer.from(imageBytes).toString('base64')
+    const context = useContext(HomeContext)
+    if (!context) throw new Error("HomeContext used outside provider")
+    const { setSelectedPerfume } = context
+
+    const base64Str = toBase64(item.picture)
 
     return (
-        <div className='grid gird-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer' key={item.title + '_pc'}>
+        <div className='grid gird-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer' key={item.title + '_pc'}
+            onClick={() => setSelectedPerfume(item, base64Str, false)}>
             <ImageComponent src={`data:image/jpeg;base64,${base64Str}`} alt="perfume" className="relative w-24 md:w-32 lg:w-40 h-24 md:h-32 lg:h-40 overflow-hidden rounded-lg"/>
             <h2 className='product-title'>{item.title}</h2>
             <p className='product-description'>

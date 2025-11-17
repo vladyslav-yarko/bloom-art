@@ -1,17 +1,6 @@
-// import { useEffect, useState } from "react"
-
 import HomeProductCard from "@/features/HomeProductCard"
-// import ProductModal from "../../elements/ProductModal/ProductModal"
-
-
-interface Item {
-	picture: string
-	title: string
-	description: string
-	price: number
-	currency: string
-	available: number
-}
+import ProductModal from "@/features/ProductModal/ProductModal"
+import { Item } from "@/types/home"
 
 
 const fetchPerfumes = async () => {
@@ -22,24 +11,6 @@ const fetchPerfumes = async () => {
 
 
 export default async function HomePage() {
-    // const [selectedProduct, setSelectedProduct] = useState(null);
-    // const [selectedProductType, setSelectedProductType] = useState(null);
-    // const [selectedProductImageUrl, setSelectedProductImageUrl] = useState(null);
-
-    // function setSelectedProduct_(product, type, allowScroll, imgUrl){
-    //     setSelectedProduct(product);
-    //     setSelectedProductType(type);
-    //     setSelectedProductImageUrl(imgUrl);
-
-    //     if (allowScroll === false) {
-    //         // prohibit to scroll the page (the modal window is closed)
-    //         document.body.style.overflow = 'hidden'
-    //     } else {
-    //         // allow to scroll the page (the modal window is opened)
-    //         document.body.style.overflow = 'auto'
-    //     }
-    // }
-
     const perfumes = await fetchPerfumes()
 
     return (
@@ -53,20 +24,12 @@ export default async function HomePage() {
                     {perfumes.map((element: Item, index: number): React.ReactNode => (
                         <HomeProductCard 
                             item={element} 
-                            // onClick={setSelectedProduct_} 
                             key={index}
                         />
                     ))}
                 </div>
             )}
-            {/* <ProductModal 
-                product={selectedProduct} 
-                onClose={() => {
-                    setSelectedProduct_(null, null, true);
-                }}
-                type={selectedProductType} 
-                imgUrl={selectedProductImageUrl} 
-            /> */}
+            <ProductModal/>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Navbar from '@/features/Navbar'
 import Footer from "@/features/Footer";
 import { NavbarContextProvider } from '@/context/NavbarContext'
+import { HomeContextProvider } from "@/context/HomeContext";
 
 
 export const metadata: Metadata = {
@@ -27,19 +28,17 @@ export const metadata: Metadata = {
 }
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
+export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
+	return (
 		<html lang='en'>
 			<body>
 				<NavbarContextProvider>
 					<Navbar />
 				</NavbarContextProvider>
 				<main>
-					{children}
+					<HomeContextProvider>
+						{children}
+					</HomeContextProvider>
 				</main>
 				<Footer />
 			</body>
