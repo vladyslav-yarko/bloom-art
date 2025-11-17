@@ -20,7 +20,7 @@ class GetOrdersView(APIView):
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter(
-                'path',
+                'page',
                 openapi.IN_QUERY,
                 description="Pagination Page",
                 type=openapi.TYPE_INTEGER,
@@ -36,6 +36,8 @@ class GetOrdersView(APIView):
             delivery_company_repo=DeliveryCompanyRepository
         )
         page = request.query_params.get('page')
+        if page:
+            page = int(page)
         data = service.get_orders(page)
         # d = data.get("data")
         # if d:
@@ -91,7 +93,7 @@ class GetOrderItemsView(APIView):
                 example="8e1718f5-1972-11e5-add9-005056887b8d",
             ),
             openapi.Parameter(
-                'path',
+                'page',
                 openapi.IN_QUERY,
                 description="Pagination Page",
                 type=openapi.TYPE_INTEGER,
@@ -107,6 +109,8 @@ class GetOrderItemsView(APIView):
             delivery_company_repo=DeliveryCompanyRepository
         )
         page = request.query_params.get('page')
+        if page:
+            page = int(page)
         data = service.get_order_items(orderId, page)
         if not data:
             return Response(

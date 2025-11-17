@@ -179,3 +179,4 @@ REST_FRAMEWORK = {
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost"
 ]
+
