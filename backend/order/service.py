@@ -31,8 +31,9 @@ class OrderService(Service):
         data = self.order_repo().get_one_by_id(id)
         if not data:
             return None
-        delivery_company_data = self.delivery_company_repo().get_one_by_id(data.deliveryCompanyId)
-        return data, delivery_company_data.prefix
+        # delivery_company_data = self.delivery_company_repo().get_one_by_id(data.deliveryCompanyId)
+        # return data, delivery_company_data.prefix
+        return data
 
     def get_order_items(self, orderId: uuid.UUID, page: Optional[int] = None):
         self.repo = self.order_item_repo

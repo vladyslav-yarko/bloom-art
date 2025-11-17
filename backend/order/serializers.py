@@ -24,7 +24,7 @@ class OrderPublicSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=[(s.value, s.name) for s in Status])
     payment = serializers.ChoiceField(choices=[(p.value, p.name) for p in Payment])
     price = serializers.IntegerField()
-    deliveryCompanyId = serializers.UUIDField()
+    # deliveryCompanyId = serializers.UUIDField()
     deliveryId = serializers.UUIDField()
     # prefix = serializers.ChoiceField(
     #     choices=[(c.value, c.name) for c in CompanyPrefix],
