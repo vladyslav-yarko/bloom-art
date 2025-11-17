@@ -71,6 +71,8 @@ services:
       - backend
     env_file:
       - .env
+    networks:
+    - bloom_art_network
 
 
 

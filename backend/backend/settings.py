@@ -160,7 +160,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "frontend",
-    "nginx"
+    "nginx",
+    "backend"
 ]
 
 APPEND_SLASH = True
@@ -177,6 +178,8 @@ REST_FRAMEWORK = {
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://localhost"
+    "https://localhost",
+    "http://localhost",
+    "http://frontend"
 ]
 

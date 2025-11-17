@@ -16,6 +16,7 @@ export default function ImageComponent({ src, alt, className="" }: Props) {
                 src={src}
                 alt={alt}
                 fill
+                className="object-cover"
             />
         </div>
     )
