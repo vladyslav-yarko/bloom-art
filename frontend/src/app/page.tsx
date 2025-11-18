@@ -15,6 +15,7 @@ export default async function HomePage() {
 
     return (
         <div className="shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark">
+            <ProductModal/>
             <div className="flex flex-col text-center mb-8 p-4">
                 <h1>✨ ArtStudia ✨</h1>
                 <p>Where creativity meets craftsmanship. Explore handcrafted paintings, aromatic perfumes, and unique artisan treasures - each piece tells a story, each creation carries a soul.</p>
@@ -29,7 +30,6 @@ export default async function HomePage() {
                     ))}
                 </div>
             )}
-            <ProductModal/>
         </div>
     )
 }

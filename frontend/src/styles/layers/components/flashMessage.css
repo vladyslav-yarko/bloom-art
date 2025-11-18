@@ -1,6 +1,10 @@
 @layer components {
     .flashMessage {
-        @apply flex flex-row justify-center;
+        @apply flex flex-row justify-center items-center
+        fixed top-1/7 left-1/2 -translate-x-1/2 z-20
+        backdrop-blur-sm rounded-lg
+        w-66 md:w-80 lg:w-104 h-22 md:h-25 lg:h-30
+        space-x-4;
     }
 
     .flashMessageIcon {
