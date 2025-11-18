@@ -42,7 +42,7 @@ export default function CartItems() {
 				) : (
 					<div className='cartItemsAbsence'>
 						<h2>{t('cartItemsAbsence.header')}</h2>
-						<div>
+						<div className="">
 							<ButtonPrimary>
 								<LinkComponent title={t('cartItemsAbsence.button')} link='/' />
 							</ButtonPrimary>

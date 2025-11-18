@@ -15,6 +15,10 @@
         @apply flex flex-col justify-center;
     }
 
+    .cartItemsAbsence {
+        @apply w-40;
+    }
+
     .cartItemCard {
         @apply grid grid-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer max-w-45 md:max-w-48 lg:max-w-70
         justify-items-center
