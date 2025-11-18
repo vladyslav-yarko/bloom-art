@@ -89,7 +89,7 @@ export default function ProductModal() {
 				w-60 md:w-70 lg:w-80'
 							onClick={e => e.stopPropagation()}
 						>
-							<div className='w-8 md:w-12 lg:w-14 mb-4 transition hover:rotate-90'>
+							<div className='w-8 md:w-12 lg:w-14 mb-4 transition hover:rotate-90 hover:scale-110'>
 								<CloseIcon onClick={onClose} />
 							</div>
 

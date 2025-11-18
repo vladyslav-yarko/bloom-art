@@ -15,6 +15,6 @@
 
 @import "./themes/theme.css";
 
+@import "./layers/utilitiesLayer.css";
 @import "./layers/baseLayer.css";
 @import "./layers/componentLayer.css";
-@import "./layers/utilitiesLayer.css";

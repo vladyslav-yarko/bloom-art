@@ -33,23 +33,27 @@ export default function CartItemCard({ item }: Props) {
     const base64Str = toBase64(item.picture)
 
     return (
-        <div className='cartItemCard' key={item.title + '_pc'}>
-            <ImageComponent src={`data:image/jpeg;base64,${base64Str}`} alt="perfume" className="relative w-24 md:w-32 lg:w-40 h-24 md:h-32 lg:h-40 overflow-hidden rounded-lg"/>
-            <h2>{item.title}</h2>
-            <p>
-                {item.description}
-            </p>
-            <div>{item.price} {item.currency}</div>
-            <h2>Available: {item.available}</h2>
-            <div className="quantityItem">
-                <p>Quantity: {quantity}</p>
-                <div className="quantityButton" onClick={() => decrementQuantity()}>
-                    <MinusIcon />
-                </div>
-                <div className="quantityButton" onClick={() => incrementQuantity()}>
-                    <PlusIcon  />
-                </div>
-            </div>
-        </div>
-    );
+			<div className='cartItemCard' key={item.title + '_pc'}>
+				<ImageComponent
+					src={`data:image/jpeg;base64,${base64Str}`}
+					alt='perfume'
+					className='relative w-24 md:w-32 lg:w-40 h-24 md:h-32 lg:h-40 overflow-hidden rounded-lg'
+				/>
+				<h2>{item.title}</h2>
+				<p>{item.description}</p>
+				<div>
+					{item.price} {item.currency}
+				</div>
+				<h2>Available: {item.available}</h2>
+				<p>Quantity: {quantity}</p>
+				<div className='quantityItem'>
+					<div className='quantityButton' onClick={() => decrementQuantity()}>
+						<MinusIcon />
+					</div>
+					<div className='quantityButton' onClick={() => incrementQuantity()}>
+						<PlusIcon />
+					</div>
+				</div>
+			</div>
+		)
 }
