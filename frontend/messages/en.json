@@ -16,5 +16,21 @@
                 "cart": "Add to cart"
             }
         }
+    },
+
+    "CartPage": {
+        "CartTitle": {
+            "description": "Your cart"
+        },
+        "CartItems": {
+            "cartItemsAbsence": {
+                "header": "No items in cart!",
+                "button": "Add items to cart"
+            }
+        },
+        "CartItemCard": {
+            "available": "Available",
+            "quantity": "Quantity"
+        }
     }
 }

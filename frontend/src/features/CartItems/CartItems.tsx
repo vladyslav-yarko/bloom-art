@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useTranslations } from "next-intl"
 
 import CartItemCard from "./components/CartItemCard"
 import { Item } from "@/types/home"
@@ -9,6 +10,8 @@ import LinkComponent from "@/ui/LinkComponent"
 
 
 export default function CartItems() {
+	const t = useTranslations('CartPage.CartItems')
+
     const [ cartItems, setCartItems ] = useState<Record<string, Item> | null>(null)
 
     useEffect(() => {
@@ -38,10 +41,12 @@ export default function CartItems() {
 					))
 				) : (
 					<div className='cartItemsAbsence'>
-						<h2>No items in cart!</h2>
-						<ButtonPrimary>
-							<LinkComponent title='Add items to cart' link='/' />
-						</ButtonPrimary>
+						<h2>{t('cartItemsAbsence.header')}</h2>
+						<div>
+							<ButtonPrimary>
+								<LinkComponent title={t('cartItemsAbsence.button')} link='/' />
+							</ButtonPrimary>
+						</div>
 					</div>
 				)}
 			</div>

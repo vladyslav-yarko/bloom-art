@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslations } from "next-intl"
+
 import ImageComponent from "@/ui/ImageComponent"
 import { Item } from "@/types/home"
 import { toBase64 } from "@/lib/img"
@@ -14,6 +16,8 @@ interface Props {
 
 
 export default function CartItemCard({ item }: Props) {
+	const t = useTranslations('CartPage.CartItemCard')
+
     const [ quantity, setQuantity ] = useState<number>(1)
 
     const incrementQuantity = () => {
@@ -44,8 +48,8 @@ export default function CartItemCard({ item }: Props) {
 				<div>
 					{item.price} {item.currency}
 				</div>
-				<h2>Available: {item.available}</h2>
-				<p>Quantity: {quantity}</p>
+				<h2>{t("available")}: {item.available}</h2>
+				<p>{t("quantity")}: {quantity}</p>
 				<div className='quantityItem'>
 					<div className='quantityButton' onClick={() => decrementQuantity()}>
 						<MinusIcon />
