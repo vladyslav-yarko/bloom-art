@@ -40,7 +40,8 @@ export default function ProductModal() {
 			>
 				<div
 					className='grid grid-cols-1 justify-items-center gap-y-3 bg-background dark:bg-background-dark p-7 rounded-2xl
-				shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark mt-4'
+				shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark lg:mt-10
+				w-60 md:w-70 lg:w-80'
 					onClick={e => e.stopPropagation()}
 				>
 					<div className='w-8 md:w-12 lg:w-14 mb-4 transition hover:rotate-90'>
