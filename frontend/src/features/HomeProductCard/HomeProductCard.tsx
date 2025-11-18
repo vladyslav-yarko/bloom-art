@@ -1,6 +1,7 @@
 "use client"
 
 import { useContext } from "react"
+import { useTranslations } from 'next-intl'
 
 import { HomeContext } from "@/context/HomeContext" 
 import ImageComponent from "@/ui/ImageComponent"
@@ -14,6 +15,8 @@ interface Props {
 
 
 export default function HomeProductCard({ item }: Props) {
+	const t = useTranslations("HomePage")
+
     const context = useContext(HomeContext)
     if (!context) throw new Error("HomeContext used outside provider")
     const { setSelectedPerfume } = context
@@ -39,9 +42,9 @@ export default function HomeProductCard({ item }: Props) {
 				</div>
 				<div>
 					{item.available >= 1 ? (
-						<span>✅ Available</span>
+						<span>✅ {t('ProductModal.Info.available')}</span>
 					) : (
-						<span>❌ Not Available</span>
+						<span>❌ {t('ProductModal.Info.notAvailable')}</span>
 					)}
 				</div>
 			</div>

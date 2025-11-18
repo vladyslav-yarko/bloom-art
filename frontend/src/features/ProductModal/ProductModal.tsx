@@ -1,6 +1,7 @@
 "use client"
 
 import { useContext, useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { HomeContext } from "@/context/HomeContext";
 import ImageComponent from "@/ui/ImageComponent";
@@ -11,6 +12,8 @@ import FlashMessage from '@/ui/FlashMessage';
 
 
 export default function ProductModal() {
+	const t = useTranslations("HomePage.ProductModal")
+
 	const [ cartAction, setCartAction ] = useState<boolean>(false)
 	const [ cartAdded, setCartAdded ] = useState<boolean>(false)
 
@@ -72,8 +75,8 @@ export default function ProductModal() {
 						isSuccessful={cartAdded}
 						text={
 							cartAdded
-								? 'Perfume was added to cart'
-								: 'This perfume is already in cart'
+								? t('FlashMessage.cartSuccess')
+								: t('FlashMessage.cartError')
 						}
 					/>
 				) : null}
@@ -109,9 +112,9 @@ export default function ProductModal() {
 							)}
 
 							{selectedProduct?.available >= 1 ? (
-								<h2>✅ Available</h2>
+								<h2>✅ {t('Info.available')}</h2>
 							) : (
-								<h2>❌ Not Available</h2>
+								<h2>❌ {t('Info.notAvailable')}</h2>
 							)}
 
 							{selectedProduct.available >= 1 ? (
@@ -124,7 +127,7 @@ export default function ProductModal() {
 									}}
 								>
 									<ButtonPrimary>
-										<h2>Add to cart</h2>
+										<h2>{t('Buttons.cart')}</h2>
 									</ButtonPrimary>
 								</div>
 							) : null}

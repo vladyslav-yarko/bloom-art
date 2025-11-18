@@ -1,0 +1,20 @@
+{
+    "HomePage": {
+        "titleBar": {
+            "description": "Where creativity meets craftsmanship. Explore handcrafted paintings, aromatic perfumes, and unique artisan treasures - each piece tells a story, each creation carries a soul."
+        },
+        "ProductModal": {
+            "FlashMessage": {
+                "cartSuccess": "Perfume was added to cart",
+                "cartError": "This perfume is already in cart"
+            },
+            "Info": {
+                "available": "Available",
+                "notAvailable": "Not Available"
+            },
+            "Buttons": {
+                "cart": "Add to cart"
+            }
+        }
+    }
+}
