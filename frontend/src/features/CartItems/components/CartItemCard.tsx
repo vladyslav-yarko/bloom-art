@@ -4,6 +4,8 @@ import ImageComponent from "@/ui/ImageComponent"
 import { Item } from "@/types/home"
 import { toBase64 } from "@/lib/img"
 import { useState } from "react"
+import MinusIcon from "@/ui/MinusIcon"
+import PlusIcon from "@/ui/PlusIcon"
 
 
 interface Props {
@@ -41,7 +43,12 @@ export default function CartItemCard({ item }: Props) {
             <h2>Available: {item.available}</h2>
             <div>
                 <h2>Quantity: {quantity}</h2>
-                
+                <div className="quantityButton" onClick={() => decrementQuantity()}>
+                    <MinusIcon />
+                </div>
+                <div className="quantityButton" onClick={() => incrementQuantity()}>
+                    <PlusIcon  />
+                </div>
             </div>
         </div>
     );
