@@ -1,6 +1,14 @@
 @layer components {
-    .cartItems {
+    .cart {
         @apply shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark;
+    }
+
+    .cartItems {
+        @apply ;
+    }
+
+    .cartTitle {
+        @apply flex flex-col text-center mb-8 p-4;
     }
 
     .cartItemsAbsence {
@@ -8,7 +16,11 @@
     }
 
     .cartItemCard {
-        @apply grid gird-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer max-w-45 md:max-w-48 lg:max-w-70;
+        @apply grid grid-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer max-w-45 md:max-w-48 lg:max-w-70;
+    }
+
+    .quantityItem {
+        @apply flex flex-row justify-center;
     }
 
     .quantityButton {
