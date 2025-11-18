@@ -32,8 +32,9 @@ export default function ProductModal() {
     }
 
     return (
-			<div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm' onClick={onClose}>
-				<div className='bg-background dark:bg-background-dark p-10 rounded-2xl' onClick={e => e.stopPropagation()}>
+			<div className='fixed inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm' onClick={onClose}>
+				<div className='bg-background dark:bg-background-dark p-10 rounded-2xl
+				shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark' onClick={e => e.stopPropagation()}>
 					<button
 						className='modal-close'
 						onClick={onClose}
