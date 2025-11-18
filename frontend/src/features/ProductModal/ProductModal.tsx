@@ -7,6 +7,7 @@ import { HomeContext } from "@/context/HomeContext";
 import ImageComponent from "@/ui/ImageComponent";
 import CloseIcon from "@/ui/CloseIcon";
 import ButtonPrimary from "@/ui/ButtonPrimary";
+import { Item } from "@/types/home";
 
 
 export default function ProductModal() {
@@ -32,6 +33,28 @@ export default function ProductModal() {
     if (!selectedProduct) {
         return null
     }
+
+	function addToCart(item: Item) {
+		const cartKey = process.env.NEXT_PUBLIC_CART_KEY ?? ''
+		type Cart = {
+			perfumes: Record<string, Item>
+		}
+		let cartData: Cart
+		const stored = localStorage.getItem(cartKey)
+		if (!stored) {
+			cartData = { perfumes: {} }
+		} else {
+			try {
+				cartData = JSON.parse(stored) as Cart
+			} catch {
+				cartData = { perfumes: {} }
+			}
+		}
+		if (!(item.id in cartData.perfumes)) {
+			cartData.perfumes[item.id] = item
+			localStorage.setItem(cartKey, JSON.stringify(cartData))
+		}
+	}
 
     return (
 			<div
@@ -67,31 +90,12 @@ export default function ProductModal() {
 						<h2>❌ Not Available</h2>
 					)}
 
-					{/* {product.available >= 1 ? (
-						<button
-							className='modal-btn modal-btn-primary'
-							onClick={handleAddToCart}
-						>
-							<svg
-								width='16'
-								height='16'
-								viewBox='0 0 24 24'
-								fill='currentColor'
-							>
-								<path d='M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z' />
-							</svg>
-							Add to Cart
-						</button>
-					) : (
-						<button className='modal-btn modal-btn-secondary' disabled>
-							Out of Stock
-						</button>
-					)} */}
-
 					{selectedProduct.available >= 1 ? (
-						<div className="w-30 md:w-35 lg:w-40">
+						<div className="w-30 md:w-35 lg:w-40" onClick={(e) => {
+							addToCart(selectedProduct)
+							e.stopPropagation()
+						}}>
 							<ButtonPrimary>
-								{/* <LinkComponent title="Add to cart" link="/cart"/> */}
 								<h2>Add to cart</h2>
 							</ButtonPrimary>
 						</div>

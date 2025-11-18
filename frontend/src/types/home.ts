@@ -1,4 +1,5 @@
 export interface Item {
+	id: string
 	picture: string
 	title: string
 	description: string

@@ -17,20 +17,24 @@ export const GlobalContext = createContext<ContextType | undefined>(undefined)
 
 
 export const GlobalContextProvider = ({ children }: Props) => {
-    const cartKey = 'artstudia_cart'
+    const cartKey = process.env.NEXT_PUBLIC_CART_KEY ? process.env.NEXT_PUBLIC_CART_KEY : ""
     
     useEffect(() => {
         const cart = localStorage.getItem(cartKey)
 
         if (!cart) {
-            localStorage.setItem(cartKey, JSON.stringify({}))
+            localStorage.setItem(cartKey, JSON.stringify({
+                pefumes: {}
+            }))
             return
         }
 
         try {
             JSON.parse(cart)
         } catch {
-            localStorage.setItem(cartKey, JSON.stringify({}))
+            localStorage.setItem(cartKey, JSON.stringify({
+                pefumes: {}
+            }))
         }
     }, [])
 
