@@ -5,11 +5,13 @@
 
     .buttonPrimary {
         @apply bg-primary dark:bg-primary-dark text-primary-foreground dark:text-primary-foreground-dark border border-primary/20 dark:border-primary-dark/20 rounded-lg
-        hover:bg-primary/90 dark:hover:bg-primary-dark/90 transition;
+        hover:bg-primary/90 dark:hover:bg-primary-dark/90 transition
+        hover:scale-110;
     }
 
     .buttonSecondary {
         @apply bg-secondary dark:bg-secondary-dark text-secondary-foreground dark:text-secondary-foreground-dark border border-border dark:border-border-dark rounded-lg
-        hover:bg-secondary/80 hover:bg-secondary-dark/80 transition;
+        hover:bg-secondary/80 hover:bg-secondary-dark/80 transition
+        hover:scale-110;
     }
 }

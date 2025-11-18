@@ -10,6 +10,7 @@
 
     .footerItem {
         @apply w-8 md:w-12 lg:w-14 h-8 md:h-12 lg:h-14
-        rounded-xl text-muted-foreground dark:text-muted-foreground-dark hover:bg-accent/20 dark:hover:bg-accent-dark/20 hover:text-primary dark:hover:text-primary-dark;
+        rounded-xl text-muted-foreground dark:text-muted-foreground-dark hover:bg-accent/20 dark:hover:bg-accent-dark/20 hover:text-primary dark:hover:text-primary-dark
+        hover:scale-110;
     }
 }

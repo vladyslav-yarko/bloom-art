@@ -26,6 +26,6 @@
     }
     
     .quantityButton {
-        @apply w-6 md:w-8 lg:w-10 transition hover:scale-110;
+        @apply w-8 md:w-10 lg:w-10 transition hover:scale-110;
     }
 }
