@@ -24,7 +24,7 @@ export const GlobalContextProvider = ({ children }: Props) => {
 
         if (!cart) {
             localStorage.setItem(cartKey, JSON.stringify({
-                pefumes: {}
+                perfumes: {}
             }))
             return
         }
@@ -33,7 +33,7 @@ export const GlobalContextProvider = ({ children }: Props) => {
             JSON.parse(cart)
         } catch {
             localStorage.setItem(cartKey, JSON.stringify({
-                pefumes: {}
+                perfumes: {}
             }))
         }
     }, [])

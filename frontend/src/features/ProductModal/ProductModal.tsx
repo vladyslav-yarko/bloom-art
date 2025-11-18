@@ -93,7 +93,7 @@ export default function ProductModal() {
 					{selectedProduct.available >= 1 ? (
 						<div className="w-30 md:w-35 lg:w-40" onClick={(e) => {
 							addToCart(selectedProduct)
-							e.stopPropagation()
+							onClose()
 						}}>
 							<ButtonPrimary>
 								<h2>Add to cart</h2>
