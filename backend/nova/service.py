@@ -2,6 +2,8 @@ import uuid
 from typing import Optional
 import json
 
+from django.db.models import F
+
 from backend.config import settings
 from order.models import Order
 from utils.service import Service
@@ -11,6 +13,7 @@ from .client import NOVAClient
 from order.enums import Company, CacheType
 from .util import NOVAUtil
 from base.redis_manager import redis_manager
+from perfume.models import Perfume
 
 
 class NOVAService(Service):
@@ -174,6 +177,14 @@ class NOVAService(Service):
         body: dict
         ) -> Optional[dict]:
         try:
+            product_id = body.get("productId")
+            product = Perfume.objects.filter(id=product_id).first()
+            if not product:
+                return None
+            for item in body.get("items", []):
+                quantity = item.quantity
+            if product.available < quantity:
+                return None
             recipient_counterparty_data = self.client.create_counterparty(
                 body.get("recipientFirstName"),
                 body.get("recipientLastName"),
@@ -238,28 +249,29 @@ class NOVAService(Service):
                     totalWeight=item.get("weight") * item.get("quantity"),
                     **item
                     )
+            Perfume.objects.filter(id=product.id).update(available=F('available') - quantity)
             data = self.nova_order_repo().get_one_by_id(delivery_id.id)
             return data
         except Exception as e:
-            import logging
+            # import logging
 
-            # create a logger
-            logger = logging.getLogger("myapp")
-            logger.setLevel(logging.DEBUG)
+            # # create a logger
+            # logger = logging.getLogger("myapp")
+            # logger.setLevel(logging.DEBUG)
 
-            # create console handler and set level
-            ch = logging.StreamHandler()
-            ch.setLevel(logging.DEBUG)
+            # # create console handler and set level
+            # ch = logging.StreamHandler()
+            # ch.setLevel(logging.DEBUG)
 
-            # optional: simple format
-            formatter = logging.Formatter('%(levelname)s: %(message)s')
-            ch.setFormatter(formatter)
+            # # optional: simple format
+            # formatter = logging.Formatter('%(levelname)s: %(message)s')
+            # ch.setFormatter(formatter)
 
-            # add the handler
-            logger.addHandler(ch)
+            # # add the handler
+            # logger.addHandler(ch)
 
-            logger.info(str(e))
-            print(str(e))
+            # logger.info(str(e))
+            # print(str(e))
             return None
 
     @client_session

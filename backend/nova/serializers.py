@@ -58,6 +58,7 @@ class OrderSerializer(serializers.Serializer):
 
 class OrderBodySerializer(OrderSerializer):
     # payment = serializers.ChoiceField(choices=[(e.value, e.name) for e in PaymentMethod])
+    productId = serializers.UUIDField()
     items = OrderItemBodySerializer(many=True)
 
 
