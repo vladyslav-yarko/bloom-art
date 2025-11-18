@@ -16,5 +16,21 @@
 				"cart": "Додати до кошика"
 			}
 		}
+	},
+
+	"CartPage": {
+		"CartTitle": {
+			"description": "Ваш кошик"
+		},
+		"CartItems": {
+			"cartItemsAbsence": {
+				"header": "Кошик порожній!",
+				"button": "Додати товари до кошика"
+			}
+		},
+		"CartItemCard": {
+			"available": "В наявності",
+			"quantity": "Кількість"
+		}
 	}
 }
