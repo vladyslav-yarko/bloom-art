@@ -6,15 +6,15 @@ interface Props extends SVGProps<SVGSVGElement> {
 }
 
 
-export default function NavHamburgerIcon(props: Props) {
+export default function NavHamburgerIcon({ menuOpened, ...svgProps }: Props) {
 	return (
-		<div className={`hamburgerIcon ${props.menuOpened ? "text-accent dark:text-accent-dark" : ""}`}>
+		<div className={`hamburgerIcon ${menuOpened ? "text-accent dark:text-accent-dark" : ""}`}>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='100%'
 				height='100%'
 				viewBox='0 0 512 512'
-				{...props}
+				{...svgProps}
 			>
 				{/* Icon from Game Icons by GameIcons - https://github.com/game-icons/icons/blob/master/license.txt */}
 				<path

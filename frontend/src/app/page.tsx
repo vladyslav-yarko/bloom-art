@@ -20,7 +20,7 @@ export default async function HomePage() {
                 <p>Where creativity meets craftsmanship. Explore handcrafted paintings, aromatic perfumes, and unique artisan treasures - each piece tells a story, each creation carries a soul.</p>
             </div>
             {perfumes.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 p-8 justify-items-center gap-y-10">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2 md:p-4 lg:p-8 justify-items-center gap-y-10">
                     {perfumes.map((element: Item, index: number): React.ReactNode => (
                         <HomeProductCard 
                             item={element} 
