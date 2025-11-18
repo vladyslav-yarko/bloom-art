@@ -31,13 +31,13 @@ export default function CartItems() {
     }, [])
 
     return (
-			<div className='shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark'>
+			<div className='cartItems'>
 				{cartItems && Object.keys(cartItems).length > 0 ? (
 					Object.entries(cartItems).map(([key, item]) => (
 						<CartItemCard key={key} item={item} />
 					))
 				) : (
-					<div className='flex flex-col justify-center'>
+					<div className='cartItemsAbsence'>
 						<h2>No items in cart!</h2>
 						<ButtonPrimary>
 							<LinkComponent title='Add items to cart' link='/' />
