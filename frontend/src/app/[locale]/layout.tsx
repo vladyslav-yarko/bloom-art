@@ -13,7 +13,7 @@ type Props = {
 
 
 export function generateStaticParams() {
-	return routing.locales.map(locale => ({ locale }))
+	return routing.locales.map((locale: string) => ({ locale }))
 }
 
 
