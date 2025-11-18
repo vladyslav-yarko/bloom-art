@@ -2,7 +2,7 @@
 
 import { useContext } from "react"
 
-import { HomeContext } from "@/context/HomeContext"
+import { HomeContext } from "@/context/HomeContext" 
 import ImageComponent from "@/ui/ImageComponent"
 import { toBase64 } from "@/lib/img"
 import { Item } from "@/types/home"

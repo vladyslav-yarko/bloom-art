@@ -6,6 +6,7 @@ import Navbar from '@/features/Navbar'
 import Footer from "@/features/Footer";
 import { NavbarContextProvider } from '@/context/NavbarContext'
 import { HomeContextProvider } from "@/context/HomeContext";
+import { GlobalContextProvider } from "@/context/GlobalContext";
 
 
 export const metadata: Metadata = {
@@ -35,11 +36,13 @@ export default function RootLayout({ children }: Readonly<{children: React.React
 				<NavbarContextProvider>
 					<Navbar />
 				</NavbarContextProvider>
-				<main>
-					<HomeContextProvider>
-						{children}
-					</HomeContextProvider>
-				</main>
+				<GlobalContextProvider>
+					<main>
+						<HomeContextProvider>
+							{children}
+						</HomeContextProvider>
+					</main>
+				</GlobalContextProvider>
 				<Footer />
 			</body>
 		</html>
