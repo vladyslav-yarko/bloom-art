@@ -124,7 +124,7 @@ export default function ProductModal() {
 										onClose()
 									}}
 								>
-									<ButtonPrimary>
+									<ButtonPrimary disabled={cartAdded}>
 										<h2>{t('Buttons.cart')}</h2>
 									</ButtonPrimary>
 								</div>
