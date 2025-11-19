@@ -35,30 +35,33 @@ export default function CartItems() {
     }, [])
 
     return (
-			<div className='cartItems'>
-				{cartItems && Object.keys(cartItems).length > 0 ? (
-					Object.entries(cartItems).map(([key, item]) => (
-						<Suspense
-							key={key}
-							fallback={
-								<div className='loadingIconCard'>
-									<LoadingState />
-								</div>
-							}
-						>
-							<CartItemCard item={item} />
-						</Suspense>
-					))
-				) : (
+			<>
+				{cartItems && Object.keys(cartItems).length <= 0 ? (
 					<div className='cartItemsAbsence'>
 						<h2>{t('cartItemsAbsence.header')}</h2>
-						<div className=''>
+						<div className='cartItemsAbsenceButton'>
 							<ButtonPrimary>
 								<LinkComponent title={t('cartItemsAbsence.button')} link='/' />
 							</ButtonPrimary>
 						</div>
 					</div>
-				)}
-			</div>
+				) : null}
+				{cartItems && Object.keys(cartItems).length > 0 ? (
+					<div className='cartItems'>
+						{Object.entries(cartItems).map(([key, item]) => (
+							<Suspense
+								key={key}
+								fallback={
+									<div className='loadingIconCard'>
+										<LoadingState />
+									</div>
+								}
+							>
+								<CartItemCard item={item} />
+							</Suspense>
+						))}
+					</div>
+				) : null}
+			</>
 		)
 }

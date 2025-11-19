@@ -12,11 +12,11 @@
     }
 
     .cartItemsAbsence {
-        @apply flex flex-col justify-center;
+        @apply flex flex-col gap-4 text-center p-8 justify-center;
     }
 
-    .cartItemsAbsence {
-        @apply w-40;
+    .cartItemsAbsenceButton {
+        @apply h-15;
     }
 
     .cartItemCard {

@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import React from "react"
 
+import Navbar from '@/features/Navbar'
+import { NavbarContextProvider } from '@/context/NavbarContext'
 import { HomeContextProvider } from '@/context/HomeContext'
 import { GlobalContextProvider } from '@/context/GlobalContext'
 
@@ -30,14 +32,17 @@ export default async function LocaleLayout({ children, params }: Props) {
 	const messages = (await import(`@/messages/${locale}.json`)).default
 	
 	return (
-		<NextIntlClientProvider locale={locale} messages={messages}>
-			<GlobalContextProvider>
-				<HomeContextProvider>
-					<main>
-						{children}
-					</main>
-				</HomeContextProvider>
-			</GlobalContextProvider>
-		</NextIntlClientProvider>
+		<>
+			<NextIntlClientProvider locale={locale} messages={messages}>
+				<NavbarContextProvider>
+					<Navbar />
+				</NavbarContextProvider>
+				<GlobalContextProvider>
+					<HomeContextProvider>
+						<main>{children}</main>
+					</HomeContextProvider>
+				</GlobalContextProvider>
+			</NextIntlClientProvider>
+		</>
 	)
 }
