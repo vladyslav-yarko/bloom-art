@@ -26,7 +26,12 @@ export default function LanguageHamburgerMenuItem({ title, languageKey }: Props)
     }   
 
 	return (
-		<div className={`hamburgerMenuItem ${currentLocale === languageKey ? "bg-blue-500" : ""}`} onClick={() => changeLanguage()}>
+		<div
+			className={`languageMenuItem ${
+				currentLocale === languageKey ? 'bg-blue-500' : ''
+			}`}
+			onClick={() => changeLanguage()}
+		>
 			<h2>{title}</h2>
 		</div>
 	)

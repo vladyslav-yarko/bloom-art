@@ -4,7 +4,7 @@ import LanguageHamburgerMenuItem from "./LanguageHamburgerMenuItem"
 export default function LanguageMenu() {
 
     return (
-			<div className='hamburgerMenu'>
+			<div className='languageMenu'>
 				<LanguageHamburgerMenuItem title='EN' languageKey='en' />
 				<LanguageHamburgerMenuItem title='UK' languageKey='uk' />
 			</div>

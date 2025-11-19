@@ -16,21 +16,39 @@
         hover:scale-110 active:scale-110;
     }
 
-    .themeTogglerIcon {
+    /* .themeTogglerIcon {
         @apply mr-10 md:mr-12 lg:mr-20;
+    } */
+
+
+
+    .hamburgerMenu, .languageMenu {
+        @apply fixed shadow rounded-lg z-50 bg-popover dark:bg-popover-dark p-2 border border-border dark:border-border-dark
+        grid grid-cols-1 gap-3 items-center;
     }
 
     .hamburgerMenu {
-        @apply fixed shadow rounded-lg z-50 bg-popover dark:bg-popover-dark p-2 border border-border dark:border-border-dark
-        grid grid-cols-1 gap-3 items-center
-        w-24 md:w-28 lg:w-36 h-64 md:h-80 lg:h-96;
+        @apply w-24 md:w-28 lg:w-36 h-64 md:h-80 lg:h-96;
+    }
+
+    .languageMenu {
+        @apply w-24 md:w-28 lg:w-36 h-35 md:h-40 lg:h-60;
+    }
+
+    .hamburgerMenuItem, .languageMenuItem {
+        @apply border border-border dark:border-border-dark rounded-lg
+        text-center
+        transition hover:bg-accent dark:hover:bg-accent-dark hover:text-accent-foreground 
+        dark:hover:text-accent-foreground-dark active:bg-accent dark:active:bg-accent-dark 
+        active:text-accent-foreground dark:active:text-accent-foreground-dark;
     }
     
     .hamburgerMenuItem {    
-        @apply h-full w-full
-        
-        border border-border dark:border-border-dark rounded-lg
-        text-center
-        transition hover:bg-accent dark:hover:bg-accent-dark hover:text-accent-foreground dark:hover:text-accent-foreground-dark active:bg-accent dark:active:bg-accent-dark active:text-accent-foreground dark:active:text-accent-foreground-dark;
+        @apply h-full w-full;
+    }
+
+    .languageMenuItem {
+        @apply w-full h-12 md:h-15 lg:h-20
+        flex items-center justify-center;
     }
 }

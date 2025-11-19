@@ -9,8 +9,8 @@ interface Props extends SVGProps<SVGSVGElement> {
 export default function NavLanguageIcon({ menuOpened, ...svgProps }: Props) {
 	return (
 		<div
-			className={`hamburgerIcon text-sky-500   ${
-				menuOpened ? 'text-blue-500' : ''
+			className={`hamburgerIcon ${
+				menuOpened ? 'text-blue-500' : 'text-sky-500'
 			}`}
 		>
 			<svg
