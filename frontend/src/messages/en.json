@@ -1,36 +1,43 @@
 {
-    "HomePage": {
-        "titleBar": {
-            "description": "Where creativity meets craftsmanship. Explore handcrafted paintings, aromatic perfumes, and unique artisan treasures - each piece tells a story, each creation carries a soul."
-        },
-        "ProductModal": {
-            "FlashMessage": {
-                "cartSuccess": "Perfume was added to cart",
-                "cartError": "This perfume is already in cart"
-            },
-            "Info": {
-                "available": "Available",
-                "notAvailable": "Not Available"
-            },
-            "Buttons": {
-                "cart": "Add to cart"
-            }
-        }
-    },
+	"HomePage": {
+		"titleBar": {
+			"description": "Where creativity meets craftsmanship. Explore handcrafted paintings, aromatic perfumes, and unique artisan treasures - each piece tells a story, each creation carries a soul."
+		},
+		"ProductModal": {
+			"FlashMessage": {
+				"cartSuccess": "Perfume was added to cart",
+				"cartError": "This perfume is already in cart"
+			},
+			"Info": {
+				"available": "Available",
+				"notAvailable": "Not Available"
+			},
+			"Buttons": {
+				"cart": "Add to cart"
+			}
+		}
+	},
 
-    "CartPage": {
-        "CartTitle": {
-            "description": "Your cart"
-        },
-        "CartItems": {
-            "cartItemsAbsence": {
-                "header": "No items in cart!",
-                "button": "Add items to cart"
-            }
-        },
-        "CartItemCard": {
-            "available": "Available",
-            "quantity": "Quantity"
-        }
-    }
+	"CartPage": {
+		"CartTitle": {
+			"description": "Your cart"
+		},
+		"CartItems": {
+			"cartItemsAbsence": {
+				"header": "No items in cart!",
+				"button": "Add items to cart"
+			}
+		},
+		"CartItemCard": {
+			"available": "Available",
+			"quantity": "Quantity"
+		}
+	},
+
+	"Navbar": {
+		"Hamburger": {
+			"home": "Home",
+			"cart": "Cart"
+		}
+	}
 }
