@@ -26,7 +26,8 @@ export default function HomeProductCard({ item }: Props) {
     return (
 			<div
 				className='grid gird-cols-1 gap-y-1.5 shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer
-        max-w-45 md:max-w-48 lg:max-w-70 hover:scale-110'
+        max-w-45 md:max-w-48 lg:max-w-70 hover:scale-110 border border-accent-foreground
+		divide-y divide-accent-foreground'
 				key={item.title + '_pc'}
 				onClick={() => setSelectedPerfume(item, base64Str, false)}
 			>
