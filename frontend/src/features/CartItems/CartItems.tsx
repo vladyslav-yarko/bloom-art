@@ -1,12 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useTranslations } from "next-intl"
 
 import CartItemCard from "./components/CartItemCard"
 import { Item } from "@/types/home"
 import ButtonPrimary from "@/ui/ButtonPrimary"
 import LinkComponent from "@/ui/LinkComponent"
+import LoadingState from "@/ui/LoadingState"
 
 
 export default function CartItems() {
@@ -37,12 +38,21 @@ export default function CartItems() {
 			<div className='cartItems'>
 				{cartItems && Object.keys(cartItems).length > 0 ? (
 					Object.entries(cartItems).map(([key, item]) => (
-						<CartItemCard key={key} item={item} />
+						<Suspense
+							key={key}
+							fallback={
+								<div className='loadingIconCard'>
+									<LoadingState />
+								</div>
+							}
+						>
+							<CartItemCard item={item} />
+						</Suspense>
 					))
 				) : (
 					<div className='cartItemsAbsence'>
 						<h2>{t('cartItemsAbsence.header')}</h2>
-						<div className="">
+						<div className=''>
 							<ButtonPrimary>
 								<LinkComponent title={t('cartItemsAbsence.button')} link='/' />
 							</ButtonPrimary>
