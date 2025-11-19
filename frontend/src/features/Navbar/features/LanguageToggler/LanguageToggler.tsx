@@ -9,9 +9,10 @@ import { NavbarContext } from "@/context/NavbarContext"
 
 
 export default function LanguageToggler() {
-    const { languageMenuOpened, setLanguageMenuOpened } = useContext(NavbarContext)!
+    const { languageMenuOpened, setLanguageMenuOpened, setMenuOpened } = useContext(NavbarContext)!
 
     const toggleMenu = () => {
+        setMenuOpened(false)
         setLanguageMenuOpened(prev => !prev)
     }
 

@@ -9,9 +9,10 @@ import { NavbarContext } from "@/context/NavbarContext"
 
 
 export default function NavHamburger() {
-    const { menuOpened, setMenuOpened } = useContext(NavbarContext)!
+    const { menuOpened, setMenuOpened, setLanguageMenuOpened } = useContext(NavbarContext)!
 
     const toggleMenu = () => {
+        setLanguageMenuOpened(false)
         setMenuOpened(prev => !prev)
     }
 
