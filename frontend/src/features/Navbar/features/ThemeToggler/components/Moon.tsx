@@ -1,6 +1,12 @@
-export default function Moon({ width, height }) {
+interface Props {
+	width: string
+	height: string
+}
+
+
+export default function Moon({ width, height }: Props) {
 	return (
-		<div className="text-blue-700">
+		<div className='text-blue-700'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width={width}

@@ -1,4 +1,10 @@
-export default function Sun({ width, height }) {
+interface Props {
+	width: string,
+	height: string
+}
+
+
+export default function Sun({ width, height }: Props) {
 	return (
 		<div className="text-yellow-500">
 			<svg
