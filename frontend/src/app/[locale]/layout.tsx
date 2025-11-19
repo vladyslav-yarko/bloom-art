@@ -2,8 +2,10 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import React from "react"
 
 import { HomeContextProvider } from '@/context/HomeContext'
+import { GlobalContextProvider } from '@/context/GlobalContext'
 
 
 type Props = {
@@ -28,15 +30,14 @@ export default async function LocaleLayout({ children, params }: Props) {
 	const messages = (await import(`@/messages/${locale}.json`)).default
 	
 	return (
-		<html lang={locale}>
-			<body>
-				<NextIntlClientProvider locale={locale} messages={messages}>
-                    <HomeContextProvider>
-                        {children}
-                    </HomeContextProvider>
-				</NextIntlClientProvider>
-			</body>
-		</html>
+		<NextIntlClientProvider locale={locale} messages={messages}>
+			<GlobalContextProvider>
+				<HomeContextProvider>
+					<main>
+						{children}
+					</main>
+				</HomeContextProvider>
+			</GlobalContextProvider>
+		</NextIntlClientProvider>
 	)
-
 }

@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 import NotFoundIcon from "@/ui/NotFoundIcon"
 import ButtonPrimary from "@/ui/ButtonPrimary"
-import LinkComponent from "@/ui/LinkComponent"
+// import LinkComponent from "@/ui/LinkComponent"
 
 
 export default function NotFoundPage() {
@@ -15,7 +17,13 @@ export default function NotFoundPage() {
 				<div className='notFoundButton'>
 					<ButtonPrimary>
 						<h2 className='w-full h-full'>
-							<LinkComponent title='Return to home' link='/'/>
+							<Link
+								href={'/en'}
+								className='flex items-center justify-center w-full h-full'
+							>
+								Return to home
+							</Link>
+							{/* <LinkComponent title='' link='/' /> */}
 						</h2>
 					</ButtonPrimary>
 				</div>

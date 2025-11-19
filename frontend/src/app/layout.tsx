@@ -1,11 +1,11 @@
 import "@/styles/globals.css"
 
 import type { Metadata } from "next";
+import React from 'react'
 
 import Navbar from '@/features/Navbar'
-import Footer from "@/features/Footer";
+import Footer from '@/features/Footer'
 import { NavbarContextProvider } from '@/context/NavbarContext'
-import { GlobalContextProvider } from "@/context/GlobalContext";
 
 
 export const metadata: Metadata = {
@@ -35,11 +35,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
 				<NavbarContextProvider>
 					<Navbar />
 				</NavbarContextProvider>
-				<GlobalContextProvider>
-					<main>
-						{children}
-					</main>
-				</GlobalContextProvider>
+                {children}
 				<Footer />
 			</body>
 		</html>
