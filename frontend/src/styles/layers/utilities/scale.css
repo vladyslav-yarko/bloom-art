@@ -1,6 +1,6 @@
 @layer utilities {
 
     .scale {
-        @apply transition hover:scale-110;
+        @apply transition hover:scale-110 active:scale-110;
     }
 }

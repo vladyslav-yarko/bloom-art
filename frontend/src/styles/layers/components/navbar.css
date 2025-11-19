@@ -5,15 +5,15 @@
         flex flex-row justify-between items-center shadow
         h-10 md:h-16 lg:h-24
         rounded-lg
-        transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark
+        transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark
         mb-32 md:mb-32 lg:mb-32;
     }
 
     .themeTogglerIcon, .hamburgerIcon {
         @apply w-8 md:w-12 lg:w-14 h-8 md:h-12 lg:h-14
-        transition hover:bg-accent/20 cursor-pointer
+        transition hover:bg-accent/20 cursor-pointer active:bg-accent/20
         rounded-xl text-muted-foreground dark:text-muted-foreground-dark
-        hover:scale-110;
+        hover:scale-110 active:scale-110;
     }
 
     .themeTogglerIcon {
@@ -31,6 +31,6 @@
         
         border border-border dark:border-border-dark rounded-lg
         text-center
-        transition hover:bg-accent dark:hover:bg-accent-dark hover:text-accent-foreground dark:hover:text-accent-foreground-dark;
+        transition hover:bg-accent dark:hover:bg-accent-dark hover:text-accent-foreground dark:hover:text-accent-foreground-dark active:bg-accent dark:active:bg-accent-dark active:text-accent-foreground dark:active:text-accent-foreground-dark;
     }
 }

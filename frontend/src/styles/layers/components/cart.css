@@ -1,6 +1,6 @@
 @layer components {
     .cart {
-        @apply shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark;
+        @apply shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark;
     }
 
     .cartItems {
@@ -20,9 +20,9 @@
     }
 
     .cartItemCard {
-        @apply grid grid-cols-1 gap-y-1.5 shadow hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer max-w-45 md:max-w-48 lg:max-w-70
+        @apply grid grid-cols-1 gap-y-1.5 shadow hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg p-10 bg-background dark:bg-background-dark cursor-pointer max-w-45 md:max-w-48 lg:max-w-70
         justify-items-center
-        transition hover:scale-110
+        transition hover:scale-110 active:scale-110
         border border-accent-foreground
         divide-y divide-accent-foreground;
     }
@@ -32,6 +32,6 @@
     }
     
     .quantityButton {
-        @apply w-8 md:w-10 lg:w-10 transition hover:scale-110;
+        @apply w-8 md:w-10 lg:w-10 transition hover:scale-110 active:scale-110;
     }
 }

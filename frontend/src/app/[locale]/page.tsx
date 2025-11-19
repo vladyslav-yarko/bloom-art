@@ -20,8 +20,7 @@ export default async function HomePage() {
     const perfumes = await fetchPerfumes()
 
     return (
-			<div className='shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark'>
-				<ProductModal />
+			                     <div className='shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark'>				<ProductModal />
 				<div className='flex flex-col text-center mb-8 p-4'>
 					<h1>✨ ArtStudia ✨</h1>
 					<p>{t('titleBar.description')}</p>
