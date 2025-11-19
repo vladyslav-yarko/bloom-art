@@ -1,15 +1,12 @@
-import { useTranslations } from "next-intl"
-
-import NavHamburgerMenuItem from "./NavHamburgerMenuItem"
+import LanguageHamburgerMenuItem from "./LanguageHamburgerMenuItem"
 
 
-export default function NavHamburgerMenu() {
-    const t = useTranslations('Navbar.Hamburger')
+export default function LanguageMenu() {
 
     return (
-            <div className='hamburgerMenu'>
-                <NavHamburgerMenuItem title={t("home")} link='/' />
-                <NavHamburgerMenuItem title={t("cart")} link='/cart' />
-            </div>
-        )
+			<div className='hamburgerMenu'>
+				<LanguageHamburgerMenuItem title='EN' languageKey='en' />
+				<LanguageHamburgerMenuItem title='UK' languageKey='uk' />
+			</div>
+		)
 }
