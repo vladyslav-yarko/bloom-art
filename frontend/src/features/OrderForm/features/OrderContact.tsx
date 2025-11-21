@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react"
 
 import { OrderContext } from "@/context/OrderContext"
 import TextField from "@/ui/TextField"
+import ClearButton from "@/ui/ClearButton"
 
 
 export default function OrderContact() {
@@ -58,9 +59,27 @@ export default function OrderContact() {
     return (
         <div className="orderContact">
             <h1>Contact data</h1>
-            <TextField placeholder="phone number" value={phoneNumber} setValue={setPhoneNumber}/>
-            <TextField placeholder="first name" value={firstName} setValue={setFirstName}/>
-            <TextField placeholder="last name" value={lastName} setValue={setLastName}/>
+            <div className="orderField">
+                <TextField placeholder="phone number" value={phoneNumber} setValue={setPhoneNumber} error={phoneNumberError}/>
+                <div className="clearFieldIcon" onClick={() => clearPhoneNumberField()}>
+                    <ClearButton />
+                </div>
+            </div>
+            <div className="orderField">
+                <TextField placeholder="first name" value={firstName} setValue={setFirstName} error={firstNameError}/>
+                <div className="clearFieldIcon" onClick={() => clearFirstNameField()}>
+                    <ClearButton />
+                </div>
+            </div>
+            <div className="orderField">
+                <TextField placeholder="last name" value={lastName} setValue={setLastName} error={lastNameError}/>
+                <div className="clearFieldIcon" onClick={() => clearLastNameField()}>
+                    <ClearButton />
+                </div>
+            </div>
+            <div className="orderClearAllIcon" onClick={() => clearAllFields()}>
+                <ClearButton />
+            </div>
         </div>
     )
 }

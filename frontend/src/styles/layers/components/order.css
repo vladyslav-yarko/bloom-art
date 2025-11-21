@@ -19,4 +19,8 @@
     .orderClearAllIcon {
         @apply w-10 md:w-15 lg:w-20
     }
+
+    .orderField {
+        @apply flex flex-row;
+    }
 }

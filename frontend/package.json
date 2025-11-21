@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "libphonenumber-js": "^1.12.28",
     "next": "16.0.1",
     "next-intl": "^4.4.0",
     "react": "19.2.0",
