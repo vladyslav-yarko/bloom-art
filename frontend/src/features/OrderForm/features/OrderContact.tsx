@@ -58,29 +58,50 @@ export default function OrderContact() {
 	}
 
     return (
-        <div className="orderContact">
-            <h1>Contact data</h1>
-            <div className="orderField">
-                <TextField placeholder="phone number" value={phoneNumber} setValue={setPhoneNumber} error={phoneNumberError}/>
-                <div className="clearFieldIcon" onClick={() => clearPhoneNumberField()}>
-                    <ClearButton />
-                </div>
-            </div>
-            <div className="orderField">
-                <TextField placeholder="first name" value={firstName} setValue={setFirstName} error={firstNameError}/>
-                <div className="clearFieldIcon" onClick={() => clearFirstNameField()}>
-                    <ClearButton />
-                </div>
-            </div>
-            <div className="orderField">
-                <TextField placeholder="last name" value={lastName} setValue={setLastName} error={lastNameError}/>
-                <div className="clearFieldIcon" onClick={() => clearLastNameField()}>
-                    <ClearButton />
-                </div>
-            </div>
-            <div className="orderClearAllIcon" onClick={() => clearAllFields()}>
-                <ClearButton />
-            </div>
-        </div>
-    )
+			<div className='orderContact'>
+				<h1 className='mb-2'>Contact data</h1>
+				<div className='orderField'>
+					<TextField
+						placeholder='phone number'
+						value={phoneNumber}
+						setValue={setPhoneNumber}
+						error={phoneNumberError}
+						inputClaseName='orderInput'
+					/>
+					<div
+						className='clearFieldIcon'
+						onClick={() => clearPhoneNumberField()}
+					>
+						<ClearButton />
+					</div>
+				</div>
+				<div className='orderField'>
+					<TextField
+						placeholder='first name'
+						value={firstName}
+						setValue={setFirstName}
+						error={firstNameError}
+						inputClaseName='orderInput'
+					/>
+					<div className='clearFieldIcon' onClick={() => clearFirstNameField()}>
+						<ClearButton />
+					</div>
+				</div>
+				<div className='orderField'>
+					<TextField
+						placeholder='last name'
+						value={lastName}
+						setValue={setLastName}
+						error={lastNameError}
+						inputClaseName='orderInput'
+					/>
+					<div className='clearFieldIcon' onClick={() => clearLastNameField()}>
+						<ClearButton />
+					</div>
+				</div>
+				<div className='orderClearAllIcon' onClick={() => clearAllFields()}>
+					<ClearButton />
+				</div>
+			</div>
+		)
 }

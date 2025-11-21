@@ -3,7 +3,7 @@ import { SVGProps } from "react"
 
 export default function ClearButton(props: SVGProps<SVGSVGElement>) {
 	return (
-		<div>
+		<div className="text-blue-500">
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='100%'

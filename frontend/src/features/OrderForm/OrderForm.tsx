@@ -8,7 +8,7 @@ import makeOrder from './server/makeOrder'
 export default function OrderForm() {
 
     return (
-        <Form action={(formData: FormData) => makeOrder(formData)} className="orderForm">
+        <Form action={makeOrder} className="orderForm">
             <OrderContact />
             <OrderShipping />
         </Form>

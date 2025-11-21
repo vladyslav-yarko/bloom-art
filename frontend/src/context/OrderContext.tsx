@@ -109,7 +109,7 @@ export const OrderContextProvider = ({ children }: Props) => {
 			router.push('/')
 			setTimeout(() => {
 				setOrderAction(false)
-			}, 4000)
+			}, 7000)
 		}
 
 		if (!storedItem) {

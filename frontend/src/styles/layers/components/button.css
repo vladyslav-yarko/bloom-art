@@ -17,6 +17,6 @@
     }
 
     .clearFieldIcon {
-        @apply w-5 md:w-10 lg:w-15;
+        @apply w-8 md:w-10 lg:w-10 transition hover:scale-110 active:scale-110 cursor-pointer;
     }
 }
