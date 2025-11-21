@@ -58,6 +58,7 @@ export default function CartItemCard({ item }: Props) {
 						<PlusIcon />
 					</div>
 				</div>
+				
 			</div>
 		)
 }

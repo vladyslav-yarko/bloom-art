@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react"
 import { OrderContext } from "@/context/OrderContext"
 import TextField from "@/ui/TextField"
 import ClearButton from "@/ui/ClearButton"
+import { validatePhoneNumber, validateName } from "@/lib/validation"
 
 
 export default function OrderContact() {

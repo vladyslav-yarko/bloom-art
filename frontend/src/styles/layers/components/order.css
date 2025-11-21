@@ -5,16 +5,17 @@
     }
 
     .orderForm {
-        @apply flex flex-col;
+        @apply flex flex-col gap-10 lg:order-1;
     }
 
-    .orderContact {
-        @apply ;
+    .orderContact, .orderShipping {
+        @apply grid grid-cols-1
+        shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark;
     }
 
-    .orderShipping {
-        @apply ;
-    }
+    /* .orderShipping {
+        @apply grid grid-cols-1;
+    } */
     
     .orderClearAllIcon {
         @apply w-10 md:w-15 lg:w-20
@@ -22,5 +23,9 @@
 
     .orderField {
         @apply flex flex-row;
+    }
+
+    .orderItem {
+        @apply grid grid-cols-1 lg:order-2;
     }
 }
