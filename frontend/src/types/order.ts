@@ -5,6 +5,7 @@ export interface Locality {
 	localityType: string
 	localityTypeShorthand: string
 	region: string
+	ref?: string
 }
 
 

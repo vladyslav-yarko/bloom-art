@@ -2,6 +2,9 @@ import { useContext, useEffect, useState } from 'react'
 
 import { OrderContext } from '@/context/OrderContext'
 import api from '@/lib/api'
+import { Locality, Localities, Point, Points } from '@/types/order'
+import ClearButton from '@/ui/ClearButton'
+import SearchSystem from '../components/SearchSystem'
 
 
 export default function OrderShipping() {
@@ -9,22 +12,27 @@ export default function OrderShipping() {
 	const [ points, setPoints ] = useState([])
 
     const {
-		selectedLocality,
-		setSelectedLocality,
-		setSelectedPoint,
-		selectedPoint
-	} = useContext(OrderContext)!
+			showFlashMessage,
+			selectedLocality,
+			setSelectedLocality,
+			selectedPoint,
+			setSelectedPoint,
+			localityError,
+			setLocalityError,
+			pointError,
+			setPointError,
+		} = useContext(OrderContext)!
 
 
-    function filterLocality(data: , value, addValue = null) {
-		const cleanData = data.filter(element =>
+    function filterLocality(data: Localities, value: string) {
+		const cleanData = data.data.filter((element: Locality) =>
 			element.title.toLowerCase().startsWith(value.toLowerCase())
 		)
 		return cleanData
 	}
 
-	function filterPoint(data, value, cityRef) {
-		const cleanData = data.filter(element =>
+	function filterPoint(data: Points, value: string, cityRef: string) {
+		const cleanData = data.data.filter((element: Point) =>
 			element.cityRef === cityRef && element.title.toLowerCase().includes(value.toLowerCase())
 		)
 		return cleanData
@@ -37,18 +45,69 @@ export default function OrderShipping() {
 				let responsePoints = await api.get('/nova/points/')
 				setLocalities(responseLocalities.data.data)
 				setPoints(responsePoints.data.data)
-
 			} catch (error) {
-				navigate('/')
+				showFlashMessage()
 			}
 		}
-
 		fetchData()
 	}, [])
+
+	useEffect(() => {
+		if (selectedLocality) {
+			setLocalityError("")
+		} else {
+			setLocalityError('Населений пункт для доставки не обраний')
+		}
+	}, [selectedLocality])
+
+	useEffect(() => {
+		if (selectedPoint) {
+			setPointError('')
+		} else {
+			setPointError('Адреса доставки не обрана')
+		}
+	}, [selectedPoint])
+
+    function clearAllFields() {
+		setSelectedLocality(null)
+		setSelectedPoint(null)
+	}
 
 	return (
 		<div className='orderShipping'>
 			<h2 className='mb-2'>Доставка (Нова Пошта)</h2>
+			<p className='errorField'>{localityError}</p>
+			<p className='errorField'>{pointError}</p>
+
+			<div>
+				<SearchSystem
+					searchItemWarning={`Населений пункт не обраний`}
+					searchItemPlaceholder={`Оберіть населений пункт`}
+					searchItemId={`nova-locality`}
+					data={localities}
+					value={selectedLocality}
+					setValue={setSelectedLocality}
+					valueName={`fullTitle`}
+					filterFunction={filterLocality}
+				/>
+				{selectedLocality ? (
+					<SearchSystem
+						searchItemWarning={`Адреса доставки не обрана`}
+						searchItemPlaceholder={`Оберіть адресу доставки`}
+						searchItemId={`nova-point`}
+						data={points}
+						value={selectedPoint}
+						setValue={setSelectedPoint}
+						valueName={`title`}
+						filterFunction={filterPoint}
+						addValue={selectedLocality ? selectedLocality.cityRef : null}
+					/>
+				) : null}
+			</div>
+
+			<div className='orderClearAllIcon' onClick={() => clearAllFields()}>
+				<ClearButton />
+			</div>
 		</div>
 	)
 }

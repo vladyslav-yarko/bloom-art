@@ -6,6 +6,7 @@ import { useContext, createContext, ReactNode, useEffect, useState, use } from '
 import { useRouter } from '@/i18n/navigation'
 import { Item } from '@/types/home'
 import { GlobalContext } from './GlobalContext'
+import { Locality, Point } from '@/types/order'
 
 
 interface ContextType {
@@ -48,17 +49,19 @@ interface ContextType {
 	phoneNumberError: string
 	setPhoneNumberError: React.Dispatch<React.SetStateAction<string>>
 
-	selectedLocality: string | null
-	setSelectedLocality: React.Dispatch<React.SetStateAction<string | null>>
+	selectedLocality: Locality | null
+	setSelectedLocality: React.Dispatch<React.SetStateAction<Locality | null>>
 
-	selectedPoint: string | null
-	setSelectedPoint: React.Dispatch<React.SetStateAction<string | null>>
+	selectedPoint: Point | null
+	setSelectedPoint: React.Dispatch<React.SetStateAction<Point | null>>
 
 	localityError: string
 	setLocalityError: React.Dispatch<React.SetStateAction<string>>
 
 	pointError: string
 	setPointError: React.Dispatch<React.SetStateAction<string>>
+
+	showFlashMessage: () => void
 }
 
 
@@ -93,24 +96,24 @@ export const OrderContextProvider = ({ children }: Props) => {
 	const [lastNameError, setLastNameError] = useState('')
 	const [phoneNumberError, setPhoneNumberError] = useState('')
 
-	const [selectedLocality, setSelectedLocality] = useState<string | null>(null)
-	const [selectedPoint, setSelectedPoint] = useState<string | null>(null)
+	const [selectedLocality, setSelectedLocality] = useState<Locality | null>(null)
+	const [selectedPoint, setSelectedPoint] = useState<Point | null>(null)
 
 	const [localityError, setLocalityError] = useState('')
 	const [pointError, setPointError] = useState('')
 
+	const showFlashMessage = (): void => {
+		setOrderAction(true)
+		setOrderCreated(false)
+		router.push('/')
+		setTimeout(() => {
+			setOrderAction(false)
+		}, 7000)
+	}
+
 	useEffect(() => {
 		const orderKey = process.env.NEXT_PUBLIC_ORDER_KEY!
 		const storedItem = localStorage.getItem(orderKey)
-
-		const showFlashMessage = () => {
-			setOrderAction(true)
-			setOrderCreated(false)
-			router.push('/')
-			setTimeout(() => {
-				setOrderAction(false)
-			}, 7000)
-		}
 
 		if (!storedItem) {
 			showFlashMessage()
@@ -169,6 +172,8 @@ export const OrderContextProvider = ({ children }: Props) => {
 				setLocalityError,
 				pointError,
 				setPointError,
+
+				showFlashMessage
 			}}
 		>
 			{children}
