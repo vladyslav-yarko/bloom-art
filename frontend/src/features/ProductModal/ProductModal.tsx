@@ -3,6 +3,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
+import { GlobalContext } from '@/context/GlobalContext';
 import { HomeContext } from "@/context/HomeContext";
 import ImageComponent from "@/ui/ImageComponent";
 import CloseIcon from "@/ui/CloseIcon";
@@ -20,6 +21,7 @@ export default function ProductModal() {
     const context = useContext(HomeContext)
     if (!context) throw new Error("HomeContext used outside provider")
     const { selectedProduct, productBase64, setSelectedPerfume } = context
+	const { orderAction, orderCreated } = useContext(GlobalContext)!
 
     const onClose = () => {
         setSelectedPerfume(null, null, true)
@@ -77,6 +79,16 @@ export default function ProductModal() {
 							cartAdded
 								? t('FlashMessage.cartSuccess')
 								: t('FlashMessage.cartError')
+						}
+					/>
+				) : null}
+				{orderAction ? (
+					<FlashMessage
+						isSuccessful={orderCreated}
+						text={
+							orderCreated
+								? t('FlashMessage.orderSuccess')
+								: t('FlashMessage.orderError')
 						}
 					/>
 				) : null}

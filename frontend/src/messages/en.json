@@ -6,7 +6,10 @@
 		"ProductModal": {
 			"FlashMessage": {
 				"cartSuccess": "Perfume was added to cart",
-				"cartError": "This perfume is already in cart"
+				"cartError": "This perfume is already in cart",
+
+				"orderSuccess": "Order has been created, soon you will recieve a message with TTN",
+				"orderError": "Order has not been creaed successfully. Try again or use another perfume"
 			},
 			"Info": {
 				"available": "Available",

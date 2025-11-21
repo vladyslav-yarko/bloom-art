@@ -1,10 +1,17 @@
 'use client'
 
 
-import { createContext, ReactNode, useState } from 'react'
+import { useContext, createContext, ReactNode, useEffect, useState, use } from 'react'
+
+import { useRouter } from '@/i18n/navigation'
+import { Item } from '@/types/home'
+import { GlobalContext } from './GlobalContext'
 
 
 interface ContextType {
+	item: Item | null
+	setItem: React.Dispatch<React.SetStateAction<Item | null>>
+
 	title: string
 	setTitle: React.Dispatch<React.SetStateAction<string>>
 
@@ -62,7 +69,14 @@ interface Props {
 
 export const OrderContext = createContext<ContextType | undefined>(undefined)
 
+
 export const OrderContextProvider = ({ children }: Props) => {
+	const router = useRouter()
+
+	const { setOrderAction, setOrderCreated } = useContext(GlobalContext)!
+
+	const [ item, setItem ] = useState<Item | null>(null)
+
 	const [title, setTitle] = useState('')
 	const [price, setPrice] = useState('')
 	const [currency, setCurrency] = useState('')
@@ -85,9 +99,39 @@ export const OrderContextProvider = ({ children }: Props) => {
 	const [localityError, setLocalityError] = useState('')
 	const [pointError, setPointError] = useState('')
 
+	useEffect(() => {
+		const orderKey = process.env.NEXT_PUBLIC_ORDER_KEY!
+		const storedItem = localStorage.getItem(orderKey)
+
+		const showFlashMessage = () => {
+			setOrderAction(true)
+			setOrderCreated(false)
+			router.push('/')
+			setTimeout(() => {
+				setOrderAction(false)
+			}, 4000)
+		}
+
+		if (!storedItem) {
+			showFlashMessage()
+			return
+		}
+		let orderData
+		try {
+			orderData = JSON.parse(storedItem) as Item
+		} catch {
+			showFlashMessage()
+			return
+		}
+		setItem(orderData)
+	}, [])
+
 	return (
 		<OrderContext.Provider
 			value={{
+				item,
+				setItem,
+
 				title,
 				setTitle,
 				price,

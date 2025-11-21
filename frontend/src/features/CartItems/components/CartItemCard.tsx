@@ -2,12 +2,14 @@
 
 import { useTranslations } from "next-intl"
 
+import { useRouter } from "@/i18n/navigation"
 import ImageComponent from "@/ui/ImageComponent"
 import { Item } from "@/types/home"
 import { toBase64 } from "@/lib/img"
 import { useState } from "react"
 import MinusIcon from "@/ui/MinusIcon"
 import PlusIcon from "@/ui/PlusIcon"
+import BuyIcon from "./BuyIcon"
 
 
 interface Props {
@@ -16,6 +18,7 @@ interface Props {
 
 
 export default function CartItemCard({ item }: Props) {
+	const router = useRouter()
 	const t = useTranslations('CartPage.CartItemCard')
 
     const [ quantity, setQuantity ] = useState<number>(1)
@@ -35,6 +38,12 @@ export default function CartItemCard({ item }: Props) {
     }
 
     const base64Str = toBase64(item.picture)
+
+	function makeOrder(item: Item): void {
+		const orderKey = process.env.NEXT_PUBLIC_ORDER_KEY!
+		localStorage.setItem(orderKey, JSON.stringify(item))
+		router.push("/order")
+	}
 
     return (
 			<div className='cartItemCard' key={item.title + '_pc'}>
@@ -58,7 +67,9 @@ export default function CartItemCard({ item }: Props) {
 						<PlusIcon />
 					</div>
 				</div>
-				
+				<div className="cartBuyButton" onClick={() => makeOrder(item)}>
+					<BuyIcon />
+				</div>
 			</div>
 		)
 }

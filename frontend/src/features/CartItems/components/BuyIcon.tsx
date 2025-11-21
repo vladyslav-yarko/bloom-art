@@ -5,7 +5,7 @@ export default function BuyIcon(
 	props: SVGProps<SVGSVGElement>
 ) {
 	return (
-		<div>
+		<div className="text-amber-300">
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='100%'

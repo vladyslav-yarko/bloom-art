@@ -1,10 +1,14 @@
 'use client'
 
-import { createContext, ReactNode, useEffect } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 
 
 interface ContextType {
 	cartKey: string
+	orderAction: boolean
+	setOrderAction: React.Dispatch<React.SetStateAction<boolean>>
+	orderCreated: boolean
+	setOrderCreated: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -18,6 +22,9 @@ export const GlobalContext = createContext<ContextType | undefined>(undefined)
 
 export const GlobalContextProvider = ({ children }: Props) => {
     const cartKey = process.env.NEXT_PUBLIC_CART_KEY ? process.env.NEXT_PUBLIC_CART_KEY : ""
+
+    const [ orderAction, setOrderAction ] = useState<boolean>(false)
+    const [ orderCreated, setOrderCreated ] = useState<boolean>(false)
     
     useEffect(() => {
         const cart = localStorage.getItem(cartKey)
@@ -41,7 +48,11 @@ export const GlobalContextProvider = ({ children }: Props) => {
     return (
         <GlobalContext.Provider
             value={{
-                cartKey
+                cartKey,
+                orderAction,
+                setOrderAction,
+                orderCreated,
+                setOrderCreated
             }}
         >
             {children}
