@@ -1,7 +1,10 @@
+
+
+
 export default function OrderPage() {
 
     return (
-        <div>
+        <div className="order">
             
         </div>
     )
