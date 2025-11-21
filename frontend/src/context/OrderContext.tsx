@@ -1,6 +1,8 @@
 'use client'
 
+
 import { createContext, ReactNode, useState } from 'react'
+
 
 interface ContextType {
 	title: string
@@ -52,9 +54,11 @@ interface ContextType {
 	setPointError: React.Dispatch<React.SetStateAction<string>>
 }
 
+
 interface Props {
 	children: ReactNode
 }
+
 
 export const OrderContext = createContext<ContextType | undefined>(undefined)
 
