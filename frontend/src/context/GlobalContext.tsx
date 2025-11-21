@@ -2,6 +2,8 @@
 
 import { createContext, ReactNode, useEffect, useState } from 'react'
 
+import api from '@/lib/api'
+
 
 interface ContextType {
 	cartKey: string
@@ -44,6 +46,21 @@ export const GlobalContextProvider = ({ children }: Props) => {
             }))
         }
     }, [])
+
+    useEffect(() => {
+		const cacheLocalitiesNova = async () => {
+			try {
+				await api.post('/nova/localities/cache')
+			} catch (error) {}
+		}
+		const cachePointsNova = async () => {
+			try {
+				await api.post('/nova/points/cache')
+			} catch (error) {}
+		}
+		cacheLocalitiesNova()
+		cachePointsNova()
+	}, [])
 
     return (
         <GlobalContext.Provider
