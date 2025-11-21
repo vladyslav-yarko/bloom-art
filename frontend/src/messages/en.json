@@ -40,7 +40,8 @@
 	"Navbar": {
 		"Hamburger": {
 			"home": "Home",
-			"cart": "Cart"
+			"cart": "Cart",
+			"order": "Order (need to be made from cart)"
 		}
 	}
 }

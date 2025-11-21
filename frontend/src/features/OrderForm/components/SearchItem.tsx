@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 
 
@@ -16,7 +18,7 @@ function SearchItem({ itemKey, value, setValue, item }: Props) {
     }
 
     return (
-			<p className='search-item' key={itemKey} onClick={handleClick}>
+			<p className='searchItem' key={itemKey} onClick={handleClick}>
 				{value}
 			</p>
 		)

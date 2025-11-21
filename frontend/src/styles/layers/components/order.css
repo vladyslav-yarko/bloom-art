@@ -14,10 +14,6 @@
         p-2 md:p-4 lg:p-8 justify-items-center gap-y-8
         divide-y divide-accent-foreground;
     }
-
-    /* .orderShipping {
-        @apply grid grid-cols-1;
-    } */
     
     .orderClearAllIcon {
         @apply w-12 md:w-13 lg:w-15 transition hover:scale-110 active:scale-110 cursor-pointer;
@@ -33,5 +29,26 @@
 
     .orderInput {
         @apply w-80 md:w-90 lg:w-100;
+    }
+
+    .searchSelectedItem {
+        @apply rounded border border-accent-foreground
+        w-80 md:w-90 lg:w-100;
+    }
+
+    .searchArea {
+        @apply max-h-60 overflow-y-auto
+        w-80 md:w-90 lg:w-100
+        shadow border rounded
+        border-accent-foreground
+        grid grid-cols-1 gap-y-2
+        p-4;
+    }
+
+    .searchItem {
+        @apply shadow hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg bg-background dark:bg-background-dark cursor-pointer
+        transition hover:scale-110 active:scale-110
+        border border-accent-foreground
+        p-4;
     }
 }

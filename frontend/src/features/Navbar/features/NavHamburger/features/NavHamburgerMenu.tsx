@@ -10,6 +10,7 @@ export default function NavHamburgerMenu() {
 			<div className='hamburgerMenu'>
 				<NavHamburgerMenuItem title={t("home")} link='/' />
 				<NavHamburgerMenuItem title={t("cart")} link='/cart' />
+				<NavHamburgerMenuItem title={t("order")} link='/order' />
 			</div>
 		)
 }

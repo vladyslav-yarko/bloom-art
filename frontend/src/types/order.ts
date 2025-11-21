@@ -9,9 +9,9 @@ export interface Locality {
 }
 
 
-export interface Localities {
-	data: Locality[]
-}
+// export interface Localities {
+// 	data: Locality[]
+// }
 
 
 export interface Point {
@@ -22,6 +22,6 @@ export interface Point {
 }
 
 
-export interface Points {
-	data: Point[]
-}
+// export interface Points {
+// 	data: Point[]
+// }

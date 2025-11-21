@@ -34,6 +34,7 @@ DEBUG = False
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,6 +63,7 @@ JAZZMIN_SETTINGS = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -161,7 +163,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "frontend",
     "nginx",
-    "backend"
+    "backend",
+    "http://localhost",
+    "http://localhost:3000"
 ]
 
 APPEND_SLASH = True
@@ -180,6 +184,11 @@ REST_FRAMEWORK = {
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost",
     "http://localhost",
-    "http://frontend"
+    "http://frontend",
+    "http://localhost:3000"
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]

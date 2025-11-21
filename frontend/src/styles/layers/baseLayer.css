@@ -25,7 +25,7 @@
     } */
 
     input, select {
-        @apply outline-none rounded p-2 ml-4
+        @apply outline-none rounded p-2
         border border-accent-foreground
         text-foreground dark:text-foreground-dark;
     }

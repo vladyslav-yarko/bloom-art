@@ -1,3 +1,5 @@
+"use client"
+
 import SearchItem from './SearchItem'
 import { Locality, Point } from '@/types/order'
 
@@ -16,7 +18,7 @@ function SearchArea<T extends Locality | Point>({
 }: Props<T>) {
 
 	return (
-		<div className='search-area'>
+		<div className='searchArea'>
 			{data.length > 0 ? (
 				data.map(item => (
 					<SearchItem

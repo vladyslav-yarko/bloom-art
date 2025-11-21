@@ -1,8 +1,10 @@
+"use client"
+
 import { useContext, useEffect, useState } from 'react'
 
 import { OrderContext } from '@/context/OrderContext'
 import api from '@/lib/api'
-import { Locality, Localities, Point, Points } from '@/types/order'
+import { Locality, Point } from '@/types/order'
 import ClearButton from '@/ui/ClearButton'
 import SearchSystem from '../components/SearchSystem'
 
@@ -24,15 +26,15 @@ export default function OrderShipping() {
 		} = useContext(OrderContext)!
 
 
-    function filterLocality(data: Localities, value: string) {
-		const cleanData = data.data.filter((element: Locality) =>
+    function filterLocality(data: Locality[], value: string) {
+		const cleanData = data.filter((element: Locality) =>
 			element.title.toLowerCase().startsWith(value.toLowerCase())
 		)
 		return cleanData
 	}
 
-	function filterPoint(data: Points, value: string, cityRef: string) {
-		const cleanData = data.data.filter((element: Point) =>
+	function filterPoint(data: Point[], value: string, cityRef: string) {
+		const cleanData = data.filter((element: Point) =>
 			element.cityRef === cityRef && element.title.toLowerCase().includes(value.toLowerCase())
 		)
 		return cleanData
@@ -46,6 +48,7 @@ export default function OrderShipping() {
 				setLocalities(responseLocalities.data.data)
 				setPoints(responsePoints.data.data)
 			} catch (error) {
+                console.log(error)
 				showFlashMessage()
 			}
 		}
@@ -75,7 +78,7 @@ export default function OrderShipping() {
 
 	return (
 		<div className='orderShipping'>
-			<h2 className='mb-2'>Доставка (Нова Пошта)</h2>
+			<h1 className='mb-2'>Доставка (Нова Пошта)</h1>
 			<p className='errorField'>{localityError}</p>
 			<p className='errorField'>{pointError}</p>
 

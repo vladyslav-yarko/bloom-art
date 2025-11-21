@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react'
 
 import SearchArea from './SearchArea'
@@ -40,16 +42,17 @@ function SearchSystem({
 	}, [searchValue])
 
 	return (
-		<div className='search'>
-			<div className='search-selected-item'>
+		<div className=''>
+			<h2 className='searchSelectedItem'>
 				{value ? value[valueName] : searchItemWarning}
-			</div>
+			</h2>
 			<div className={value ? 'hidden' : ''}>
 				<TextField
 					placeholder={searchItemPlaceholder}
 					value={searchValue}
 					setValue={setSearchValue}
-                    error=''
+					error=''
+					inputClaseName='orderInput'
 				/>
 				<SearchArea
 					data={searchValue ? searchElements : []}
