@@ -1,14 +1,14 @@
 @layer components {
 
     .order {
-        @apply grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2;
+        @apply grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[70%_30%] gap-x-4 min-w-full;
     }
 
     .orderForm {
         @apply flex flex-col gap-10 lg:order-1;
     }
 
-    .orderContact, .orderShipping {
+    .orderContact, .orderShipping, .orderItem {
         @apply grid grid-cols-1
         shadow transition hover:shadow hover:shadow-accent dark:hover:shadow-accent-dark active:shadow active:shadow-accent dark:active:shadow-accent-dark rounded-lg bg-card dark:bg-card-dark
         p-2 md:p-4 lg:p-8 justify-items-center gap-y-8
@@ -24,7 +24,7 @@
     }
 
     .orderItem {
-        @apply grid grid-cols-1 lg:order-2;
+        @apply lg:order-2 lg:h-150 p-20 mb-8 md:mb-5;
     }
 
     .orderInput {
@@ -50,5 +50,11 @@
         transition hover:scale-110 active:scale-110
         border border-accent-foreground
         p-4;
+    }
+
+    .orderSubmit {
+        @apply w-full h-16
+        mt-8
+        order-3;
     }
 }
