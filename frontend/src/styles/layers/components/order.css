@@ -15,4 +15,8 @@
     .orderShipping {
         @apply ;
     }
+    
+    .orderClearAllIcon {
+        @apply w-10 md:w-15 lg:w-20
+    }
 }

@@ -2,12 +2,13 @@
 
 
 interface Props {
+    placeholder: string
 	value: string
-	setValue: React.Dispatch<React.SetStateAction<string | null>>
+	setValue: React.Dispatch<React.SetStateAction<string>>
 }
 
 
-export default function TextField({ value, setValue }: Props) {
+export default function TextField({ placeholder, value, setValue }: Props) {
 
     return (
         <div>

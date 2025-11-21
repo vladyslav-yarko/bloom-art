@@ -15,4 +15,8 @@
         hover:bg-secondary/80 hover:bg-secondary-dark/80 transition active:bg-secondary/80 active:bg-secondary-dark/80
         hover:scale-110 active:scale-110;
     }
+
+    .clearFieldIcon {
+        @apply w-5 md:w-10 lg:w-15;
+    }
 }
