@@ -23,4 +23,13 @@
     /* a {
         @apply text-primary hover:underline underline-offset-4;
     } */
+
+    input, select {
+        @apply outline-none border rounded p-2 ml-4;
+    }
+
+    input[type="text"] {
+        @apply disabled:bg-slate-400
+        placeholder:italic;
+    }
 }
