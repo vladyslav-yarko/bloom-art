@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test'
 test.describe("Cart Page", () => {
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('/')
+        await page.goto('/cart')
     })
 
     test('should have correct metadata', async ({ page }) => {
