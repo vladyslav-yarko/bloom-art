@@ -8,11 +8,17 @@ import Navbar from '@/features/Navbar'
 import { NavbarContextProvider } from '@/context/NavbarContext'
 import { HomeContextProvider } from '@/context/HomeContext'
 import { GlobalContextProvider } from '@/context/GlobalContext'
+import { Metadata } from 'next'
 
 
 type Props = {
 	children: React.ReactNode
 	params: Promise<{ locale: string }>
+}
+
+
+export const metedata: Metadata = {
+	title: 'Bloom-Art: Home'
 }
 
 

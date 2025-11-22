@@ -7,7 +7,7 @@ import Footer from '@/features/Footer'
 
 
 export const metadata: Metadata = {
-	title: 'a',
+	title: 'Bloom-Art',
 	description: 'a',
 	icons: {
 		icon: [
