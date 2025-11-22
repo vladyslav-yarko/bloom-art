@@ -10,6 +10,7 @@ import { validatePhoneNumber, validateName } from "@/lib/validation"
 
 export default function OrderContact() {
     const {
+		item,
 		phoneNumber,
 		setPhoneNumber,
 		firstName,
@@ -60,6 +61,11 @@ export default function OrderContact() {
     return (
 			<div className='orderContact'>
 				<h1 className='mb-2'>Contact data</h1>
+				<input
+					type='hidden'
+					name='item'
+					value={item ? JSON.stringify(item) : ''}
+				/>
 				<div className='orderField'>
 					<TextField
 						placeholder='phone number'
@@ -67,6 +73,7 @@ export default function OrderContact() {
 						setValue={setPhoneNumber}
 						error={phoneNumberError}
 						inputClaseName='orderInput'
+						name='phoneNumber'
 					/>
 					<div
 						className='clearFieldIcon'
@@ -82,6 +89,7 @@ export default function OrderContact() {
 						setValue={setFirstName}
 						error={firstNameError}
 						inputClaseName='orderInput'
+						name='firstName'
 					/>
 					<div className='clearFieldIcon' onClick={() => clearFirstNameField()}>
 						<ClearButton />
@@ -94,6 +102,7 @@ export default function OrderContact() {
 						setValue={setLastName}
 						error={lastNameError}
 						inputClaseName='orderInput'
+						name='lastName'
 					/>
 					<div className='clearFieldIcon' onClick={() => clearLastNameField()}>
 						<ClearButton />

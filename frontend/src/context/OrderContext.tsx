@@ -62,6 +62,7 @@ interface ContextType {
 	setPointError: React.Dispatch<React.SetStateAction<string>>
 
 	showFlashMessage: () => void
+	showSuccessFlashMessage: () => void
 }
 
 
@@ -105,6 +106,15 @@ export const OrderContextProvider = ({ children }: Props) => {
 	const showFlashMessage = (): void => {
 		setOrderAction(true)
 		setOrderCreated(false)
+		router.push('/')
+		setTimeout(() => {
+			setOrderAction(false)
+		}, 7000)
+	}
+
+	const showSuccessFlashMessage = (): void => {
+		setOrderAction(true)
+		setOrderCreated(true)
 		router.push('/')
 		setTimeout(() => {
 			setOrderAction(false)
@@ -173,7 +183,8 @@ export const OrderContextProvider = ({ children }: Props) => {
 				pointError,
 				setPointError,
 
-				showFlashMessage
+				showFlashMessage,
+				showSuccessFlashMessage
 			}}
 		>
 			{children}

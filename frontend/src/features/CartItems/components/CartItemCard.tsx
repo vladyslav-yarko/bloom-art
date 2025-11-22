@@ -41,6 +41,7 @@ export default function CartItemCard({ item }: Props) {
 
 	function makeOrder(item: Item): void {
 		const orderKey = process.env.NEXT_PUBLIC_ORDER_KEY!
+		item.quantity = quantity
 		localStorage.setItem(orderKey, JSON.stringify(item))
 		router.push("/order")
 	}

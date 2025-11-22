@@ -16,6 +16,7 @@ interface Props {
 	valueName: string
 	filterFunction: (...args: any[]) => any
 	addValue?: any
+	name: string
 }
 
 
@@ -28,7 +29,8 @@ function SearchSystem({
 	setValue,
 	valueName,
 	filterFunction,
-    addValue = null
+	name,
+    addValue = null,
 }: Props) {
 
 	const [ searchValue, setSearchValue ] = useState("")
@@ -53,6 +55,7 @@ function SearchSystem({
 					setValue={setSearchValue}
 					error=''
 					inputClaseName='orderInput'
+					name={name}
 				/>
 				<SearchArea
 					data={searchValue ? searchElements : []}

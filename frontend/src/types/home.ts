@@ -6,4 +6,6 @@ export interface Item {
 	price: number
 	currency: string
 	available: number
+	weight: number
+	quantity?: number
 }

@@ -7,10 +7,11 @@ interface Props {
 	setValue: React.Dispatch<React.SetStateAction<string>>
 	error: string
 	inputClaseName?: string
+	name?: string
 }
 
 
-export default function TextField({ placeholder, value, setValue, error, inputClaseName = '' }: Props) {
+export default function TextField({ placeholder, value, setValue, error, inputClaseName = '', ...props }: Props) {
 
     return (
         <div>
@@ -20,6 +21,7 @@ export default function TextField({ placeholder, value, setValue, error, inputCl
                 onChange={(e) => setValue(e.target.value)}
                 placeholder={placeholder}
                 className={inputClaseName}
+                {...props}
             />
             <p className="errorField">{error}</p>
         </div>

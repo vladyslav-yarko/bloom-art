@@ -82,6 +82,17 @@ export default function OrderShipping() {
 			<p className='errorField'>{localityError}</p>
 			<p className='errorField'>{pointError}</p>
 
+			<input
+				type='hidden'
+				name='locality'
+				value={selectedLocality ? JSON.stringify(selectedLocality) : ''}
+			/>
+			<input
+				type='hidden'
+				name='point'
+				value={selectedPoint ? JSON.stringify(selectedPoint) : ''}
+			/>
+
 			<div>
 				<SearchSystem
 					searchItemWarning={`Населений пункт не обраний`}
@@ -92,6 +103,7 @@ export default function OrderShipping() {
 					setValue={setSelectedLocality}
 					valueName={`fullTitle`}
 					filterFunction={filterLocality}
+					name='localitySearh'
 				/>
 				{selectedLocality ? (
 					<SearchSystem
@@ -103,6 +115,7 @@ export default function OrderShipping() {
 						setValue={setSelectedPoint}
 						valueName={`title`}
 						filterFunction={filterPoint}
+						name='pointSearch'
 						addValue={selectedLocality ? selectedLocality.cityRef : null}
 					/>
 				) : null}
