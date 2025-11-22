@@ -71,7 +71,7 @@ export default function OrderContact() {
 				/>
 				<div className='orderField'>
 					<TextField
-						placeholder={t('phoneNumberPlaceholder')}
+						placeholder={t('Contact.phoneNumberPlaceholder')}
 						value={phoneNumber}
 						setValue={setPhoneNumber}
 						error={phoneNumberError}
@@ -87,7 +87,7 @@ export default function OrderContact() {
 				</div>
 				<div className='orderField'>
 					<TextField
-						placeholder={t('firstNamePlaceholder')}
+						placeholder={t('Contact.firstNamePlaceholder')}
 						value={firstName}
 						setValue={setFirstName}
 						error={firstNameError}
@@ -100,7 +100,7 @@ export default function OrderContact() {
 				</div>
 				<div className='orderField'>
 					<TextField
-						placeholder={t('lastNamePlaceholder')}
+						placeholder={t('Contact.lastNamePlaceholder')}
 						value={lastName}
 						setValue={setLastName}
 						error={lastNameError}

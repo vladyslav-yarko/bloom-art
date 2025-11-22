@@ -20,9 +20,9 @@ export default async function makeOrder(formData: FormData): Promise<boolean> {
     const item: Item | null = rawItem ? JSON.parse(rawItem) : null
 
 	const errors = {
-		phone: validatePhoneNumber(phoneNumber),
-		firstName: validateName(firstName, "ім'я"),
-		lastName: validateName(lastName, 'прізвище'),
+		phone: validatePhoneNumber(phoneNumber, '', ''),
+		firstName: validateName(firstName, "ім'я", '', ''),
+		lastName: validateName(lastName, 'прізвище', '', ''),
 	}
 	const contactError = Object.values(errors).some(err => err.length > 0)
 	const shippingError = !locality || !point
