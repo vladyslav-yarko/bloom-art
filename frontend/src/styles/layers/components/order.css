@@ -53,7 +53,7 @@
     }
 
     .orderSubmit {
-        @apply w-full h-16
+        @apply w-screen h-16
         mt-8
         order-3;
     }

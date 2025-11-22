@@ -43,5 +43,37 @@
 			"cart": "Cart",
 			"order": "Order (need to be made from cart)"
 		}
+	},
+
+	"OrderPage": {
+		"Error": "Something went wrong! Check your form or try again later",
+		"submit": "Make order",
+		"firstName": "first name",
+		"lastName": "last name",
+		"phoneNumberError1": "Phone number cannot be empty",
+		"phoneNumberError2": "Invalid phone number",
+		"nameError1": "cannot be empty",
+		"nameError2": "Invalid",
+
+		"Contact": {
+			"header": "Contact data",
+			"phoneNumberPlaceholder": "Phone number",
+			"firstNamePlaceholder": "First name",
+			"lastNamePlaceholder": "Last name"
+		},
+
+		"Shipping": {
+			"localityError": "Delivery locality is not selected",
+			"pointError": "Delivery address is not selected",
+
+			"header": "Shipping (Нова Пошта)",
+
+			"searchItemWarningLocality": "Locality is not selected",
+			"searchItemPlaceholderLocality": "Select a locality",
+			"searchItemWarningPoint": "Delivery address is not selected",
+			"searchItemPlaceholderPoint": "Select a delivery address",
+
+			"searchAreaNoResult": "No results found"
+		}
 	}
 }

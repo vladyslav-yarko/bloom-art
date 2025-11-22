@@ -1,5 +1,7 @@
 "use client"
 
+import { useTranslations } from 'next-intl'
+
 import SearchItem from './SearchItem'
 import { Locality, Point } from '@/types/order'
 
@@ -16,6 +18,7 @@ function SearchArea<T extends Locality | Point>({
 	valueName,
 	setValue,
 }: Props<T>) {
+	const t = useTranslations("OrderPage")
 
 	return (
 		<div className='searchArea'>
@@ -30,7 +33,7 @@ function SearchArea<T extends Locality | Point>({
 					/>
 				))
 			) : (
-				<p key='no-results'>Результатів не знайдено</p>
+				<p key='no-results'>{t('Shipping.searchAreaNoResult')}</p>
 			)}
 		</div>
 	)

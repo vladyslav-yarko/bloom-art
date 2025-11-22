@@ -1,6 +1,7 @@
 "use client"
 
 import { useContext, useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 import { OrderContext } from '@/context/OrderContext'
 import api from '@/lib/api'
@@ -10,6 +11,8 @@ import SearchSystem from '../components/SearchSystem'
 
 
 export default function OrderShipping() {
+	const t = useTranslations("OrderPage")
+
     const [ localities, setLocalities ] = useState([])
 	const [ points, setPoints ] = useState([])
 
@@ -57,9 +60,9 @@ export default function OrderShipping() {
 
 	useEffect(() => {
 		if (selectedLocality) {
-			setLocalityError("")
+			setLocalityError(t("Shipping.localityError"))
 		} else {
-			setLocalityError('Населений пункт для доставки не обраний')
+			setLocalityError('')
 		}
 	}, [selectedLocality])
 
@@ -67,7 +70,7 @@ export default function OrderShipping() {
 		if (selectedPoint) {
 			setPointError('')
 		} else {
-			setPointError('Адреса доставки не обрана')
+			setPointError(t("Shipping.pointError"))
 		}
 	}, [selectedPoint])
 
@@ -78,7 +81,7 @@ export default function OrderShipping() {
 
 	return (
 		<div className='orderShipping'>
-			<h1 className='mb-2'>Доставка (Нова Пошта)</h1>
+			<h1 className='mb-2'>{t('Shipping.header')}</h1>
 			<p className='errorField'>{localityError}</p>
 			<p className='errorField'>{pointError}</p>
 
@@ -95,8 +98,8 @@ export default function OrderShipping() {
 
 			<div>
 				<SearchSystem
-					searchItemWarning={`Населений пункт не обраний`}
-					searchItemPlaceholder={`Оберіть населений пункт`}
+					searchItemWarning={t('Shipping.searchItemWarningLocality')}
+					searchItemPlaceholder={t('Shipping.searchItemPlaceholderLocality')}
 					searchItemId={`nova-locality`}
 					data={localities}
 					value={selectedLocality}
@@ -107,8 +110,8 @@ export default function OrderShipping() {
 				/>
 				{selectedLocality ? (
 					<SearchSystem
-						searchItemWarning={`Адреса доставки не обрана`}
-						searchItemPlaceholder={`Оберіть адресу доставки`}
+						searchItemWarning={t('Shipping.searchItemWarningPoint')}
+						searchItemPlaceholder={t('Shipping.searchItemPlaceholderPoint')}
 						searchItemId={`nova-point`}
 						data={points}
 						value={selectedPoint}

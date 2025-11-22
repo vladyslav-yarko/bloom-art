@@ -1,6 +1,7 @@
 "use client"
 
 import { useContext, useEffect } from "react"
+import { useTranslations } from "next-intl"
 
 import { OrderContext } from "@/context/OrderContext"
 import TextField from "@/ui/TextField"
@@ -9,6 +10,8 @@ import { validatePhoneNumber, validateName } from "@/lib/validation"
 
 
 export default function OrderContact() {
+	const t = useTranslations("OrderPage")
+
     const {
 		item,
 		phoneNumber,
@@ -26,17 +29,17 @@ export default function OrderContact() {
 	} = useContext(OrderContext)!
 
     useEffect(() => {
-		const message = validatePhoneNumber(phoneNumber)
+		const message = validatePhoneNumber(phoneNumber, t('phoneNumberError1'), t("phoneNumberError2"))
 		setPhoneNumberError(message)
 	}, [phoneNumber])
 
 	useEffect(() => {
-		const message = validateName(firstName, "ім'я")
+		const message = validateName(firstName, t('firstName'), t('nameError1'), t("nameError2"))
 		setFirstNameError(message)
 	}, [firstName])
 
 	useEffect(() => {
-		const message = validateName(lastName, "прізвище")
+		const message = validateName(lastName, t('lastName'), t('nameError1'), t("nameError2"))
 		setLastNameError(message)
 	}, [lastName])
 
@@ -60,7 +63,7 @@ export default function OrderContact() {
 
     return (
 			<div className='orderContact'>
-				<h1 className='mb-2'>Contact data</h1>
+				<h1 className='mb-2'>{t('Contact.header')}</h1>
 				<input
 					type='hidden'
 					name='item'
@@ -68,7 +71,7 @@ export default function OrderContact() {
 				/>
 				<div className='orderField'>
 					<TextField
-						placeholder='phone number'
+						placeholder={t('phoneNumberPlaceholder')}
 						value={phoneNumber}
 						setValue={setPhoneNumber}
 						error={phoneNumberError}
@@ -84,7 +87,7 @@ export default function OrderContact() {
 				</div>
 				<div className='orderField'>
 					<TextField
-						placeholder='first name'
+						placeholder={t('firstNamePlaceholder')}
 						value={firstName}
 						setValue={setFirstName}
 						error={firstNameError}
@@ -97,7 +100,7 @@ export default function OrderContact() {
 				</div>
 				<div className='orderField'>
 					<TextField
-						placeholder='last name'
+						placeholder={t('lastNamePlaceholder')}
 						value={lastName}
 						setValue={setLastName}
 						error={lastNameError}

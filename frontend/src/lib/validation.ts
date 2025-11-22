@@ -3,26 +3,26 @@ import { parsePhoneNumberFromString } from "libphonenumber-js"
 import { capitalize } from "./helpers"
 
 
-function validateName(name: string, nameType: string) {
+function validateName(name: string, nameType: string, error1: string, error2: string) {
     if (!name || name.length === 0) {
-			return capitalize(`${nameType} не може бути порожнім`)
+			return capitalize(`${nameType} ${error1}`)
 		}
     const regexPatter = /^\p{L}+$/u
     let nameValidate = regexPatter.test(name)
     if (!nameValidate || name.length < 1 || name.length > 30) {
-			return `Недійсне ${nameType}`
+			return `${error2} ${nameType}`
 		}
     return ""
 }
 
 
-function validatePhoneNumber(phoneNumber: string) {
+function validatePhoneNumber(phoneNumber: string, error1: string, error2: string) {
 	if (!phoneNumber || phoneNumber.length === 0) {
-		return 'Номер телефону не може бути порожнім'
+		return error1
 	}
     const validatedPhoneNumber = parsePhoneNumberFromString(phoneNumber)
 	if (!validatedPhoneNumber?.isValid()) {
-		return 'Недійсний номер телефону'
+		return error2
 	}
 	return ''
 }

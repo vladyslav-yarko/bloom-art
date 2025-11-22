@@ -182,7 +182,7 @@ class NOVAService(Service):
             if not product:
                 return None
             for item in body.get("items", []):
-                quantity = item.quantity
+                quantity = item.get("quantity")
             if product.available < quantity:
                 return None
             recipient_counterparty_data = self.client.create_counterparty(
@@ -253,9 +253,9 @@ class NOVAService(Service):
             data = self.nova_order_repo().get_one_by_id(delivery_id.id)
             return data
         except Exception as e:
-            # import logging
+            import logging
 
-            # # create a logger
+            # create a logger
             # logger = logging.getLogger("myapp")
             # logger.setLevel(logging.DEBUG)
 

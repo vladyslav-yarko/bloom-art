@@ -43,5 +43,37 @@
 			"cart": "Корзина",
 			"order": "Замовлення (має бути зроблено з корзини)"
 		}
+	},
+
+	"OrderPage": {
+		"Error": "Щось пішло не так! Перевірте форму або спробуйте пізніше.",
+		"submit": "Зробити замовлення",
+		"firstName": "Ім'я",
+		"lastName": "Прізвище",
+		"phoneNumberError1": "Номер телефону не може бути порожнім",
+		"phoneNumberError2": "Недійсний номер телефону",
+		"nameError1": "не може бути порожнім",
+		"nameError2": "Недійсне",
+
+		"Contact": {
+			"header": "Контактна інформація",
+			"phoneNumberPlaceholder": "Номер телефону",
+			"firstNamePlaceholder": "Ім'я",
+			"lastNamePlaceholder": "Прізвище"
+		},
+
+		"Shipping": {
+			"localityError": "Населений пункт для доставки не обраний",
+			"pointError": "Адреса доставки не обрана",
+
+			"header": "Доставка (Нова Пошта)",
+
+			"searchItemWarningLocality": "Населений пункт не обраний",
+			"searchItemPlaceholderLocality": "Оберіть населений пункт",
+			"searchItemWarningPoint": "Адреса доставки не обрана",
+			"searchItemPlaceholderPoint": "Оберіть адресу доставки",
+
+			"searchAreaNoResult": "Результатів не знайдено"
+		}
 	}
 }

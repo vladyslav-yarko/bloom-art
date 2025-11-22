@@ -31,25 +31,28 @@ export default async function makeOrder(formData: FormData): Promise<boolean> {
     const finalPrice = item.price * item.quantity!
     const finalWeight = item.weight * item.quantity!
 	const orderData = {
-        weight: finalWeight,
-        desription: "Парфуми",
-        cost: finalPrice,
+        productId: item.id,
+		weight: finalWeight,
+		description: 'Парфуми',
+		cost: finalPrice,
 		cityRecipient: locality.cityRef,
 		recipientAddress: point.ref,
 		recipientPhone: phoneNumber,
 		recipientFirstName: firstName,
 		recipientLastName: lastName,
-        redeliveryString: finalPrice,
-        items: [{
-            title: item.title,
-            itemPrice: item.price,
-            quantity: item.quantity,
-            weight: item.weight
-        }]
+		redeliveryString: finalPrice,
+		items: [
+			{
+				title: item.title,
+				itemPrice: item.price,
+				quantity: item.quantity,
+				weight: item.weight,
+			},
+		],
 	}
 
     try {
-        const response = await fetch(`${process.env.API_URL}/nova/orders`, {
+        const response = await fetch(`${process.env.API_URL}/nova/orders/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,6 +60,7 @@ export default async function makeOrder(formData: FormData): Promise<boolean> {
             body: JSON.stringify(orderData),
         })
         if (!response.ok) {
+            console.log(await response.json())
             return false
         }
         const result = await response.json()

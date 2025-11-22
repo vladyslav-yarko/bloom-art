@@ -63,6 +63,9 @@ interface ContextType {
 
 	showFlashMessage: () => void
 	showSuccessFlashMessage: () => void
+	showSameFlashMessage: () => void
+
+	orderError: boolean
 }
 
 
@@ -78,6 +81,8 @@ export const OrderContextProvider = ({ children }: Props) => {
 	const router = useRouter()
 
 	const { setOrderAction, setOrderCreated } = useContext(GlobalContext)!
+	
+	const [ orderError, setOrderError ] = useState(false)
 
 	const [ item, setItem ] = useState<Item | null>(null)
 
@@ -109,6 +114,13 @@ export const OrderContextProvider = ({ children }: Props) => {
 		router.push('/')
 		setTimeout(() => {
 			setOrderAction(false)
+		}, 7000)
+	}
+
+	const showSameFlashMessage = (): void => {
+		setOrderError(true)
+		setTimeout(() => {
+			setOrderError(false)
 		}, 7000)
 	}
 
@@ -184,7 +196,10 @@ export const OrderContextProvider = ({ children }: Props) => {
 				setPointError,
 
 				showFlashMessage,
-				showSuccessFlashMessage
+				showSuccessFlashMessage,
+				showSameFlashMessage,
+
+				orderError,
 			}}
 		>
 			{children}
