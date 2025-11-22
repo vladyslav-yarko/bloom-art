@@ -27,6 +27,7 @@ services:
       - UV_LINK_MODE=copy
     env_file:
       - .env
+    image: bloom-art-backend-dev:latest
 
   db:
     image: postgres:15.1-alpine
@@ -73,6 +74,7 @@ services:
       - .env
     networks:
     - bloom_art_network
+    image: bloom-art-frontend-dev
 
 
 

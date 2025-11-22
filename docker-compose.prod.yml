@@ -23,6 +23,7 @@ services:
       - .env
     volumes:
       - static_volume:/app/staticfiles
+    image: bloom-art-backend-prod
 
   db:
     image: postgres:15.1-alpine
@@ -59,6 +60,7 @@ services:
       - .env
     networks:
       - bloom_art_network_prod
+    image: bloom-art-frontend-prod
 
   nginx:
     image: nginx:alpine
