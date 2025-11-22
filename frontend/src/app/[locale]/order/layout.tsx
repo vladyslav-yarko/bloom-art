@@ -9,7 +9,7 @@ interface Props {
 }
 
 
-export const metedata: Metadata = {
+export const metadata: Metadata = {
 	title: 'Bloom-Art: Order',
 }
 

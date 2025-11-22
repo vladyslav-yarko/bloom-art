@@ -17,8 +17,8 @@ type Props = {
 }
 
 
-export const metedata: Metadata = {
-	title: 'Bloom-Art: Home'
+export const metadata: Metadata = {
+	title: 'Bloom-Art: Home',
 }
 
 
