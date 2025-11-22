@@ -8,9 +8,15 @@ import LoadingState from '@/ui/LoadingState'
 
 
 const fetchPerfumes = async () => {
-    const res = await fetch(`${process.env.API_URL}/perfumes/`)
-    const data = await res.json()
-    return data
+	try {
+		const res = await fetch(`${process.env.API_URL}/perfumes/`)
+		const data = await res.json()
+		return data
+	} catch (error) {
+		console.log(error)
+		return []
+	}
+    
 }
 
 
