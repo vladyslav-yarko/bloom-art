@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tls-ingressroute
+spec:
+  routes:
+    - kind: Rule
+      match: Host(``) && Path(`/.well-known/acme-challenge/`)
+      services:
+        - kind: Service
+          name: tls-service
+          port: 80
+          scheme: http

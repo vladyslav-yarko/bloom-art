@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.frontend.configmap.name }}
+data:
+  NEXT_PUBLIC_GITHUB_URL : "https://github.com/vladyslav-yarko"
+  NEXT_PUBLIC_LINKEDIN_URL : "https://www.linkedin.com/in/vladyslav-yarko/"
+  NEXT_PUBLIC_CART_KEY : "artstudia_cart"
+  NEXT_PUBLIC_ORDER_KEY : "artstudia_order"
+  API_URL : "/api"
+  NEXT_PUBLIC_API_URL : "/api"

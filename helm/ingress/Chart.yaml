@@ -1,0 +1,27 @@
+apiVersion: v2
+name: ingress-chart
+description: Ingress chart of bloom-art
+type: application
+
+version: 1.0.0
+
+appVersion: "1.0.0"
+
+maintainers:
+  - name: vladyslav-yarko
+    email: vladislavv44444@gmail.com
+
+annotations:
+  org.opencontainers.image.source: "https://github.com/vladyslav-yarko/bloom-art"
+  org.opencontainers.image.maintainer: "vladyslav-yarko"
+
+home: "https://github.com/vladyslav-yarko/bloom-art"
+sources:
+  - "https://github.com/vladyslav-yarko/bloom-art"
+
+
+dependencies:
+  - name: traefik
+    version: 20.8.0
+    repository: "https://traefik.github.io/charts"
+
