@@ -40,7 +40,7 @@ primary:
       memory: 50m
 
 
-sharedNamespace: my-kubernetes-application
+sharedNamespace: bloom-art-application
 
 database:
   secretName: database-secret

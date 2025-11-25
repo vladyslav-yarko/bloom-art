@@ -22,25 +22,13 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.database.secretName }}
+            - secretRef:
+                name: {{ .Values.backend.secretName }}
+            - secretRef:
+                name: {{ .Values.redis.secretName }}
           ports:
             - containerPort: {{ .Values.backend.deployment.containerPort }}
               protocol: TCP
-          # readinessProbe:
-          #   initialDelaySeconds: 35
-          #   periodSeconds: 15
-          #   timeoutSeconds: 15
-          #   failureThreshold: 2
-          #   httpGet:
-          #     path: /health
-          #     port: {{ .Values.backend.deployment.containerPort }}
-          # livenessProbe:
-          #   initialDelaySeconds: 35
-          #   periodSeconds: 15
-          #   timeoutSeconds: 15
-          #   failureThreshold: 2
-          #   httpGet:
-          #     path: /health
-          #     port: {{ .Values.backend.deployment.containerPort }}
           resources:
             requests:
               memory: "30Mi"

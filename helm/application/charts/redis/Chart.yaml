@@ -1,6 +1,6 @@
 apiVersion: v2
-name: postgresql-chart
-description: PostgreSQL chart of bloom-art
+name: redis-chart
+description: Redis chart of bloom-art
 type: application
 
 version: 1.0.0
@@ -20,6 +20,6 @@ sources:
   - "https://github.com/vladyslav-yarko/bloom-art"
 
 dependencies:
-  - name: postgresql
-    version: 15.4.1
-    repository: "https://charts.bitnami.com/bitnami"
+  - name: redis
+    version: 20.0.10
+    repository: https://charts.bitnami.com/bitnami

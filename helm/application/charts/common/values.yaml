@@ -1,4 +1,4 @@
-sharedNamespace: my-kubernetes-application
+sharedNamespace: bloom-art-application
 
 
 secret_tls:

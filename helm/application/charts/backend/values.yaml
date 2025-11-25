@@ -1,4 +1,4 @@
-sharedNamespace: my-kubernetes-application
+sharedNamespace: bloom-art-application
 applicationHost: my-kubernetes.chickenkiller.com
 
 
@@ -33,3 +33,6 @@ secret_tls:
 
 middleware_tls:
   name: middleware-tls
+
+redis:
+  secretName: redis-secret

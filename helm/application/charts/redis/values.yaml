@@ -1,0 +1,13 @@
+sharedNamespace: bloom-art-application
+
+# auth:
+#   enabled: true
+#   password: "myStrongPassword123"
+
+architecture: replication
+
+replica:
+  replicaCount: 2
+
+redis:
+  secretName: redis-secret
