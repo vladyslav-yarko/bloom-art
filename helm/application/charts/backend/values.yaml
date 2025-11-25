@@ -12,7 +12,7 @@ backend:
     podName: backend-pod
     replicas: 2
     containerName: backend-container
-    image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    image: ghcr.io/vladyslav-yarko/bloom-art-backend:prod
     containerPort: 8000
 
   service:
@@ -23,6 +23,10 @@ backend:
     name: backend-ingressroute
   
   secretName: backend-secret
+
+  job:
+    name: backend-job
+    backoffLimit: 3
 
 
 database:

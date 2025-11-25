@@ -44,9 +44,4 @@ sharedNamespace: bloom-art-application
 
 database:
   secretName: database-secret
-  migrationJobImage: ghcr.io/vlad-yarko/my-kubernetes-database:1.0.0
-  migrationJobName: database-job-migration
-  migrationJobPodName: database-job-migration-pod
-  migrationJobContainerName: database-job-migration-container
-  migrationJobBackoffLimit: 3
   host: "database-postgresql"

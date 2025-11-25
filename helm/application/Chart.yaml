@@ -1,39 +1,33 @@
 apiVersion: v2
-name: my-kubernetes-umbrella-chart
-description: Umbrella chart of my-kubernetes
+name: application-umbrella-chart
+description: Application umbrella chart of bloom-art
 type: application
 
-# Chart version — updates when chart templates/values change
 version: 1.0.0
 
-# App version — the app's actual version (image tag, etc)
 appVersion: "1.0.0"
 
-# This matches your Docker LABEL maintainer
 maintainers:
-  - name: vlad-yarko
+  - name: vladyslav-yarko
     email: vladislavv44444@gmail.com
 
-# These are your Docker labels but in Helm
 annotations:
-  org.opencontainers.image.source: "https://github.com/vlad-yarko/my-kubernetes"
-  org.opencontainers.image.maintainer: "vlad-yarko"
+  org.opencontainers.image.source: "https://github.com/vladyslav-yarko/bloom-art"
+  org.opencontainers.image.maintainer: "vladyslav-yarko"
 
-# For documentation / searching
-home: "https://github.com/vlad-yarko/my-kubernetes"
+home: "https://github.com/vladyslav-yarko/bloom-art"
 sources:
-  - "https://github.com/vlad-yarko/my-kubernetes"
-# keywords:
-#   - backend
-#   - kubernetes
-#   - helm
-#   - my-app
+  - "https://github.com/vladyslav-yarko/bloom-art"
+
 
 dependencies:
   - name: common-chart
     version: 1.0.0
     repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
   - name: database-chart
+    version: 1.0.0
+    repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
+  - name: redis-chart
     version: 1.0.0
     repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
   - name: backend-chart

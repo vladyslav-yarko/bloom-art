@@ -11,7 +11,7 @@ frontend:
     replicas: 2
     podName: frontend-pod
     containerName: frontend-container
-    image: ghcr.io/vlad-yarko/my-kubernetes-frontend:1.0.1
+    image: ghcr.io/vladyslav-yarko/bloom-art-frontend:prod
     containerPort: 3000
 
   service:
