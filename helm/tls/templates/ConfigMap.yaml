@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: tls-configmap
 data:
-  # ZQsI16pWpYJkhAJq8N7b-iiP7km6Z5CWcal1D4a81gw: "ZQsI16pWpYJkhAJq8N7b-iiP7km6Z5CWcal1D4a81gw.kgEWgLTPNmT78vzeXvMcVEAMT2eenkcnCw2wo99_Mpw"
+  86cJezwvheONZ_3Nx8KKBXX6ogjmaW73f6M12BlkBRc: 86cJezwvheONZ_3Nx8KKBXX6ogjmaW73f6M12BlkBRc.kgEWgLTPNmT78vzeXvMcVEAMT2eenkcnCw2wo99_Mpw

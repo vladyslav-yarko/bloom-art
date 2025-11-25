@@ -5,7 +5,7 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(``) && Path(`/.well-known/acme-challenge/`)
+      match: Host(`bloom-art.chickenkiller.com`) && Path(`/.well-known/acme-challenge/86cJezwvheONZ_3Nx8KKBXX6ogjmaW73f6M12BlkBRc`)
       services:
         - kind: Service
           name: tls-service
