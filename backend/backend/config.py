@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     NOVA_SENDER_COUNTERPARTY_REF: str
     NOVA_SENDER_CONTACT_REF: str
 
-    model_config = SettingsConfigDict(env_file='.env')
+    model_config = SettingsConfigDict(env_file=None)
 
 
 settings = Settings()
