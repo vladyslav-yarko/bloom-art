@@ -1,15 +1,18 @@
 dependencies:
 - name: common-chart
-  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  repository: oci://ghcr.io/vladyslav-yarko/bloom-art
   version: 1.0.0
-- name: database-chart
-  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+- name: postgresql-chart
+  repository: oci://ghcr.io/vladyslav-yarko/bloom-art
+  version: 1.0.0
+- name: redis-chart
+  repository: oci://ghcr.io/vladyslav-yarko/bloom-art
   version: 1.0.0
 - name: backend-chart
-  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  repository: oci://ghcr.io/vladyslav-yarko/bloom-art
   version: 1.0.0
 - name: frontend-chart
-  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  repository: oci://ghcr.io/vladyslav-yarko/bloom-art
   version: 1.0.0
-digest: sha256:3486f465424a1dadc726049fd3b3d4469fa5d20e786bf838a521d544805d3ac5
-generated: "2025-11-25T17:31:54.254289337+02:00"
+digest: sha256:f73c22935694ef74471d3cf2ad7c645684a3072b0cd8745666c8eff4d3048e49
+generated: "2025-11-26T00:11:03.338240529+02:00"

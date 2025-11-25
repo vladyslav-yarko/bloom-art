@@ -26,8 +26,9 @@ spec:
                 key: DB_HOST
       containers:
       - name: migrate
-        image: my-django-image:latest
-        command: ["manage.py", "migrate"]
+        image: {{ .Values.backend.deployment.image }}
+        command: ["uv", "run", "python"]
+        args: ["manage.py", "migrate"]
         imagePullPolicy: Always
         envFrom:
         - secretRef:

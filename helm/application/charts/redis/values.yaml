@@ -4,17 +4,17 @@ sharedNamespace: bloom-art-application
 #   enabled: true
 #   password: "myStrongPassword123"
 
-architecture: replication
+# architecture: replication
 
-replica:
-  replicaCount: 2
+# replica:
+#   replicaCount: 2
 
 
-fullnameOverride: "database-redis"
+# fullnameOverride: "database-redis"
 
 redis:
   fullnameOverride: "database-redis"
   secretName: redis-secret
   architecture: replication
   replica:
-    replicaCount: 2
+    replicaCount: 1
