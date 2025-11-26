@@ -22,11 +22,15 @@ spec:
         ports:
           - containerPort: {{ .Values.monitoring.loki.statefulset.containerPort }}
         volumeMounts:
-          - name: loki-config
+          - name: {{ .Values.monitoring.loki.config.name }}
             mountPath: /etc/loki/{{ .Values.monitoring.loki.config.fileName }}
             subPath: {{ .Values.monitoring.loki.config.fileName }}
           - name: loki-storage
             mountPath: /loki
+      volumes:
+        - name: {{ .Values.monitoring.loki.config.name }}
+          configMap:
+            name: {{ .Values.monitoring.loki.config.name }}
   volumeClaimTemplates:
   - metadata:
       name: loki-storage
@@ -35,7 +39,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-  volumes:
-    - name: {{ .Values.monitoring.loki.config.name }}
-      configMap:
-        name: loki-config

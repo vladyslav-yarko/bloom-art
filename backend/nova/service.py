@@ -253,9 +253,8 @@ class NOVAService(Service):
             data = self.nova_order_repo().get_one_by_id(delivery_id.id)
             return data
         except Exception as e:
-            import logging
+            # import logging
 
-            # create a logger
             # logger = logging.getLogger("myapp")
             # logger.setLevel(logging.DEBUG)
 
@@ -271,7 +270,6 @@ class NOVAService(Service):
             # logger.addHandler(ch)
 
             # logger.info(str(e))
-            # print(str(e))
             return None
 
     @client_session

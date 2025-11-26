@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ .Values.backend.ingressRoute.name }}-http
+  name: {{ .Values.monitoring.grafana.ingressRoute.name }}-http
   namespace: {{ .Values.sharedNamespace }}
 spec:
   entryPoints:

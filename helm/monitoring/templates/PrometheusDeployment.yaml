@@ -19,10 +19,10 @@ spec:
         ports:
           - containerPort: {{ .Values.monitoring.prometheus.deployment.containerPort }}
         volumeMounts:
-          - name: prometheus-config
+          - name: {{ .Values.monitoring.prometheus.config.name }}
             mountPath: /etc/prometheus/{{ .Values.monitoring.prometheus.config.fileName }}
             subPath: {{ .Values.monitoring.prometheus.config.fileName }}
       volumes:
         - name: {{ .Values.monitoring.prometheus.config.name }}
           configMap:
-            name: prometheus-config
+            name: {{ .Values.monitoring.prometheus.config.name }}

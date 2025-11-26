@@ -31,12 +31,12 @@ monitoring:
       name: prometheus-service
       port: 9090
     config:
-      name: prometheus-configmap
+      name: prometheus-cm
       fileName: prometheus.yml
     deployment:
       name: prometheus-deployment
       podName: prometheus-pod
-      containerName: prometheus-container
+      containerName: prometheus-con
       containerPort: 9090
     
   grafana:
@@ -51,9 +51,8 @@ monitoring:
       podName: grafana-pod
       containerName: grafana-container
       containerPort: 3000
-  
-  ingressRoute:
-    name: monitoring-ingressroute
+    ingressRoute:
+      name: monitoring-ingressroute
 
   middleware:
     name: monitoring-middleware
