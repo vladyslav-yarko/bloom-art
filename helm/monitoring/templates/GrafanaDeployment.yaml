@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.monitoring.grafana.deployment.name }}
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.monitoring.grafana.deployment.podName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.monitoring.grafana.deployment.podName }}
+    spec:
+      containers:
+      - name: {{ .Values.monitoring.grafana.deployment.containerName }}
+        image: grafana/grafana:latest
+        ports:
+          - containerPort: {{ .Values.monitoring.grafana.deployment.containerPort }}
+        volumeMounts:
+          - name: grafana-datasources
+            mountPath: /etc/grafana/provisioning/datasources
+        env:
+          - name: GF_SECURITY_ADMIN_USER
+            value: "business"
+          - name: GF_SECURITY_ADMIN_PASSWORD
+            value: "business"
+      volumes:
+        - name: grafana-datasources
+          configMap:
+            name: {{ .Values.monitoring.grafana.config.name }}

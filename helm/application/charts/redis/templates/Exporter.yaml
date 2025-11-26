@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-exporter-deployment
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-exporter-pod
+  template:
+    metadata:
+      labels:
+        app: redis-exporter-pod
+    spec:
+      containers:
+      - name: redis-exporter-container
+        image: oliver006/redis_exporter:latest
+        env:
+          - name: REDIS_ADDR
+            value: database-redis-master.{{ .Values.sharedNamespace }}.svc.cluster.local:6379
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.redis.secretName }}
+                key: REDIS_PASSWORD
+        ports:
+          - containerPort: 9121
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-exporter-service
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  selector:
+    app: redis-exporter-pod
+  ports:
+    - port: 9121
+      targetPort: 9121

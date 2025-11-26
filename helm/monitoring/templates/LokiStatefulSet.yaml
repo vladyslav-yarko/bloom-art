@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.monitoring.loki.statefulset.name }}
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  serviceName: loki
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.monitoring.loki.statefulset.podName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.monitoring.loki.statefulset.podName }}
+    spec:
+      containers:
+      - name: {{ .Values.monitoring.loki.statefulset.containerName }}
+        image: grafana/loki:latest
+        # args:
+        #   - -config.file=/etc/loki/{{ .Values.monitoring.loki.config.fileName }}
+        ports:
+          - containerPort: {{ .Values.monitoring.loki.statefulset.containerPort }}
+        volumeMounts:
+          - name: loki-config
+            mountPath: /etc/loki/{{ .Values.monitoring.loki.config.fileName }}
+            subPath: {{ .Values.monitoring.loki.config.fileName }}
+          - name: loki-storage
+            mountPath: /loki
+  volumeClaimTemplates:
+  - metadata:
+      name: loki-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+  volumes:
+    - name: {{ .Values.monitoring.loki.config.name }}
+      configMap:
+        name: loki-config

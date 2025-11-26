@@ -41,7 +41,7 @@ export default function OrderShipping() {
 			element.cityRef === cityRef && element.title.toLowerCase().includes(value.toLowerCase())
 		)
 		return cleanData
-	}+
+	}
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -60,9 +60,9 @@ export default function OrderShipping() {
 
 	useEffect(() => {
 		if (selectedLocality) {
-			setLocalityError(t("Shipping.localityError"))
-		} else {
 			setLocalityError('')
+		} else {
+			setLocalityError(t('Shipping.localityError'))
 		}
 	}, [selectedLocality])
 

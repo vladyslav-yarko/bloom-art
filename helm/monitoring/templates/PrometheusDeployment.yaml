@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.monitoring.prometheus.deployment.name }}
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.monitoring.prometheus.deployment.podName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.monitoring.prometheus.deployment.podName }}
+    spec:
+      containers:
+      - name: {{ .Values.monitoring.prometheus.deployment.containerName }}
+        image: prom/prometheus:latest
+        ports:
+          - containerPort: {{ .Values.monitoring.prometheus.deployment.containerPort }}
+        volumeMounts:
+          - name: prometheus-config
+            mountPath: /etc/prometheus/{{ .Values.monitoring.prometheus.config.fileName }}
+            subPath: {{ .Values.monitoring.prometheus.config.fileName }}
+      volumes:
+        - name: {{ .Values.monitoring.prometheus.config.name }}
+          configMap:
+            name: prometheus-config

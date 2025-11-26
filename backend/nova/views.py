@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import APIException
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 from .serializers import (
     LocalitiesPublicSerializer,
@@ -66,6 +68,7 @@ class LocalitiesCacheStatusView(APIView):
         return Response(serializer.data)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CacheLocalitiesView(APIView):
     def post(self, request):
         service = NOVAService(
@@ -135,6 +138,7 @@ class PointsCacheStatusView(APIView):
         return Response(serializer.data)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CachePointsView(APIView):
     def post(self, request):
         service = NOVAService(
@@ -159,6 +163,7 @@ class CachePointsView(APIView):
         return Response(serializer.data)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CreateOrderView(APIView):
     @swagger_auto_schema(request_body=OrderBodySerializer)
     def post(self, request):
@@ -201,6 +206,7 @@ class CreateOrderView(APIView):
         return Response(public_serializer.data)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class OrderPriceView(APIView):
     @swagger_auto_schema(request_body=OrderPriceBodySerializer)
     def post(self, request):

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql-exporter
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql-exporter-pod
+  template:
+    metadata:
+      labels:
+        app: postgresql-exporter-pod
+    spec:
+      containers:
+      - name: postgresql-exporter-container
+        image: prometheuscommunity/postgres-exporter:latest
+        env:
+          - name: DATA_SOURCE_NAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.secretName }}
+                key: DATABASE_URL
+        ports:
+          - containerPort: 9187
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-exporter-service
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  selector:
+    app: postgresql-exporter-pod
+  ports:
+    - port: 9187
+      targetPort: 9187

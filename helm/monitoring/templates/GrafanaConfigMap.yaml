@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: grafana-datasources
-  namespace: monitoring
+  name: {{ .Values.monitoring.grafana.config.name }}
+  namespace: {{ .Values.sharedNamespace }}
 data:
-  datasources.yaml: |
+  {{ .Values.monitoring.grafana.config.fileName }}: |
     apiVersion: 1
     datasources:
       - name: Prometheus
@@ -12,9 +12,11 @@ data:
         access: proxy
         url: http://prometheus:9090
         isDefault: true
+        editable: true
 
       - name: Loki
         type: loki
         access: proxy
         url: http://loki:3100
         isDefault: false
+        editable: true

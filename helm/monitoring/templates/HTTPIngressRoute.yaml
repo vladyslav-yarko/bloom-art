@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ .Values.backend.ingressRoute.name }}-http
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.applicationHost }}`) && PathPrefix(`/grafana`)
+      middlewares:
+        - name: {{ .Values.monitoring.middleware.name }}
+        - name: {{ .Values.middleware_tls.name }}
+      services:
+        - kind: Service
+          name: {{ .Values.monitoring.grafana.service.name }}
+          port: {{ .Values.monitoring.grafana.service.port }}
+          scheme: http

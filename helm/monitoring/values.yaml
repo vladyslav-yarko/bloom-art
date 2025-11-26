@@ -1,0 +1,66 @@
+sharedNamespace: bloom-art-monitoring
+applicationNamespace: bloom-art-application
+applicationHost: bloom-art.chickenkiller.com
+
+
+monitoring:
+  promtail:
+    deamonset:
+      name: promtail-deamonset
+      podName: promtail-pod
+      containerName: promtail-container
+    config:
+      name: promtail-configmap
+      fileName: config.yml
+
+  loki: 
+    service:
+      name: loki-service
+      port: 3100
+    config:
+      name: loki-configmap
+      fileName: loki-config.yaml
+    statefulset:
+      name: loki-statefulset
+      podName: loki-pod
+      containerName: loki-container
+      containerPort: 3100
+
+  prometheus:
+    service:
+      name: prometheus-service
+      port: 9090
+    config:
+      name: prometheus-configmap
+      fileName: prometheus.yml
+    deployment:
+      name: prometheus-deployment
+      podName: prometheus-pod
+      containerName: prometheus-container
+      containerPort: 9090
+    
+  grafana:
+    service:
+      name: grafana-service
+      port: 3000
+    config:
+      name: grafana-configmap
+      fileName: datasources.yaml
+    deployment:
+      name: grafana-deployment
+      podName: grafana-pod
+      containerName: grafana-container
+      containerPort: 3000
+  
+  ingressRoute:
+    name: monitoring-ingressroute
+
+  middleware:
+    name: monitoring-middleware
+
+secret_tls:
+  name: secret-tls
+
+
+middleware_tls:
+  name: middleware-tls

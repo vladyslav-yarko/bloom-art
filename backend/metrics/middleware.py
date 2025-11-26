@@ -1,6 +1,6 @@
 import time
 
-from metrics import (
+from .metrics import (
     REQUESTS,
     RESPONSES,
     EXCEPTIONS,
