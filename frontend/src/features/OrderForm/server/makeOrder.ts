@@ -52,7 +52,7 @@ export default async function makeOrder(formData: FormData): Promise<boolean> {
 	}
 
     try {
-        const response = await fetch(`${process.env.API_URL}/nova/orders/`, {
+        const response = await fetch(`${process.env.API_URL}/api/nova/orders/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

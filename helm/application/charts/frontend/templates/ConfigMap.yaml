@@ -7,5 +7,8 @@ data:
   NEXT_PUBLIC_LINKEDIN_URL : "https://www.linkedin.com/in/vladyslav-yarko/"
   NEXT_PUBLIC_CART_KEY : "artstudia_cart"
   NEXT_PUBLIC_ORDER_KEY : "artstudia_order"
-  API_URL : "/api"
+  # API_URL : "/api"
+  # API_URL: "http://{{ .Values.backend.service.name }}.{{ .Values.sharedNamespace }}.svc.cluster.local:{{ .Values.backend.service.port }}/api"
+  API_URL: "http://{{ .Values.backend.service.name }}.{{ .Values.sharedNamespace }}.svc.cluster.local:{{ .Values.backend.service.port }}"
   NEXT_PUBLIC_API_URL : "/api"
+

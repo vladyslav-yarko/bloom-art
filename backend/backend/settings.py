@@ -166,7 +166,9 @@ ALLOWED_HOSTS = [
     "backend",
     "http://localhost",
     "http://localhost:3000",
-    "bloom-art.chickenkiller.com"
+    "bloom-art.chickenkiller.com",
+    "http://frontend-service.bloom-art-application.svc.cluster.local:3000",
+    "backend-service.bloom-art-application.svc.cluster.local"
 ]
 
 APPEND_SLASH = True
@@ -187,13 +189,15 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://frontend",
     "http://localhost:3000",
-    "https://bloom-art.chickenkiller.com"
+    "https://bloom-art.chickenkiller.com",
+    "http://frontend-service.bloom-art-application.svc.cluster.local:3000"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://bloom-art.chickenkiller.com"
+    "https://bloom-art.chickenkiller.com",
+    "http://frontend-service.bloom-art-application.svc.cluster.local:3000"
 ]
 
 

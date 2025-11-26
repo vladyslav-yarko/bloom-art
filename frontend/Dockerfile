@@ -1,4 +1,5 @@
-ARG NODE_VERSION=20-alpine
+# ARG NODE_VERSION=20-alpine
+ARG NODE_VERSION=20-bullseye-slim
 
 
 ###
@@ -18,7 +19,7 @@ FROM base AS dev
 
 COPY package*.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install --network-timeout 1000000 --frozen-lockfile
 
 COPY . .
 
@@ -35,7 +36,9 @@ FROM base AS prod
 COPY package*.json yarn.lock ./
 
 # RUN npm install --production
-RUN yarn install
+# RUN yarn install --network-timeout 1000000 --frozen-lockfile --ignore-optional
+RUN apt-get update && apt-get install -y python3 g++ make \
+    && yarn install --network-timeout 1000000 --frozen-lockfile --ignore-optional --build-from-source
 
 COPY . .
 
