@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django import forms
@@ -8,10 +10,12 @@ import base64
 from .models import Perfume
 from base.redis_manager import redis_manager
 
+logger = logging.getLogger(__name__)
+
 
 # Unregister built-in auth models
-admin.site.unregister(User)
-admin.site.unregister(Group)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
 
 
 class PerfumeForm(forms.ModelForm):
@@ -31,12 +35,14 @@ class PerfumeForm(forms.ModelForm):
             instance.save()
 
         image = self.cleaned_data.get('picture')
+        # logger.info(image)
         if image:
             try:
                 image_bytes = image.read()
                 image_hex = image_bytes.hex()
                 redis_manager.add_photo('perfume', str(instance.id), image_hex)
             except Exception as e:
+                # logger.info(str(e))
                 raise ValidationError(f"Failed to save picture: {e}")
 
         return instance

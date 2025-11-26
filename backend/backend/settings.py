@@ -195,3 +195,31 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://bloom-art.chickenkiller.com"
 ]
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,  # <- IMPORTANT
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',   # or DEBUG to see everything
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        # your app logs
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
