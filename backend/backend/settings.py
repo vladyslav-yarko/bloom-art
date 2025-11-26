@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "order",
     "perfume",
     "drf_yasg",
-    "scripts"
+    "scripts",
+    "metrics"
 ]
 
 JET_SIDE_MENU_COMPACT = True
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "metrics.middleware.PrometheusMiddleware"
 ]
 
 ROOT_URLCONF = 'backend.urls'

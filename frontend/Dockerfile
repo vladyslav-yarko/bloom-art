@@ -38,8 +38,7 @@ COPY package*.json yarn.lock ./
 # RUN npm install --production
 # RUN yarn install --network-timeout 1000000 --frozen-lockfile --ignore-optional
 RUN apt-get update && apt-get install -y python3 g++ make \
-    && yarn install --network-timeout 1000000 --frozen-lockfile --ignore-optional --build-from-source
-
+    && yarn install --network-timeout 1000000 --frozen-lockfile
 COPY . .
 
 RUN yarn run build
