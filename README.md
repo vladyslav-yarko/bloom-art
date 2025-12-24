@@ -25,6 +25,7 @@ It covers the entire flow from product management and checkout to shipping, trac
 - Redis (caching, background tasks)
 - Swagger / OpenAPI
 - Customized Django Admin
+- Public API
 
 ### Frontend
 - **Next.js**
